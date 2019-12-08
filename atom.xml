@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Anakinliu&#39;s</title>
+  
+  <subtitle>学而不思则亡，思而不学则殆。</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://anakinliu.github.io/"/>
+  <updated>2019-12-08T08:56:52.907Z</updated>
+  <id>https://anakinliu.github.io/</id>
+  
+  <author>
+    <name>AnakinLiu</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>重启</title>
+    <link href="https://anakinliu.github.io/2019/12/08/%E9%87%8D%E5%90%AF/"/>
+    <id>https://anakinliu.github.io/2019/12/08/%E9%87%8D%E5%90%AF/</id>
+    <published>2019-12-08T07:14:59.000Z</published>
+    <updated>2019-12-08T08:56:52.907Z</updated>
+    
+    <content type="html"><![CDATA[<p>一年多没写了，重启！！！希望这次能坚持下去🤣<br>PS：虽然上了这破 P 研究生屁事很多，但是人要有信念啊😊</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;一年多没写了，重启！！！希望这次能坚持下去🤣&lt;br&gt;PS：虽然上了这破 P 研究生屁事很多，但是人要有信念啊😊&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="扯淡" scheme="https://anakinliu.github.io/categories/%E6%89%AF%E6%B7%A1/"/>
+    
+    
+      <category term="博客" scheme="https://anakinliu.github.io/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
+  
+</feed>
