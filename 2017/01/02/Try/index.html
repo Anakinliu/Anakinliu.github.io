@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Try | Anakinliu&#39;s</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Gaming">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Try">
+<meta property="og:url" content="https:&#x2F;&#x2F;anakinliu.github.io&#x2F;2017&#x2F;01&#x2F;02&#x2F;Try&#x2F;index.html">
+<meta property="og:site_name" content="Anakinliu&#39;s">
+<meta property="og:description" content="Gaming">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;anakinliu.github.io&#x2F;images&#x2F;AndroidStudio&#x2F;layout.PNG">
+<meta property="og:image" content="https:&#x2F;&#x2F;anakinliu.github.io&#x2F;images&#x2F;about&#x2F;47.png">
+<meta property="og:updated_time" content="2017-01-02T07:42:12.123Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;anakinliu.github.io&#x2F;images&#x2F;AndroidStudio&#x2F;layout.PNG">
+  
+    <link rel="alternate" href="/atom.xml" title="Anakinliu&#39;s" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Anakinliu&#39;s</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">学而不思则亡，思而不学则殆。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://anakinliu.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Try" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/02/Try/" class="article-date">
+  <time datetime="2017-01-02T06:07:37.000Z" itemprop="datePublished">2017-01-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Try
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Gaming</p>
+<a id="more"></a>
+
+<hr>
+<h2 id="构建简单的用户界面"><a href="#构建简单的用户界面" class="headerlink" title="构建简单的用户界面"></a>构建简单的用户界面</h2><ul>
+<li><p>Android 应用的<strong>图形界面使用 View 对象和 ViewGroup 对象层次结构而构建。</strong></p>
+</li>
+<li><p>View 对象通常为按钮或文本字段之类的 UI 小部件。</p>
+</li>
+<li><p>而 ViewGroup 对象则为不可见的视图容器，它们定义子视图的布局，比如是网格布局还是垂直列表布局。嗯，我想起来JPanel了。</p>
+</li>
+<li><p>Android 提供对应于 View 和 ViewGroup 子类的 XML 词汇，以便您使用 UI 元素层次结构以 XML 格式定义 UI。</p>
+</li>
+<li><p>布局是 ViewGroup 的子类。</p>
+</li>
+</ul>
+<p>ViewGroup 对象如何在布局中形成分支并容纳其他 View 对象的图解：</p>
+<img src="/images/AndroidStudio/layout.PNG" class="bg" width="567" height="287">
+
+<hr>
+<h2 id="创建线性布局"><a href="#创建线性布局" class="headerlink" title="创建线性布局"></a>创建线性布局</h2><ul>
+<li>打开 app &gt; res &gt; layout &gt; activity_main.xml。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;utf-8&quot;?&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    xmlns:tools&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;tools&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    android:layout_width&#x3D;&quot;match_parent&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    android:layout_height&#x3D;&quot;match_parent&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    android:orientation&#x3D;&quot;horizontal&quot;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;LinearLayout&gt;</span></pre></td></tr></table></figure>
+
+<ul>
+<li><p>LinearLayout 是一个视图组（ViewGroup 的子类），它会按照 android:orientation 属性的指定，将子视图设置为垂直或水平方向布局。LinearLayout 的每个子视图都会按照它们各自在 XML 中的出现顺序显示在屏幕上。</p>
+</li>
+<li><p>其他两个属性 android:layout_width 和 android:layout_height 则是所有视图的必备属性，用于指定它们的尺寸。</p>
+</li>
+<li><p>如果LinearLayout 是布局中的根视图，因此应将宽度和高度设置为 “match_parent”，从而填满可供应用使用的整个屏幕区域。 该值表示视图应扩大其宽度或高度，以匹配父视图的宽度或高度。</p>
+</li>
+</ul>
+<p>如需了解有关布局属性的详细信息，请参阅<a href="https://developer.android.com/guide/topics/ui/declaring-layout.html" target="_blank" rel="noopener">布局指南</a>.</p>
+<hr>
+<h2 id="添加文本字段"><a href="#添加文本字段" class="headerlink" title="添加文本字段"></a>添加文本字段</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;LinearLayout</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    xmlns:tools&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;tools&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    android:layout_width&#x3D;&quot;match_parent&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    android:layout_height&#x3D;&quot;match_parent&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    android:orientation&#x3D;&quot;horizontal&quot;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &lt;EditText android:id&#x3D;&quot;@+id&#x2F;edit_message&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        android:layout_width&#x3D;&quot;wrap_content&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        android:layout_height&#x3D;&quot;wrap_content&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        android:hint&#x3D;&quot;@string&#x2F;edit_message&quot; &#x2F;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;LinearLayout&gt;</span></pre></td></tr></table></figure>
+
+<ul>
+<li>下面说明了您添加的 <EditText> 中的属性：</li>
+</ul>
+<p><code>android:id</code></p>
+<pre><code>这会**为视图赋予唯一的标识符**，您可以**使用该标识符从应用代码中引用对象**，例如读取和操作对象（下一课中将有介绍）。
+
+从 XML 引用任何资源对象时，都需要使用 @ 符号。 请在该符号后依次输入资源类型（本例中为 id）、斜杠和资源名称 (edit_message)。
+
+只有在第一次定义资源 ID 时，才需要在资源类型之前加一个加号 (+)。 当您编译应用时，SDK 工具会使用 ID 名称在项目的 R.java 文件中新建一个引用 EditText 元素的资源 ID。一旦以此方式声明资源 ID，其他对该 ID 的引用皆无需使用加号。 只有在指定新资源 ID 时才必须使用加号，对于字符串或布局等具体资源则不必如此。
+
+*资源对象*
+资源对象是一个唯一的整型名称，它与应用资源（如位图、布局文件或字符串）相关联。
+每个资源在您项目的 R.java 文件中都定义有相应的资源对象。您可以使用 R 类中的对象名称来引用您的资源，例如当您需要为 android:hint 属性指定字符串值时，就可以这样做。您也可以使用 android:id 属性创建任意与视图相关联的资源 ID，从而可以从其他代码中引用该视图。
+SDK 工具会在您每次编译应用时生成 R.java 文件。切勿手动修改该文件。</code></pre><p><code>android:layout_width 和 android:layout_height</code></p>
+<pre><code>&quot;wrap_content&quot; 值并不规定宽度和高度的具体大小，而是指定根据需要缩放视图，使其适合视图的内容。 如果您要改用 &quot;match_parent&quot;，则 EditText 元素将填满屏幕，因为它会匹配父 LinearLayout 的大小。如需了解详细信息，请参阅布局指南。</code></pre><p><code>android:hint</code></p>
+<pre><code>这是文本字段为空时显示的默认字符串。&quot;@string/edit_message&quot; 并非使用硬编码字符串作为其值，而是引用另一个文件中定义的一个字符串资源。 由于它引用的是一个具体资源（而不仅仅是标识符），因此不需要加号。</code></pre><p><em>注：此字符串资源与元素 ID edit_message 同名。不过，<strong>对资源的引用始终都按资源类型（如 id 或 string）确定其作用域，</strong>因此使用相同的名称不会引起冲突。</em></p>
+<hr>
+<h2 id="添加字符串资源"><a href="#添加字符串资源" class="headerlink" title="添加字符串资源"></a>添加字符串资源</h2><ul>
+<li><p>从 Project 窗口中，打开 res &gt; values &gt; strings.xml。</p>
+</li>
+<li><p>添加两个字符串，使您的文件如下所示：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;utf-8&quot;?&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&lt;resources&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &lt;string name&#x3D;&quot;app_name&quot;&gt;My First App&lt;&#x2F;string&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &lt;string name&#x3D;&quot;edit_message&quot;&gt;Enter a message&lt;&#x2F;string&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &lt;string name&#x3D;&quot;button_send&quot;&gt;Send&lt;&#x2F;string&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;resources&gt;</span></pre></td></tr></table></figure>
+
+<ul>
+<li>对于用户界面中的文本，务必将每个字符串都指定为资源。 字符串资源允许您在单一位置管理所有 UI 文本，从而简化文本的查找和更新。 此外，将字符串外部化还可让您为每个字符串资源提供替代定义，从而将您的应用本地化为不同的语言。</li>
+</ul>
+<p><em>如需了解有关使用字符串资源将应用本地化为其他语言的详细信息，请参阅<a href="https://developer.android.com/training/basics/supporting-devices/index.html" target="_blank" rel="noopener">支持不同设备</a>课程。</em></p>
+<hr>
+<h2 id="添加按钮"><a href="#添加按钮" class="headerlink" title="添加按钮"></a>添加按钮</h2><h2 id="构建一个-Intent"><a href="#构建一个-Intent" class="headerlink" title="构建一个 Intent"></a>构建一个 Intent</h2><ul>
+<li><p>Intent 是指在相互独立的组件（如两个 Activity）之间提供运行时绑定功能的对象。Intent 表示一个应用“执行某项操作的 Intent”。 您可以将 Intent 用于各种任务，但在本课程中，Intent 用于启动另一个 Activity。</p>
+</li>
+<li><p>在 MainActivity.java 中，将如下所示代码添加到 sendMessage()：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">public class MainActivity extends AppCompatActivity &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    public final static String EXTRA_MESSAGE &#x3D; &quot;com.example.myfirstapp.MESSAGE&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    @Override</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        super.onCreate(savedInstanceState);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        setContentView(R.layout.activity_main);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &#x2F;** Called when the user clicks the Send button *&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    public void sendMessage(View view) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        Intent intent &#x3D; new Intent(this, DisplayMessageActivity.class);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        EditText editText &#x3D; (EditText) findViewById(R.id.edit_message);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        String message &#x3D; editText.getText().toString();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        intent.putExtra(EXTRA_MESSAGE, message);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        startActivity(intent);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="创建第二个-Activity"><a href="#创建第二个-Activity" class="headerlink" title="创建第二个 Activity"></a>创建第二个 Activity</h2><ul>
+<li>在 Project 窗口中，右键点击 app 文件夹并选择 New &gt; Activity &gt; Empty Activity。<br>在 Configure Activity 窗口中，为 Activity Name 输入 “DisplayMessageActivity”，然后点击 Finish<br>Android Studio 自动执行三项操作：</li>
+</ul>
+<p>1.使用必需的 onCreate() 方法的实现创建类 DisplayMessageActivity.java。</p>
+<p>2.创建对应的布局文件 activity_display_message.xml</p>
+<p>3.在 AndroidManifest.xml 中添加必需的 <code>&lt;activity&gt;</code> 元素。</p>
+<ul>
+<li>如果运行应用并在第一个 Activity 上点击“Send”按钮，则将启动第二个 Activity，但它为空。这是因为第二个 Activity 使用模板提供的默认空布局<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<img src="/images/about/47.png" class="bg" width="200" height="200">
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://anakinliu.github.io/2017/01/02/Try/" data-id="ck3wlyj8j002g40581qeagzng" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/01/04/XML5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          XML5
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/01/01/haffman/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">数据结构复习</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%9D%E7%BA%A7%E5%85%A5%E9%97%A8%E7%9F%A5%E8%AF%86/">初级入门知识</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%9B%E9%98%B6/">进阶</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jvav%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag">Jvav虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/" rel="tag">XML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">数据结构与算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%83%E4%B9%A0%E9%A2%98/" rel="tag">练习题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E9%9A%8F%E7%AC%94/" rel="tag">读书随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Jvav%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 10px;">Jvav虚拟机</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/XML/" style="font-size: 17.5px;">XML</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 15px;">数据结构</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 12.5px;">数据结构与算法</a> <a href="/tags/%E7%BB%83%E4%B9%A0%E9%A2%98/" style="font-size: 10px;">练习题</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">读书随笔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/12/08/spring%20%E6%A1%86%E6%9E%B6/">spring 框架</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/08/python/">python</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/08/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/13/Design-Pattern-001/">Design Pattern 001</a>
+          </li>
+        
+          <li>
+            <a href="/2018/01/20/2018%E5%B9%B4%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87-md/">2018年的第一篇.md</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 AnakinLiu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
