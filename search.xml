@@ -4,6 +4,60 @@
   
     
     <entry>
+      <title>CUDA 简介</title>
+      <link href="/2020/01/29/CUDA%E7%AE%80%E4%BB%8B/"/>
+      <url>/2020/01/29/CUDA%E7%AE%80%E4%BB%8B/</url>
+      
+        <content type="html"><![CDATA[<p>GPU 适合某些情景下的并行运算，因为计算核心比 CPU 多。</p><p>这些场景一般可以将计算过程分为互不依赖的更小的子过程进行并行处理，称为 <code>embarrassingly parallel</code></p><img src="C:\Users\linux\AppData\Roaming\Typora\typora-user-images\image-20200129213833011.png" alt="image-20200129213833011" style="zoom:50%;" /><p>Torch 创始人大佬就说</p><blockquote><p>神经网络是 embarrassingly parallel</p></blockquote><p>张量由 CPU 计算转 GPU 计算</p><pre><code class="python">t = torch.tensor([1, 2, 3])# 使用 CUDAt = cuda()</code></pre><img src="C:\Users\linux\AppData\Roaming\Typora\typora-user-images\image-20200129213640518.png" alt="image-20200129213640518" style="zoom:50%;" /><p>红框表示你可以使用多个显卡，当前使用显卡 0</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 视频笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> Pytorch </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Pytorch 组成介绍</title>
+      <link href="/2020/01/29/Pytorch%E7%BB%84%E6%88%90%E4%BB%8B%E7%BB%8D/"/>
+      <url>/2020/01/29/Pytorch%E7%BB%84%E6%88%90%E4%BB%8B%E7%BB%8D/</url>
+      
+        <content type="html"><![CDATA[<p>先知道以下 Torch 创始人大佬 Soumith Chintala</p><p>主要组件</p><ul><li>*<em>torch  张量库 *</em></li><li>torch.nn 包含用来构建神经网络的类</li><li>*<em>torch.autograd 张量微分操作 *</em></li><li>torch.nn.functional 例如损失函数，激活函数</li><li>torch.optim 包含标准优化操作，如 SGD 和 ADam</li><li>torch.utils 数据集和数据加载器</li><li>torchvision 计算机视觉相关</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 视频笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> Pytorch </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>数据模型</title>
       <link href="/2019/12/13/%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/"/>
       <url>/2019/12/13/%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/</url>
