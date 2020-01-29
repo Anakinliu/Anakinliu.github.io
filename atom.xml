@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://anakinliu.github.io/"/>
-  <updated>2020-01-29T13:39:12.488Z</updated>
+  <updated>2020-01-29T13:56:37.177Z</updated>
   <id>https://anakinliu.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://anakinliu.github.io/2020/01/29/CUDA%E7%AE%80%E4%BB%8B/"/>
     <id>https://anakinliu.github.io/2020/01/29/CUDA%E7%AE%80%E4%BB%8B/</id>
     <published>2020-01-29T13:23:00.000Z</published>
-    <updated>2020-01-29T13:39:12.488Z</updated>
+    <updated>2020-01-29T13:56:37.177Z</updated>
     
-    <content type="html"><![CDATA[<p>GPU 适合某些情景下的并行运算，因为计算核心比 CPU 多。</p><p>这些场景一般可以将计算过程分为互不依赖的更小的子过程进行并行处理，称为 <code>embarrassingly parallel</code></p><img src="C:\Users\linux\AppData\Roaming\Typora\typora-user-images\image-20200129213833011.png" alt="image-20200129213833011" style="zoom:50%;" /><p>Torch 创始人大佬就说</p><blockquote><p>神经网络是 embarrassingly parallel</p></blockquote><p>张量由 CPU 计算转 GPU 计算</p><pre><code class="python">t = torch.tensor([1, 2, 3])# 使用 CUDAt = cuda()</code></pre><img src="C:\Users\linux\AppData\Roaming\Typora\typora-user-images\image-20200129213640518.png" alt="image-20200129213640518" style="zoom:50%;" /><p>红框表示你可以使用多个显卡，当前使用显卡 0</p>]]></content>
+    <content type="html"><![CDATA[<p>GPU 适合某些情景下的并行运算，因为计算核心比 CPU 多。</p><p>这些场景一般可以将计算过程分为互不依赖的更小的子过程进行并行处理，称为 <code>embarrassingly parallel</code></p><p><img src="/images/image-20200129215610473.png" alt="image-20200129215610473"></p><p>Torch 创始人大佬就说</p><blockquote><p>神经网络是 embarrassingly parallel</p></blockquote><p>张量由 CPU 计算转 GPU 计算</p><pre><code class="python">t = torch.tensor([1, 2, 3])# 使用 CUDAt = cuda()</code></pre><p>红框表示你可以使用多个显卡，当前使用显卡 0</p>]]></content>
     
     <summary type="html">
     
@@ -31,7 +31,7 @@
       
         &lt;p&gt;GPU 适合某些情景下的并行运算，因为计算核心比 CPU 多。&lt;/p&gt;
 &lt;p&gt;这些场景一般可以将计算过程分为互不依赖的更小的子过程进行并行处理，称为 &lt;code&gt;embarrassingly parallel&lt;/code&gt;&lt;/p&gt;
-&lt;img src=&quot;C:\Users\li
+&lt;p&gt;&lt;img src=&quot;/images/
       
     
     </summary>
@@ -51,7 +51,7 @@
     <link href="https://anakinliu.github.io/2020/01/29/Pytorch%E7%BB%84%E6%88%90%E4%BB%8B%E7%BB%8D/"/>
     <id>https://anakinliu.github.io/2020/01/29/Pytorch%E7%BB%84%E6%88%90%E4%BB%8B%E7%BB%8D/</id>
     <published>2020-01-29T13:12:35.000Z</published>
-    <updated>2020-01-29T13:22:22.457Z</updated>
+    <updated>2020-01-29T13:49:23.260Z</updated>
     
     <content type="html"><![CDATA[<p>先知道以下 Torch 创始人大佬 Soumith Chintala</p><p>主要组件</p><ul><li>*<em>torch  张量库 *</em></li><li>torch.nn 包含用来构建神经网络的类</li><li>*<em>torch.autograd 张量微分操作 *</em></li><li>torch.nn.functional 例如损失函数，激活函数</li><li>torch.optim 包含标准优化操作，如 SGD 和 ADam</li><li>torch.utils 数据集和数据加载器</li><li>torchvision 计算机视觉相关</li></ul>]]></content>
     
