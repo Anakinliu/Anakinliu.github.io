@@ -8,7 +8,7 @@
       <link href="/2020/01/29/CUDA%E7%AE%80%E4%BB%8B/"/>
       <url>/2020/01/29/CUDA%E7%AE%80%E4%BB%8B/</url>
       
-        <content type="html"><![CDATA[<p>GPU 适合某些情景下的并行运算，因为计算核心比 CPU 多。</p><p>这些场景一般可以将计算过程分为互不依赖的更小的子过程进行并行处理，称为 <code>embarrassingly parallel</code></p><p><img src="/images/image-20200129215610473.png" alt="image-20200129215610473"></p><p>Torch 创始人大佬就说</p><blockquote><p>神经网络是 embarrassingly parallel</p></blockquote><p>张量由 CPU 计算转 GPU 计算</p><pre><code class="python">t = torch.tensor([1, 2, 3])# 使用 CUDAt = cuda()</code></pre><p>红框表示你可以使用多个显卡，当前使用显卡 0</p>]]></content>
+        <content type="html"><![CDATA[<p>GPU 适合某些情景下的并行运算，因为计算核心比 CPU 多。</p><p>这些场景一般可以将计算过程分为互不依赖的更小的子过程进行并行处理，称为 <code>embarrassingly parallel</code></p><img src="/images/image-20200129215610473.png" alt="image-20200129215610473" style="zoom:50%;" /><p>Torch 创始人大佬就说</p><blockquote><p>神经网络是 embarrassingly parallel</p></blockquote><p>张量由 CPU 计算转 GPU 计算</p><pre><code class="python">t = torch.tensor([1, 2, 3])# 使用 CUDAt = cuda()</code></pre><img src="/images/image-20200129215811882.png" alt="image-20200129215811882" style="zoom:50%;" /><p>红框表示你可以使用多个显卡，当前使用显卡 0</p>]]></content>
       
       
       <categories>

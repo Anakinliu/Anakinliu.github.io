@@ -221,14 +221,6 @@
             <span class="post-date" title="2020-01-29 21:23:00">2020/01/29</span>
         </a>
         
-        <a  class="视频笔记 "
-           href="/2020/01/29/Pytorch%E7%BB%84%E6%88%90%E4%BB%8B%E7%BB%8D/"
-           data-tag="Python,Pytorch"
-           data-author="" >
-            <span class="post-title" title="Pytorch 组成介绍">Pytorch 组成介绍</span>
-            <span class="post-date" title="2020-01-29 21:12:35">2020/01/29</span>
-        </a>
-        
         <a  class="日常编程 "
            href="/2019/12/13/%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/"
            data-tag="数据库理论"
@@ -243,6 +235,14 @@
            data-author="" >
             <span class="post-title" title="自我演讲">自我演讲</span>
             <span class="post-date" title="2019-12-08 21:49:23">2019/12/08</span>
+        </a>
+        
+        <a  class="视频笔记 "
+           href="/2020/01/29/Pytorch%E7%BB%84%E6%88%90%E4%BB%8B%E7%BB%8D/"
+           data-tag="Python,Pytorch"
+           data-author="" >
+            <span class="post-title" title="Pytorch 组成介绍">Pytorch 组成介绍</span>
+            <span class="post-date" title="2020-01-29 21:12:35">2020/01/29</span>
         </a>
         
         <a  class="扯淡 "
@@ -291,7 +291,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2020-01-29 21:56:37'>2020-01-29 21:23</time>
+        创建时间:<time class="date" title='更新时间: 2020-01-29 22:02:06'>2020-01-29 21:23</time>
         
     </div>
     <div class="article-meta">
@@ -344,7 +344,8 @@
       
         <p>GPU 适合某些情景下的并行运算，因为计算核心比 CPU 多。</p>
 <p>这些场景一般可以将计算过程分为互不依赖的更小的子过程进行并行处理，称为 <code>embarrassingly parallel</code></p>
-<p><img src="/images/image-20200129215610473.png" alt="image-20200129215610473"></p>
+<img src="/images/image-20200129215610473.png" alt="image-20200129215610473" style="zoom:50%;" />
+
 <p>Torch 创始人大佬就说</p>
 <blockquote>
 <p>神经网络是 embarrassingly parallel</p>
@@ -353,6 +354,8 @@
 <pre><code class="python">t = torch.tensor([1, 2, 3])
 # 使用 CUDA
 t = cuda()</code></pre>
+<img src="/images/image-20200129215811882.png" alt="image-20200129215811882" style="zoom:50%;" />
+
 <p>红框表示你可以使用多个显卡，当前使用显卡 0</p>
 
       
@@ -371,7 +374,7 @@ t = cuda()</code></pre>
     <p><span class="copy-title">文章字数:</span><span class="post-count">114</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="AnakinLiu">AnakinLiu</a></p>
     <p><span class="copy-title">发布时间:</span>2020-01-29, 21:23:00</p>
-    <p><span class="copy-title">最后更新:</span>2020-01-29, 21:56:37</p>
+    <p><span class="copy-title">最后更新:</span>2020-01-29, 22:02:06</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/01/29/CUDA%E7%AE%80%E4%BB%8B/" title="CUDA 简介">https://anakinliu.github.io/2020/01/29/CUDA%E7%AE%80%E4%BB%8B/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
