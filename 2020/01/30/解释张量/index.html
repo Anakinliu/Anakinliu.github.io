@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>自我演讲 | Anakinliu&#39;s</title>
-  <meta name="keywords" content=" 演讲 ">
-  <meta name="description" content="自我演讲 | Anakinliu&#39;s">
+  <title>解释张量 | Anakinliu&#39;s</title>
+  <meta name="keywords" content=" Python ">
+  <meta name="description" content="解释张量 | Anakinliu&#39;s">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="随心写写">
 <meta name="keywords" content="Python, 爬虫, 机器学习, 深度学习">
@@ -293,9 +293,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-自我演讲" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-解释张量" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">自我演讲</h1>
+        <h1 class="article-title">解释张量</h1>
     
     <div class="article-meta">
         
@@ -303,26 +303,26 @@
         
         <span class="book">
             
-                <a  data-rel="外语">外语</a>
+                <a  data-rel="深度学习">深度学习</a>
             
         </span>
         
         
         <span class="tag">
             
-            <a class="color3">演讲</a>
+            <a class="color2">Python</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-12-08 22:03:43'>2019-12-08 21:49</time>
+        创建时间:<time class="date" title='更新时间: 2020-01-30 14:05:41'>2020-01-30 09:42</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:363</span>
+        <span>字数:248</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -352,7 +352,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#张量是神经网络里的主要数据结构。"><span class="toc-text">张量是神经网络里的主要数据结构。</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -368,13 +368,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>BEGIN<br>Hi, I’m 刘印全, majoring in Software Engineering of Chong Qing University of Posts and Telecommunications.<br>Today I will talk about the power of self-discipline in our life. Self-discipline is one of the most important and useful skills everyone should possess. In my opinion, self-discipline is the power to achieve goals.<br>Here is my personal experience.<br>During the period of preparing for cet-6, when I was bored, I would open English reading app instead of opening the game. At the begging, I was dying to play a game. However, I gradually found that reading is more interesting than playing games.<br>As I prepare the Graduate exam, I got up at six, went to bed at eleven, study for twelve hours. But everyone has his slack days. Especially in winter, it is very cold. When I close the alarm clock and going back to sleep, but self-discipline wake me up. In preparation for the exam, self-discipline help me a lot.  </p>
-<hr>
-<p>BODY<br>Now, I want to talk about why self-discipline is the power to accomplish goals.<br>First，Self-discipline gives us constant motivation. We need motivation in everything we do，but when we do a job over and over again, the motivation will fade away slowly，and finally give up. But Self-discipline urges us to finish our work.<br>Second，self-discipline makes us confident. Because self-discipline makes us have many good habits. When you face a new difficulty, you believe that you can solve it by working hard.<br>Last but not least, self-discipline gives you the power to stick to your decisions and follow them through, without changing your mind, and is therefore, one of the important requirements for achieving goals.</p>
-<hr>
-<p>CONCLUSION<br>To sum up, the possession of self-discipline enables you to persevere with your decisions and plans how to accomplish your goals. It also strengthen your mind, helping you to overcome addictions, procrastination and laziness, and to follow through with whatever you do.</p>
-<p>Thank you for listening.</p>
-<p>自律可以从小事做起，例如坚持每天早上起来叠被子，形成习惯，</p>
+        <h1 id="张量是神经网络里的主要数据结构。"><a href="#张量是神经网络里的主要数据结构。" class="headerlink" title="张量是神经网络里的主要数据结构。"></a>张量是神经网络里的主要数据结构。</h1><p>数学上的标量，向量，矩阵，现在使用 <code>nd-tensor</code> 表示</p>
+<p>CS 里的 number，数组，二维数组，现在使用 <code>nd-array</code> 表示</p>
+<p>上面的 <code>n</code> 表示，确定一个特定的一个元素需要 <code>n</code> 个索引</p>
+<p>tensor 和 array，它们只是叫法不一样。</p>
+<p>这里的 n 不是我们数学课狭义的维度。</p>
+<p>因为：</p>
+<blockquote>
+<p>关于张量的维数要注意的一件事是，它与我们在向量空间中引用向量的维数时的含义不同。张量的维数不能告诉我们张量中存在多少个分量。</p>
+</blockquote>
+<blockquote>
+<p>如果我们有一个来自三维欧几里德空间的三维向量，那么我们将得到一个具有三个分量的有序三元组。</p>
+</blockquote>
+<p>但是，三维张量可以具有三个以上的分量。<br>例如，我们的二维张量 dd 有 9 个分量。</p>
+<pre><code class="python">dd = [[1,2,3],
+[4,5,6],
+[7,8,9]
+]</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 mailto:2763442210@qq.com </span>
@@ -388,12 +398,12 @@
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>自我演讲</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">363</span></p>
+    <p><span class="copy-title">文章标题:</span>解释张量</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">248</span></p>
     <p><span class="copy-title">本文作者:</span><a  title="AnakinLiu">AnakinLiu</a></p>
-    <p><span class="copy-title">发布时间:</span>2019-12-08, 21:49:23</p>
-    <p><span class="copy-title">最后更新:</span>2019-12-08, 22:03:43</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2019/12/08/%E8%87%AA%E6%88%91%E6%BC%94%E8%AE%B2/" title="自我演讲">https://anakinliu.github.io/2019/12/08/%E8%87%AA%E6%88%91%E6%BC%94%E8%AE%B2/</a>
+    <p><span class="copy-title">发布时间:</span>2020-01-30, 09:42:17</p>
+    <p><span class="copy-title">最后更新:</span>2020-01-30, 14:05:41</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2020/01/30/%E8%A7%A3%E9%87%8A%E5%BC%A0%E9%87%8F/" title="解释张量">https://anakinliu.github.io/2020/01/30/%E8%A7%A3%E9%87%8A%E5%BC%A0%E9%87%8F/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
