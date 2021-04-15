@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://anakinliu.github.io/"/>
-  <updated>2020-03-15T08:21:25.248Z</updated>
+  <updated>2021-04-15T12:42:58.255Z</updated>
   <id>https://anakinliu.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>腾讯音乐娱乐测开笔试</title>
+    <link href="https://anakinliu.github.io/2021/04/15/%E8%85%BE%E8%AE%AF%E9%9F%B3%E4%B9%90%E5%A8%B1%E4%B9%90%E6%B5%8B%E5%BC%80%E7%AC%94%E8%AF%95/"/>
+    <id>https://anakinliu.github.io/2021/04/15/%E8%85%BE%E8%AE%AF%E9%9F%B3%E4%B9%90%E5%A8%B1%E4%B9%90%E6%B5%8B%E5%BC%80%E7%AC%94%E8%AF%95/</id>
+    <published>2021-04-15T12:33:58.000Z</published>
+    <updated>2021-04-15T12:42:58.255Z</updated>
+    
+    <content type="html"><![CDATA[<p>第一题做全了，第二题 45%，一直改，做到最后二十分钟竟然变为了 15%。。。第三题直接弃了。</p><h1 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h1><ul><li>输入一个整数 <code>n</code>，表示输入的整数数组数。输入这些数组。</li><li>输出每个数组内不重复的整数的最小值。意即最小数不得在数组内重复。</li></ul><pre><code>输入210 10 30 30 2099 98 98 输出2099</code></pre><h1 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h1><p>“最小代价”</p><p>先输入一个正整数，表示后面的数组的长度。</p><p>再输入两个等长数组，两个数组内包含整数。</p><p>第二个数组对应的位置表示第一个数组内此位置的数 <code>+1</code> 需要的代价。</p><p>求使得第一个数组内各个数不同的最小代价。</p><pre><code>输入31 1 24 5 3输出7</code></pre><blockquote><p><code>1 1 2</code> 第一个元素加一，变为 <code>2 1</code>2，第三个元素再加一，变为 <code>2 1</code>3，此时代价为 <code>7</code>， 即最小代价</p></blockquote><h1 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h1><p>好像和最短路径相关。。。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;第一题做全了，第二题 45%，一直改，做到最后二十分钟竟然变为了 15%。。。第三题直接弃了。&lt;/p&gt;
+&lt;h1 id=&quot;第一题&quot;&gt;&lt;a href=&quot;#第一题&quot; class=&quot;headerlink&quot; title=&quot;第一题&quot;&gt;&lt;/a&gt;第一题&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;输入一个整
+      
+    
+    </summary>
+    
+    
+      <category term="笔试" scheme="https://anakinliu.github.io/categories/%E7%AC%94%E8%AF%95/"/>
+    
+    
+      <category term="算法" scheme="https://anakinliu.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>靠谱的公司（技术胖）</title>
