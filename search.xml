@@ -5,8 +5,8 @@
     
     <entry>
       <title>靠谱的公司（技术胖）</title>
-      <link href="/2020/03/15/%E6%89%BE%E5%88%B0%E9%9D%A0%E8%B0%B1%E7%9A%84%E5%88%9D%E5%88%9B%E5%85%AC%E5%8F%B8%EF%BC%88b%E7%AB%99%E6%8A%80%E6%9C%AF%E8%83%96%EF%BC%89/"/>
-      <url>/2020/03/15/%E6%89%BE%E5%88%B0%E9%9D%A0%E8%B0%B1%E7%9A%84%E5%88%9D%E5%88%9B%E5%85%AC%E5%8F%B8%EF%BC%88b%E7%AB%99%E6%8A%80%E6%9C%AF%E8%83%96%EF%BC%89/</url>
+      <link href="2020/03/15/%E6%89%BE%E5%88%B0%E9%9D%A0%E8%B0%B1%E7%9A%84%E5%88%9D%E5%88%9B%E5%85%AC%E5%8F%B8%EF%BC%88b%E7%AB%99%E6%8A%80%E6%9C%AF%E8%83%96%EF%BC%89/"/>
+      <url>2020/03/15/%E6%89%BE%E5%88%B0%E9%9D%A0%E8%B0%B1%E7%9A%84%E5%88%9D%E5%88%9B%E5%85%AC%E5%8F%B8%EF%BC%88b%E7%AB%99%E6%8A%80%E6%9C%AF%E8%83%96%EF%BC%89/</url>
       
         <content type="html"><![CDATA[<p>对于创业公司，面试前问清楚：</p><ul><li>面试前要对公司有一定的了解,  融资情况，CEO 背景，投资人背景，红色资本（国家注资）</li><li>盈利能力</li><li>政策风险，有无法律擦边球</li><li>技术发展</li></ul><p>面试通知后，面试中：</p><ul><li>问，自己进公司后去哪条产品线，哪个部门</li><li>技术可以带来更多价值的部门</li><li>技术是否与岗位对口</li><li>有没有人带，没有人带可能就是个大坑，因为上一届都干不下去了</li><li>问清除薪资，基本的，年终的，季度奖金，有无技术评级，<code>五险一金缴纳基数，高基数可以给自己减少房贷压力</code></li><li>下午茶陷阱，不要看得太重，不要用下午茶换薪资</li><li><code>期权</code>，上市的给的是股票，未上市的可能会给你期权，类似期房。<ul><li>注意：1 <code>期权发放比例</code>，例如你有 1 万股期权，公司总共发了 10 亿股，那你的那份就没多大价值</li><li>注意：2 <code>期权转现期限</code>，一般公司是 3，4 年之内，七八年之类的都在画大饼！！！</li><li>注意：3 <code>离职期权问题</code>，离职是否期权作废，或者强制以极低价格回收</li><li>注意：4 当前期权的 <code>公允价</code></li></ul></li></ul><p>面试通过，拿到 offer 后：</p><ul><li>及时给公司回复，避免公司面试其他人后选择别人。</li></ul>]]></content>
       
@@ -30,8 +30,8 @@
     
     <entry>
       <title>CNN 简述</title>
-      <link href="/2020/01/30/CNN%E7%AE%80%E8%BF%B0/"/>
-      <url>/2020/01/30/CNN%E7%AE%80%E8%BF%B0/</url>
+      <link href="2020/01/30/CNN%E7%AE%80%E8%BF%B0/"/>
+      <url>2020/01/30/CNN%E7%AE%80%E8%BF%B0/</url>
       
         <content type="html"><![CDATA[<h1 id="Convolution"><a href="#Convolution" class="headerlink" title="Convolution"></a>Convolution</h1><p>CNN 也是 ANN 的一种，特点是它可以发现 pattern。</p><p>CNN 不光有基本的网络层，还有更重要的卷积层。</p><p>卷积层对数据的变换操作称为 convolution operation。</p><p>在数学上，由卷积层执行的卷积运算称为互相关 <code>cross-correlations</code>。</p><h2 id="卷积层的操作"><a href="#卷积层的操作" class="headerlink" title="卷积层的操作"></a>卷积层的操作</h2><ol><li><p>开始阶段，通过 filter 进行 pattern 发现。</p><blockquote><p>patterns</p><p>在一个图形中，pattern 可以是形状，材质 textures，物体 objects。</p><p>一个可以发现形状的 filter 可以称为 <code>edge detector</code></p></blockquote></li><li><p>往后，filter 更复杂，不是简单的边缘和多边形，而是发现特殊的物体，例如眼睛，耳朵，头发，羽毛等。</p></li><li><p>更深的网络层可以发现更复杂的物体，例如狗，鸟等。</p></li></ol><h4 id="通过例子看一下操作"><a href="#通过例子看一下操作" class="headerlink" title="通过例子看一下操作"></a>通过例子看一下操作</h4><p>手写数字识别</p><p><img src="/images/image-20200130175239314.png" alt="手写数字"></p><p>假设第一个层就是卷积层，这时需要指定 filter 的数量，</p><blockquote><p>filter 的数量决定了输出 channel 的数量。</p></blockquote><p>从技术上讲，filter 可以认为是一个相对较小的矩阵（张量），为此，我们需要决定该矩阵具有的行数和列数，并使用随机数初始化该矩阵中的值。</p><h4 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h4><p><img src="/images/same_padding_no_strides.gif" alt="filter"></p><p><a href="https://deeplizard.com/learn/video/YRhxdVk_sIs" target="_blank" rel="noopener">图片来源</a></p><p>蓝色是输入 channel，绿色是输出 channel，中间的不断滑动的四条直线表示 3x3 的 convolutional filter。</p><p>可以看到，输入 channel 到输出 channel 的元素数量没变，只是都经过 flter 处理了一下</p><h4 id="卷积运算-Convolution-operaton"><a href="#卷积运算-Convolution-operaton" class="headerlink" title="卷积运算 Convolution operaton"></a>卷积运算 Convolution operaton</h4><p>滑动操作就是卷，准确地说，这个 filter 正在把输入的每个 3x3 的块进行卷积。</p><p>蓝色输入 channel 是来自 MNIST 数据集的图像的矩阵表示。<br>该矩阵中的值是图像中的各个像素。<br>这些图像是灰度图像，每个像素可以用 0-255 中一个整数值表示，因此我们只有一个输入 channel。</p><p>RGB 图像有 3 个颜色通道。</p><p>我们将 filter 与前 3 x 3 像素块点积（按元素乘积的总和。或者说 Frobenius Inner product 或 Hadamard product 的和），然后将结果存储在输出 channel 中。<br>然后，change 滑动到下一个 3 x 3 块，计算点积，并将该值存储为输出 channel 中的下一个像素。</p><p>整个输出 channel 称为 feature map。</p><p>这只是一个非常简单的示例，但是正如前面提到的，我们可以将这些 filters 视为模式发现器。</p><h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><p>一个 MNIST 的图片</p><p><img src="/images/image-20200130204856727.png" alt="7"></p><p>假设我们的卷积层有 4 个 filter，这些值可以通过使 - 1 对应于黑色，1 对应于白色，0 对应于灰色来直观地表示。</p><p><img src="/images/image-20200130205238234.png" alt="4 个 filter"></p><p>如果我们将原始的七个图像分别与这四个 filter 中的每个进行卷积，则每个 filter 的输出如下所示：</p><p><img src="/images/image-20200130205348537.png" alt="output"></p><p>我们可以看到所有这四个 filter 都在检测（detect）边缘。<br>在输出通道中，最亮的像素可以解释为 filter 检测到的结果像素。</p><p>第一个中，我们可以看到数 7 的顶部的水平边缘，并以最亮的像素（白色）表示。</p><p>第二个检测左垂直边缘，再次以最亮的像素显示。</p><p>第三个检测底部水平边缘.</p><p>第四个检测右侧垂直边缘。</p><p>这些是我们在卷积神经网络开始时可能会看到的过滤器。<br>更复杂的过滤器将位于网络的更深处，并将逐渐能够检测到更复杂的模式，如下所示：</p><p><img src="/images/image-20200130205757413.png" alt="更复杂的 filter"></p><p>还有更更复杂的</p><p><img src="/images/image-20200130205917408.png" alt="检测狗脸"></p><p>最神奇的是这些 pattern filter 是通过网络自动导出的</p><p> filter 的值以随机值开始，并且随着网络在训练期间学习而改变。<br> filter 的模式检测功能会自动出现。</p><p>过去，计算机视觉专家会手动开发 filter（模式检测器）。<br>一个示例是边缘检测器 Sobel filter。</p><h4 id="但是，通过深度学习，我们可以使用神经网络自动学习这些过滤器！"><a href="#但是，通过深度学习，我们可以使用神经网络自动学习这些过滤器！" class="headerlink" title="但是，通过深度学习，我们可以使用神经网络自动学习这些过滤器！"></a>但是，通过深度学习，我们可以使用神经网络自动学习这些过滤器！</h4><p>总结自 <a href="https://deeplizard.com/learn/video/YRhxdVk_sIs" target="_blank" rel="noopener">https://deeplizard.com/learn/video/YRhxdVk_sIs</a></p>]]></content>
       
@@ -55,8 +55,8 @@
     
     <entry>
       <title>解释张量</title>
-      <link href="/2020/01/30/%E8%A7%A3%E9%87%8A%E5%BC%A0%E9%87%8F/"/>
-      <url>/2020/01/30/%E8%A7%A3%E9%87%8A%E5%BC%A0%E9%87%8F/</url>
+      <link href="2020/01/30/%E8%A7%A3%E9%87%8A%E5%BC%A0%E9%87%8F/"/>
+      <url>2020/01/30/%E8%A7%A3%E9%87%8A%E5%BC%A0%E9%87%8F/</url>
       
         <content type="html"><![CDATA[<h1 id="张量是神经网络里的主要数据结构。"><a href="#张量是神经网络里的主要数据结构。" class="headerlink" title="张量是神经网络里的主要数据结构。"></a>张量是神经网络里的主要数据结构。</h1><p>数学上的标量，向量，矩阵，现在使用 <code>nd-tensor</code> 表示</p><p>CS 里的 number，数组，二维数组，现在使用 <code>nd-array</code> 表示</p><p>上面的 <code>n</code> 表示，确定一个特定的一个元素需要 <code>n</code> 个索引</p><p>tensor 和 array，它们只是叫法不一样。</p><p>这里的 n 不是我们数学课狭义的维度。</p><p>因为：</p><blockquote><p>关于张量的维数要注意的一件事是，它与我们在向量空间中引用向量的维数时的含义不同。张量的维数不能告诉我们张量中存在多少个分量。</p></blockquote><blockquote><p>如果我们有一个来自三维欧几里德空间的三维向量，那么我们将得到一个具有三个分量的有序三元组。</p></blockquote><p>但是，三维张量可以具有三个以上的分量。<br>例如，我们的二维张量 dd 有 9 个分量。</p><pre><code class="python">dd = [[1,2,3],[4,5,6],[7,8,9]]</code></pre>]]></content>
       
@@ -80,8 +80,8 @@
     
     <entry>
       <title>CUDA 简介</title>
-      <link href="/2020/01/29/CUDA%E7%AE%80%E4%BB%8B/"/>
-      <url>/2020/01/29/CUDA%E7%AE%80%E4%BB%8B/</url>
+      <link href="2020/01/29/CUDA%E7%AE%80%E4%BB%8B/"/>
+      <url>2020/01/29/CUDA%E7%AE%80%E4%BB%8B/</url>
       
         <content type="html"><![CDATA[<p>GPU 适合某些情景下的并行运算，因为计算核心比 CPU 多。</p><p>这些场景一般可以将计算过程分为互不依赖的更小的子过程进行并行处理，称为 <code>embarrassingly parallel</code></p><img src="/images/image-20200129215610473.png" alt="image-20200129215610473" style="zoom:50%;" /><p>Torch 创始人大佬就说</p><blockquote><p>神经网络是 embarrassingly parallel</p></blockquote><p>张量由 CPU 计算转 GPU 计算</p><pre><code class="python">t = torch.tensor([1, 2, 3])# 使用 CUDAt = cuda()</code></pre><img src="/images/image-20200129215811882.png" alt="image-20200129215811882" style="zoom:50%;" /><p>红框表示你可以使用多个显卡，当前使用显卡 0</p>]]></content>
       
@@ -107,8 +107,8 @@
     
     <entry>
       <title>Pytorch 组成介绍</title>
-      <link href="/2020/01/29/Pytorch%E7%BB%84%E6%88%90%E4%BB%8B%E7%BB%8D/"/>
-      <url>/2020/01/29/Pytorch%E7%BB%84%E6%88%90%E4%BB%8B%E7%BB%8D/</url>
+      <link href="2020/01/29/Pytorch%E7%BB%84%E6%88%90%E4%BB%8B%E7%BB%8D/"/>
+      <url>2020/01/29/Pytorch%E7%BB%84%E6%88%90%E4%BB%8B%E7%BB%8D/</url>
       
         <content type="html"><![CDATA[<p>先知道以下 Torch 创始人大佬 Soumith Chintala</p><p>主要组件</p><ul><li>*<em>torch  张量库 *</em></li><li>torch.nn 包含用来构建神经网络的类</li><li>*<em>torch.autograd 张量微分操作 *</em></li><li>torch.nn.functional 例如损失函数，激活函数</li><li>torch.optim 包含标准优化操作，如 SGD 和 ADam</li><li>torch.utils 数据集和数据加载器</li><li>torchvision 计算机视觉相关</li></ul>]]></content>
       
@@ -134,8 +134,8 @@
     
     <entry>
       <title>数据模型</title>
-      <link href="/2019/12/13/%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/"/>
-      <url>/2019/12/13/%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/</url>
+      <link href="2019/12/13/%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/"/>
+      <url>2019/12/13/%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B/</url>
       
         <content type="html"><![CDATA[<h2 id="数据模型的分类"><a href="#数据模型的分类" class="headerlink" title="数据模型的分类"></a>数据模型的分类</h2><h3 id="概念模型"><a href="#概念模型" class="headerlink" title="概念模型"></a>概念模型</h3><p>主要用于数据库设计，以用户观点对数据建模。</p><p>是现实世界到信息世界的第一层抽象。</p><ul><li>实体，如一个学生，一门课。</li><li>属性，学生学号，姓名，性别，课程名。</li><li>码，唯一标识实体的属性集，如学号是学生实体的码。</li><li>实体型，用实体名和属性名集合来抽象和刻画同一实体，如学生（学号，姓名，性别）</li><li>实体集，如全体学生</li><li>联系，不同实体之间的联系。</li></ul><p>** 表示方法 E-R 图 **</p><h3 id="逻辑模型和物理模型"><a href="#逻辑模型和物理模型" class="headerlink" title="逻辑模型和物理模型"></a>逻辑模型和物理模型</h3><p>逻辑模型包括</p><ul><li>层次模型，</li><li>网状模型，</li><li>关系模型，</li><li>面向对象数据模型，</li><li>对象关系数据模型，</li><li>半结构化数据模型。</li></ul><p>逻辑模型是以计算机系统观点对数据建模。</p><p>物理模型是对数据最底层的抽象</p><h2 id="数据模型组成要素"><a href="#数据模型组成要素" class="headerlink" title="数据模型组成要素"></a>数据模型组成要素</h2><ul><li>数据结构，描述数据库的组成对象以及对象之间的联系</li><li>数据操作，查询，更新（包括插入，删除，修改）</li><li>数据的完整性约束条件</li></ul><h2 id="关系模型"><a href="#关系模型" class="headerlink" title="关系模型"></a>关系模型</h2><p>关系模型数据结构是一张规范化的 ** 二维表 **。</p><ul><li>关系：一个关系对应通常说的一张表</li><li>元组：表的一行</li><li>属性（字段）：表中的一列</li><li>码（码键）：它可以唯一确定一个元组</li><li>域：属性的取值范围</li><li>分量：元组中某一个属性值，不可再分</li><li>关系模式：一般为 <code>关系名（属性 1，属性 2，属性 3，。。。）</code></li></ul>]]></content>
       
@@ -159,8 +159,8 @@
     
     <entry>
       <title>自我演讲</title>
-      <link href="/2019/12/08/%E8%87%AA%E6%88%91%E6%BC%94%E8%AE%B2/"/>
-      <url>/2019/12/08/%E8%87%AA%E6%88%91%E6%BC%94%E8%AE%B2/</url>
+      <link href="2019/12/08/%E8%87%AA%E6%88%91%E6%BC%94%E8%AE%B2/"/>
+      <url>2019/12/08/%E8%87%AA%E6%88%91%E6%BC%94%E8%AE%B2/</url>
       
         <content type="html"><![CDATA[<p>BEGIN<br>Hi, I’m 刘印全, majoring in Software Engineering of Chong Qing University of Posts and Telecommunications.<br>Today I will talk about the power of self-discipline in our life. Self-discipline is one of the most important and useful skills everyone should possess. In my opinion, self-discipline is the power to achieve goals.<br>Here is my personal experience.<br>During the period of preparing for cet-6, when I was bored, I would open English reading app instead of opening the game. At the begging, I was dying to play a game. However, I gradually found that reading is more interesting than playing games.<br>As I prepare the Graduate exam, I got up at six, went to bed at eleven, study for twelve hours. But everyone has his slack days. Especially in winter, it is very cold. When I close the alarm clock and going back to sleep, but self-discipline wake me up. In preparation for the exam, self-discipline help me a lot.  </p><hr><p>BODY<br>Now, I want to talk about why self-discipline is the power to accomplish goals.<br>First，Self-discipline gives us constant motivation. We need motivation in everything we do，but when we do a job over and over again, the motivation will fade away slowly，and finally give up. But Self-discipline urges us to finish our work.<br>Second，self-discipline makes us confident. Because self-discipline makes us have many good habits. When you face a new difficulty, you believe that you can solve it by working hard.<br>Last but not least, self-discipline gives you the power to stick to your decisions and follow them through, without changing your mind, and is therefore, one of the important requirements for achieving goals.</p><hr><p>CONCLUSION<br>To sum up, the possession of self-discipline enables you to persevere with your decisions and plans how to accomplish your goals. It also strengthen your mind, helping you to overcome addictions, procrastination and laziness, and to follow through with whatever you do.</p><p>Thank you for listening.</p><p>自律可以从小事做起，例如坚持每天早上起来叠被子，形成习惯，</p>]]></content>
       
@@ -184,8 +184,8 @@
     
     <entry>
       <title>重启</title>
-      <link href="/2019/12/08/%E9%87%8D%E5%90%AF/"/>
-      <url>/2019/12/08/%E9%87%8D%E5%90%AF/</url>
+      <link href="2019/12/08/%E9%87%8D%E5%90%AF/"/>
+      <url>2019/12/08/%E9%87%8D%E5%90%AF/</url>
       
         <content type="html"><![CDATA[<p>一年多没写了，重启！！！希望这次能坚持下去🤣<br>PS：虽然上了这破 P 研究生屁事很多，但是人要有信念啊😊</p><p>以前的内容就不在这里放了😏</p>]]></content>
       
