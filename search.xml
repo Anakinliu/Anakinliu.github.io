@@ -11,6 +11,18 @@
         <content type="html"><![CDATA[<h3 id="proxychains-方案"><a href="#proxychains-方案" class="headerlink" title="proxychains 方案"></a><code>proxychains</code> 方案</h3><p>前提当然是你已经配置好了 <code>v2ray</code> 的 <code>socks5</code> 代理。。。</p><p>需要连外网的命令比较少，此方案可以通过前缀加一个命令让所有软件都走代理。</p><p><a href="https://v2raytech.com/linux-cmd-set-proxy/" target="_blank" rel="noopener">此方案来自这里</a></p><blockquote><p>我用的这个 V2 的安装脚本：<code>https://github.com/v2fly/fhs-install-v2ray</code></p></blockquote><p>首先安装 <code>proxychains</code></p><p>然后编辑 <code>/etc/proxychains.conf</code> 文件，在最后的 <code>**[ProxyList]**</code> 一节中增加代理设置，例如：</p><pre><code>socks5 127.0.0.1 1080</code></pre><p>** 注意 **，这时要把 <code>socks4</code> 哪一行注释掉，不然，由于 <code>v2ray</code> 没有设置 <code>socks4</code>，会报错。</p><p>接下来，所有希望走代理的命令，前面增加 <code>proxychains</code> 即可，例如：</p><pre><code>proxychains wget https://www.google.com</code></pre><p>那些不直接支持 <code>socks5</code> 代理的软件应该都可以用了，因为</p><blockquote><p> 根据 [OSI 模型](<a href="https://zh.wikipedia.org/wiki/OSI" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/OSI</a> 模型)，SOCKS 是[会话层](<a href="https://zh.wikipedia.org/wiki" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki</a> / 会话层) 的协议，位于 [表示层](<a href="https://zh.wikipedia.org/wiki" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki</a> / 表示层) 与[传输层](<a href="https://zh.wikipedia.org/wiki" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki</a> / 传输层)之间。</p></blockquote><p>众所周知，HTTP 是应用层协议。</p>]]></content>
       
       
+      <categories>
+          
+          <category> 日常编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
       
     </entry>
     
