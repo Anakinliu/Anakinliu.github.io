@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>安恒 2022 技术 C 笔试</title>
+      <link href="2021/06/03/%E5%AE%89%E6%81%922022%E6%8A%80%E6%9C%AFC%E7%AC%94%E8%AF%95/"/>
+      <url>2021/06/03/%E5%AE%89%E6%81%922022%E6%8A%80%E6%9C%AFC%E7%AC%94%E8%AF%95/</url>
+      
+        <content type="html"><![CDATA[<ol><li>简答题的最后一题（20 分）</li></ol><blockquote><p>简述黑客的攻击路径。</p></blockquote><p>我当时写的大概是：</p><ol><li>攻击系统应用软件，端口扫描发现软件漏洞</li><li>破解密码</li><li>钓鱼网站，邮件骗取用户的个人信息</li><li>恶意软件，诱导用户运行，获取用户系统权限</li></ol><p>刚才去网上找了找，发现写的还挺全：</p><p><a href="http://sxdofcom.shaanxi.gov.cn/newstyle/pub_newsshow.asp?id=29034582&chid=100520" target="_blank" rel="noopener">黑客攻击主要手段和方法</a></p><hr><ol start="2"><li>（多选题的其中一道）</li></ol><blockquote><p>OWASP Top 10 有哪些。</p></blockquote><p>当时瞎蒙的。。。</p><p>刚才去网上找了找</p><p><a href="https://owasp.org/www-project-top-ten/" target="_blank" rel="noopener">OWASP Top Ten Web Application Security Risks</a></p><p>依次为：</p><ol><li>注入</li><li>Broken Authentication / 破解验证？</li><li>敏感数据公开</li><li>XML 外部实体</li><li>破解访问控制</li><li>错误的安全配置</li><li>XSS / 跨站脚本</li><li>不安全的反序列化</li><li>利用了已有漏洞的组件</li><li>日志记录和监控的不够</li></ol><blockquote><p>OWASP 是什么</p><p>OWASP 是 Open Web Application Security Project 的缩写，这是一个在线社区，在 Web 应用安全领域发布文章、方法、文档、工具和技术。</p><p>Top 10 每三到四年更新一次，最新的 OWASP 漏洞列表在 2017 年发布。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 笔试记录 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 安全 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Linux 终端下按需科学上网</title>
       <link href="2021/05/31/Linux%E7%BB%88%E7%AB%AF%E4%B8%8B%E6%8C%89%E9%9C%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
       <url>2021/05/31/Linux%E7%BB%88%E7%AB%AF%E4%B8%8B%E6%8C%89%E9%9C%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/</url>
