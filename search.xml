@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>更方便直观地查看文件大小的 Linux 命令</title>
+      <link href="2021/06/08/%E6%9B%B4%E6%96%B9%E4%BE%BF%E7%9B%B4%E8%A7%82%E5%9C%B0%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F%E7%9A%84Linux%E5%91%BD%E4%BB%A4/"/>
+      <url>2021/06/08/%E6%9B%B4%E6%96%B9%E4%BE%BF%E7%9B%B4%E8%A7%82%E5%9C%B0%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F%E7%9A%84Linux%E5%91%BD%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<p>平时，用 <code>du</code>，<code>df</code>，<code>tree</code>，查看磁盘里文件大小，不能交互，用起来总感觉少了点什么。</p><p>今天发现了 <code>ncdu</code>，可以使用方向键交互，查看每个文件的大小。爽！</p><p><img src="/C:/Users/liuyinquan/AppData/Roaming/Typora/typora-user-images/image-20210608144246323.png" alt="image-20210608144246323"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 日常编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>安恒 2022 技术 C 笔试</title>
       <link href="2021/06/03/%E5%AE%89%E6%81%922022%E6%8A%80%E6%9C%AFC%E7%AC%94%E8%AF%95/"/>
       <url>2021/06/03/%E5%AE%89%E6%81%922022%E6%8A%80%E6%9C%AFC%E7%AC%94%E8%AF%95/</url>
