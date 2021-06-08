@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CUDA 简介 | Anakinliu&#39;s</title>
-  <meta name="keywords" content=" Python , Pytorch ">
-  <meta name="description" content="CUDA 简介 | Anakinliu&#39;s">
+  <title>Linux 终端下按需科学上网 | Anakinliu&#39;s</title>
+  <meta name="keywords" content=" Linux ">
+  <meta name="description" content="Linux 终端下按需科学上网 | Anakinliu&#39;s">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="重邮信科楼，一跃解千愁。">
 <meta name="keywords" content="Python, 爬虫, 机器学习, 深度学习">
@@ -515,9 +515,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-CUDA简介" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Linux终端下按需科学上网的正确姿势" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">CUDA 简介</h1>
+        <h1 class="article-title">Linux 终端下按需科学上网</h1>
     
     <div class="article-meta">
         
@@ -527,7 +527,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="视频笔记">视频笔记</a>
+            <a  data-rel="日常编程">日常编程</a>
             
         </span>
         
@@ -535,21 +535,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color2">Python</a>
-            
-            <a class="color3">Pytorch</a>
+            <a class="color1">Linux</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-06-08 21:55:35'>2020-01-29 21:23</time>
+            发布时间 : <time class="date" title='最后更新: 2021-05-31 11:29:22'>2021-05-31 11:27</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:114</span>
+        <span>字数:258</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -568,7 +566,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#proxychains-方案"><span class="toc-text">proxychains 方案</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -584,21 +582,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>GPU 适合某些情景下的并行运算，因为计算核心比 CPU 多。</p>
-<p>这些场景一般可以将计算过程分为互不依赖的更小的子过程进行并行处理，称为 <code>embarrassingly parallel</code></p>
-<img src="/images/image-20200129215610473.png" alt="image-20200129215610473" style="zoom:50%;" />
-
-<p>Torch 创始人大佬就说</p>
+        <h3 id="proxychains-方案"><a href="#proxychains-方案" class="headerlink" title="proxychains 方案"></a><code>proxychains</code> 方案</h3><p>前提当然是你已经配置好了 <code>v2ray</code> 的 <code>socks5</code> 代理。。。</p>
+<p>需要连外网的命令比较少，此方案可以通过前缀加一个命令让所有软件都走代理。</p>
+<p><a href="https://v2raytech.com/linux-cmd-set-proxy/" target="_blank" rel="noopener">此方案来自这里</a></p>
 <blockquote>
-<p>神经网络是 embarrassingly parallel</p>
+<p>我用的这个 V2 的安装脚本：<code>https://github.com/v2fly/fhs-install-v2ray</code></p>
 </blockquote>
-<p>张量由 CPU 计算转 GPU 计算</p>
-<pre><code class="python">t = torch.tensor([1, 2, 3])
-# 使用 CUDA
-t = cuda()</code></pre>
-<img src="/images/image-20200129215811882.png" alt="image-20200129215811882" style="zoom:50%;" />
-
-<p>红框表示你可以使用多个显卡，当前使用显卡 0</p>
+<p>首先安装 <code>proxychains</code></p>
+<p>然后编辑 <code>/etc/proxychains.conf</code> 文件，在最后的 <code>**[ProxyList]**</code> 一节中增加代理设置，例如：</p>
+<pre><code>socks5 127.0.0.1 1080</code></pre><p>** 注意 **，这时要把 <code>socks4</code> 哪一行注释掉，不然，由于 <code>v2ray</code> 没有设置 <code>socks4</code>，会报错。</p>
+<p>接下来，所有希望走代理的命令，前面增加 <code>proxychains</code> 即可，例如：</p>
+<pre><code>proxychains wget https://www.google.com</code></pre><p>那些不直接支持 <code>socks5</code> 代理的软件应该都可以用了，因为</p>
+<blockquote>
+<p> 根据 [OSI 模型](<a href="https://zh.wikipedia.org/wiki/OSI" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/OSI</a> 模型)，SOCKS 是[会话层](<a href="https://zh.wikipedia.org/wiki" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki</a> / 会话层) 的协议，位于 [表示层](<a href="https://zh.wikipedia.org/wiki" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki</a> / 表示层) 与[传输层](<a href="https://zh.wikipedia.org/wiki" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki</a> / 传输层)之间。</p>
+</blockquote>
+<p>众所周知，HTTP 是应用层协议。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论。 </span>

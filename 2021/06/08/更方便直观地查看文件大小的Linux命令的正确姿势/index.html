@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CUDA 简介 | Anakinliu&#39;s</title>
-  <meta name="keywords" content=" Python , Pytorch ">
-  <meta name="description" content="CUDA 简介 | Anakinliu&#39;s">
+  <title>更方便直观地查看文件大小的 Linux 命令 | Anakinliu&#39;s</title>
+  <meta name="keywords" content=" Linux ">
+  <meta name="description" content="更方便直观地查看文件大小的 Linux 命令 | Anakinliu&#39;s">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="重邮信科楼，一跃解千愁。">
 <meta name="keywords" content="Python, 爬虫, 机器学习, 深度学习">
@@ -515,9 +515,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-CUDA简介" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-更方便直观地查看文件大小的Linux命令的正确姿势" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">CUDA 简介</h1>
+        <h1 class="article-title">更方便直观地查看文件大小的 Linux 命令</h1>
     
     <div class="article-meta">
         
@@ -527,7 +527,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="视频笔记">视频笔记</a>
+            <a  data-rel="日常编程">日常编程</a>
             
         </span>
         
@@ -535,21 +535,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color2">Python</a>
-            
-            <a class="color3">Pytorch</a>
+            <a class="color1">Linux</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2021-06-08 21:55:35'>2020-01-29 21:23</time>
+            发布时间 : <time class="date" title='最后更新: 2021-06-08 22:02:39'>2021-06-08 14:39</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:114</span>
+        <span>字数:55</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -584,21 +582,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>GPU 适合某些情景下的并行运算，因为计算核心比 CPU 多。</p>
-<p>这些场景一般可以将计算过程分为互不依赖的更小的子过程进行并行处理，称为 <code>embarrassingly parallel</code></p>
-<img src="/images/image-20200129215610473.png" alt="image-20200129215610473" style="zoom:50%;" />
-
-<p>Torch 创始人大佬就说</p>
-<blockquote>
-<p>神经网络是 embarrassingly parallel</p>
-</blockquote>
-<p>张量由 CPU 计算转 GPU 计算</p>
-<pre><code class="python">t = torch.tensor([1, 2, 3])
-# 使用 CUDA
-t = cuda()</code></pre>
-<img src="/images/image-20200129215811882.png" alt="image-20200129215811882" style="zoom:50%;" />
-
-<p>红框表示你可以使用多个显卡，当前使用显卡 0</p>
+        <p>平时，用 <code>du</code>，<code>df</code>，<code>tree</code>，查看磁盘里文件大小，不能交互，用起来总感觉少了点什么。</p>
+<p>今天发现了 <code>ncdu</code>，可以使用方向键交互，查看每个文件的大小。爽！</p>
+<p><img src="/images/%E6%9B%B4%E6%96%B9%E4%BE%BF%E7%9B%B4%E8%A7%82%E5%9C%B0%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F%E7%9A%84Linux%E5%91%BD%E4%BB%A4%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF/image-20210608220236266.png" alt="image-20210608220236266"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论。 </span>
