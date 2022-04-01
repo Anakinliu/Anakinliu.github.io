@@ -20,7 +20,7 @@ p.then(data => {
                 reject(err);
                 return;
             }
-            resolve(` 文件 ${path} 成功覆写 `);
+            resolve(`文件${path}成功覆写`);
         });
     })
 }).then(value => {

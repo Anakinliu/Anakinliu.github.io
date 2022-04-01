@@ -33,7 +33,7 @@ for (const filePath of files) {
                     reject(err);
                     return;
                 }
-                resolve(` 文件 ${filePath} 成功覆写 `);
+                resolve(`文件${filePath}成功覆写`);
             });
         })
     }).then(value => {
