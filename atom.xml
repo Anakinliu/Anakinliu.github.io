@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kouder.cn/"/>
-  <updated>2022-04-01T02:52:25.143Z</updated>
+  <updated>2022-04-01T11:04:07.362Z</updated>
   <id>https://kouder.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何读 ECMAScript 规范（一）</title>
+    <link href="https://kouder.cn/2022/04/01/%E5%A6%82%E4%BD%95%E8%AF%BBECMAScript%E8%A7%84%E8%8C%83%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>https://kouder.cn/2022/04/01/%E5%A6%82%E4%BD%95%E8%AF%BBECMAScript%E8%A7%84%E8%8C%83%EF%BC%88%E4%B8%80%EF%BC%89/</id>
+    <published>2022-04-01T11:03:00.000Z</published>
+    <updated>2022-04-01T11:04:07.362Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="如何读-ECMAScript-规范（一）"><a href="#如何读-ECMAScript-规范（一）" class="headerlink" title="如何读 ECMAScript 规范（一）"></a>如何读 ECMAScript 规范（一）</h1><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>本文翻译自：</p><p><a href="https://timothygu.me/es-howto/" target="_blank" rel="noopener">https://timothygu.me/es-howto/</a></p><h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>在本文档中，我将仅使用术语 “ECMAScript” 来指代规范本身，而使用 “JavaScript” 来指代其他任何地方。但是，这两个术语都指同一事物。（ECMAScript 和 JavaScript 之间有一些历史上的区别，但讨论这超出了本文档的范围，你可以很容易地用谷歌搜索这种区别。</p><h3 id="我为什么读这个规范"><a href="#我为什么读这个规范" class="headerlink" title="我为什么读这个规范"></a>我为什么读这个规范</h3><p>ECMAScript 规范是所有 JavaScript 实现行为的权威来源，无论是在浏览器中，还是在服务器 Node.js，还是在 IoT 设备上。</p><p>JavaScript 引擎的所有开发人员都依赖于规范来确保其闪亮的新功能按预期工作，就像其他 JavaScript 引擎一样。</p><p>假设有一天在工作中发现了以下奇特的代码：</p><pre><code class="javascript">&gt; Array.prototype.push(42)1&gt; Array.prototype[ 42 ]&gt; Array.isArray(Array.prototype)true&gt; Set.prototype.add(42)TypeError: Method Set.prototype.add called on incompatible receiver #&lt;Set&gt;    at Set.add (&lt;anonymous&gt;)&gt; Set.prototypeSet {}</code></pre><p>为什么 Array 的原型上的 push 方法是可以直接调用的。而 Set 不行？</p><blockquote><p>不幸的是，Google 总是在你最需要的时候失败，一直有用的 Stack Overflow 也是如此。</p></blockquote><p>读规范可以解决。</p><p>或者，您可能想知道臭名昭着的松散相等运算符 <code>==</code> 实际上是如何运作的。勤奋的你在 MDN 上查找它，却发现它的解释段落给你带来的伤害比帮助更大。</p><p>另一方面，我不建议刚接触 JavaScript 的开发人员阅读 ECMAScript 规范。如果你是 JavaScript 的新手，那么就试试 Web 吧！</p><p>当你经历过足够多的 JavaScript 问题，不必担心 JavaScript 时，请考虑返回到本文档。</p><h3 id="哪些属于-or-不属于-ECMAScript-规范"><a href="#哪些属于-or-不属于-ECMAScript-规范" class="headerlink" title="哪些属于 or 不属于 ECMAScript 规范"></a>哪些属于 or 不属于 ECMAScript 规范</h3><table><thead><tr><th>描述</th><th>分类</th></tr></thead><tbody><tr><td>句法元素的语法（即，有效的 for 循环应该是什么样）</td><td>属于规范✔</td></tr><tr><td>句法元素的语义（例如，<code>typeof null</code> 应该返回什么，<code>{ a:b }</code> 应该返回什么</td><td>属于规范✔</td></tr><tr><td>Object, Array, Function, Number, Math, RegExp, Proxy, Map, Promise, ArrayBuffer, Uint8Array, <code>globalThis</code>, …</td><td>属于规范✔</td></tr><tr><td><code>import a from &#39;a&#39;;</code></td><td>规范指定了此类声明的语法以及它们的含义，<br > 但没有指定具体如何加载模块。</td></tr><tr><td>console, setTimeout(), setInterval(), clearTimeout(), clearInterval()</td><td>这些方法在浏览器端和 Node 里都可用，但是属于非标准。<br > 对于 Node，他们属于 Node 规范。对于浏览器，console 被 CONSOLE 标准规范，其余被 HTML 标准规范。</td></tr><tr><td>Buffer, process, global*</td><td>属于 Node 规范。</td></tr><tr><td>module, exports, require(), __dirname, __filename</td><td>这些是 Node.js 模块范围的 “全局变量”，由其文档记录</td></tr><tr><td>window, alert(), confirm(), DOM (document, HTMLElement, addEventListener(), Worker, …)</td><td>只在浏览器存在</td></tr></tbody></table><h3 id="ECMAScript-规范在哪"><a href="#ECMAScript-规范在哪" class="headerlink" title="ECMAScript 规范在哪"></a>ECMAScript 规范在哪</h3><p>[ECMA-262](<a href="https://tc39.es/ecma262/" target="_blank" rel="noopener">https://tc39.es/ecma262/</a>)</p><h3 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h3><p>ECMA 包含巨量信息。尽管作者尽力分隔成单独的部分，但是仍然是巨量。</p><p>个人把规范分为五部分：</p><ul><li>约定和基础知识（什么是 Number？“throw a TypeError exception”是什么意思？）</li><li>语法（如何编写 for-in 循环？）</li><li>语言的静态语义（变量名称是如何在 var 语句中确定的？）</li><li>语言的运行时语义（for-in 循环是如何执行的？）</li><li>API（<code>String.prototype.substring()</code> 做了什么？）</li></ul><p>然而 ECMA 规范没有安装上面的划分。</p><p>第 1 部分在 <a href="https://tc39.es/ecma262/#sec-notational-conventions" target="_blank" rel="noopener">CH5 Notational Convention</a> 到<a href="https://tc39.es/ecma262/#sec-ordinary-and-exotic-objects-behaviours" target="_blank" rel="noopener">CH9 Ordinary and Exotic Objects Behaviours</a></p><p>第 2,3,4 部分以交错的形式在<a href="https://tc39.es/ecma262/#sec-ecmascript-language-source-code" target="_blank" rel="noopener">CH10 ECMAScript Language: Source Code</a> 到 <a href="https://tc39.es/ecma262/#sec-ecmascript-language-scripts-and-modules" target="_blank" rel="noopener">CH15  ECMAScript Language: Scripts and Modules</a></p><p>我想指出的是，绝对没有人从上到下阅读规范。</p><p>相反，只查看与您尝试查找的内容相对应的部分，并且在该部分中仅查看您需要的内容。尝试确定您的具体问题与五大部分中的哪一个相关; 如果你在确定它是哪一个时遇到困难，问问自己一个问题：”这个（无论你试图确认什么）在什么时候被评估？” 这可能会有所帮助。别担心，通过练习，导航规范只会变得更容易。</p><h2 id="运行时语义"><a href="#运行时语义" class="headerlink" title="运行时语义"></a>运行时语义</h2><p>下部分。。。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;如何读-ECMAScript-规范（一）&quot;&gt;&lt;a href=&quot;#如何读-ECMAScript-规范（一）&quot; class=&quot;headerlink&quot; title=&quot;如何读 ECMAScript 规范（一）&quot;&gt;&lt;/a&gt;如何读 ECMAScript 规范（一）&lt;/h1&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="转载记录" scheme="https://kouder.cn/categories/%E8%BD%AC%E8%BD%BD%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="JavaScript" scheme="https://kouder.cn/tags/JavaScript/"/>
+    
+  </entry>
   
   <entry>
     <title>深入理解 ES6-ch4 扩展对象的功能性</title>
@@ -450,29 +476,6 @@
     
     
       <category term="日常编程" scheme="https://kouder.cn/categories/%E6%97%A5%E5%B8%B8%E7%BC%96%E7%A8%8B/"/>
-    
-    
-      <category term="JavaScript" scheme="https://kouder.cn/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>对象 - 你不知道的 JS</title>
-    <link href="https://kouder.cn/2021/08/12/dui-xiang-ni-bu-zhi-dao-de-js/"/>
-    <id>https://kouder.cn/2021/08/12/dui-xiang-ni-bu-zhi-dao-de-js/</id>
-    <published>2021-08-12T08:40:30.000Z</published>
-    <updated>2022-04-01T02:53:05.302Z</updated>
-    
-    <content type="html"><![CDATA[<p>些内置对象从表现形式来说很像其他语言中的类型（type）或者类（class），比如 Java 中的 String 类。</p><a id="more"></a><h1 id="内置“对象”"><a href="#内置“对象”" class="headerlink" title="内置“对象”"></a>内置“对象”</h1><ul><li>String</li><li>Number</li><li>Boolean</li><li>Object</li><li>Function</li><li>Array</li><li>Date</li><li>RegExp</li><li>Error</li></ul><p>这些内置对象从表现形式来说，很像 Java 中的 String 类。<br>然而，在 JS 中，它们实际上只是内置 ** 函数 **。<br>这些内置函数可以当作构造函数，由 new 操作符使用，用来创建对应的基本数据类型的新对象。</p><p>一段代码：</p><pre><code class="javascript">var strPrimitive = &quot;I am a string&quot;;typeof strPrimitive; // &quot;string&quot;strPrimitive instanceof String; // falsevar strObject = new String( &quot;I am a string&quot; );typeof strObject; // &quot;object&quot;strObject instanceof String; // true</code></pre><p>原始值 “I am a string” 并不是一个对象，它只是一个字面量，并且是一个不可变的值。<br>如果要在这个字面量上执行一些操作，比如获取长度、访问其中某个字符等，那需要将其转换为 String 对象。<br>幸好，在必要时语言会自动把字符串字面量转换成一个 String 对象，也就是说你并不需要显式创建一个对象。比如：</p><pre><code class="javascript">var strPrimitive = &quot;I am a string&quot;;console.log( strPrimitive.length ); // 13console.log( strPrimitive.charAt( 3 ) ); // &quot;m&quot;</code></pre><p>数值类型和布尔类型也是如此</p><pre><code class="javascript">2..toFixed(2) =&gt; &quot;2.00&quot;3.1315926.toFixed(4) =&gt; &quot;3.1416&quot;</code></pre><ul><li>Date 只有构造形式，没有字面量形式。</li><li>Object，Array，Function，RegExp 无论是字面量形式还是构造形式，都是对象。</li><li>Error 对象一般是抛出异常时被自动创建</li></ul><h1 id="对象的属性"><a href="#对象的属性" class="headerlink" title="对象的属性"></a>对象的属性</h1><p>当我们说对象存储着 “属性” 时，似乎在暗示这些属性被存储在对象内部，但是这只是它的表现形式。<br>在引擎内部，这些属性的值的存储方式是多种多样的，一般并不会直接存在对象容器内部。<br>存储在对象容器内部的是这些属性的名称，它们就像 ** 指针 **（从技术角度来说就是引用）一样，指向这些值真正的存储位置。</p><h2 id="属性与函数"><a href="#属性与函数" class="headerlink" title="属性与函数"></a>属性与函数</h2><p>由于函数很容易被认为是属于某个对象，在其他语言比如 Java 中，属于对象（也被称为“类”）的函数通常<br>被称为 “方法”，因此把“属性访问” 说成是 “方法访问” 也就不奇怪了。</p><p>从技术角度，JavaScript 的函数永远不会 “属于” 一个对象。有些函数具有 this 引用，有时候这些 this 确实会指向调用位置的对象引用。但是这种用法从本质上来说并没有把一个函数变成一个“方法”，因为 this 是在运行时根据调用位置动态绑定的，所以函数和对象的关系最多也只能说是间接关系。</p><p>通过对象的属性访问方式而返回的函数和其他函数没有任何区别（除了可能发生的隐式绑定 this，就像我们刚才提到的）。</p><p>##　数组的属性</p><p>如果你试图向数组添加一个属性，但是属性名 “看起来” 像一个数字，那它会变成<br>一个数值下标（因此会修改数组的元素而不是添加一个属性）：</p><pre><code class="javascript">let a = [1,3];a[&quot;1&quot;] = 666;a =&gt; [1,666]</code></pre><h2 id="属性描述符"><a href="#属性描述符" class="headerlink" title="属性描述符"></a>属性描述符</h2><p>ES5 开始，所有的属性具备属性描述符。</p><pre><code class="javascript">var myObject = {a:2};Object.getOwnPropertyDescriptor( myObject, &quot;a&quot; );输出{    value: 2,    writable: true,    enumerable: true,    configurable: true}</code></pre><p>在创建普通属性时属性描述符会使用默认值，我们也可以使用 <code>Object.defineProperty(..)</code> 来添加一个新属性或者修改一个已有属性（如果它是 configurable）并对特性进行设置</p><h3 id="writable"><a href="#writable" class="headerlink" title="writable"></a>writable</h3><pre><code class="javascript">var myObject = {};Object.defineProperty( myObject, &quot;a&quot;, {    value: 2,    writable: false, // 不可写！    configurable: true,    enumerable: true} );myObject.a = 3;myObject.a; // 2</code></pre><p>如图，我们对于属性值的修改失败了，并且是静默的。（严格模式才会报错）</p><blockquote><p>简单来说，你可以把 <code>writable:false</code> 看作是属性不可改变，相当于你定义了一个空操作 <code>setter</code></p></blockquote><h3 id="configurable"><a href="#configurable" class="headerlink" title="configurable"></a>configurable</h3><p> 属性是可配置的，才可以使用 <code>defineProperty(..)</code> 方法来修改属性描述符。<br> 细节，一旦可配置设为 false，由于你不能再使用 <code>defineProperty(..)</code>，所以这是个单向操作。<code>delete</code> 无法删除这个属性。</p><pre><code class="javascript"> let obj = {    a: 2}Object.defineProperty(obj, &#39;a&#39;, {    configurable: false})console.log(obj.a);delete obj.a  // delete 无法删除console.log(obj.a);// 报错：TypeError: Cannot redefine property: aObject.defineProperty(obj, &#39;a&#39;, {    configurable: true})</code></pre><h3 id="enumerable"><a href="#enumerable" class="headerlink" title="enumerable"></a>enumerable</h3><p> 这个描述符控制的是属性是否会出现在对象的属性枚举时。for in 就是属性枚举。</p><h2 id="维持对象现状"><a href="#维持对象现状" class="headerlink" title="维持对象现状"></a>维持对象现状</h2><h3 id="禁止扩展"><a href="#禁止扩展" class="headerlink" title="禁止扩展"></a>禁止扩展</h3><p>禁止一个对象添加新属性并且保留已有属性 <code>Object.preventExtensions(对象)</code></p><pre><code class="javascript">let obj = {    a: 9}Object.preventExtensions(obj);obj.b = 23;obj.b // undefined</code></pre><p>非严格模式，静默失败，严格模式，TypeError</p><h3 id="更进一步-密封"><a href="#更进一步-密封" class="headerlink" title="更进一步 - 密封"></a>更进一步 - 密封</h3><p><code>Object.seal(obj)</code></p><p>密封后，无法删除属性，无法重新设置属性描述符</p><pre><code class="javascript">let obj2 = {    a: 123,}Object.seal(obj2)obj2.b = 456;console.log(&#39;obj2.b:&#39;, obj2.b);delete obj2.a;  // 密封后，不能删除已有属性console.log(&#39;obj2.a:&#39;, obj2.a);Object.defineProperty(obj2, &quot;a&quot;, {    writable: false})// 密封后，不能重新配置console.log(Object.getOwnPropertyDescriptor(obj2, &quot;a&quot;));</code></pre><h3 id="更更进一步"><a href="#更更进一步" class="headerlink" title="更更进一步"></a>更更进一步</h3><p><code>Object.freeze(obj)</code></p><p>在密封的基础上，对所有对象的属性标记为 <code>writable:false</code>。<br>这个方法是应用在对象上的级别最高的不可变性，它会进制对于对象本身及其任意直接属性的修改（当然，这个对象引用的其他对象不受影响）。<br>所以，这个冻结是“浅冻结”。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;些内置对象从表现形式来说很像其他语言中的类型（type）或者类（class），比如 Java 中的 String 类。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="读书笔记" scheme="https://kouder.cn/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
     
       <category term="JavaScript" scheme="https://kouder.cn/tags/JavaScript/"/>

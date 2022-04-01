@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>如何读 ECMAScript 规范（一）</title>
+      <link href="2022/04/01/%E5%A6%82%E4%BD%95%E8%AF%BBECMAScript%E8%A7%84%E8%8C%83%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+      <url>2022/04/01/%E5%A6%82%E4%BD%95%E8%AF%BBECMAScript%E8%A7%84%E8%8C%83%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<h1 id="如何读-ECMAScript-规范（一）"><a href="#如何读-ECMAScript-规范（一）" class="headerlink" title="如何读 ECMAScript 规范（一）"></a>如何读 ECMAScript 规范（一）</h1><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>本文翻译自：</p><p><a href="https://timothygu.me/es-howto/" target="_blank" rel="noopener">https://timothygu.me/es-howto/</a></p><h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>在本文档中，我将仅使用术语 “ECMAScript” 来指代规范本身，而使用 “JavaScript” 来指代其他任何地方。但是，这两个术语都指同一事物。（ECMAScript 和 JavaScript 之间有一些历史上的区别，但讨论这超出了本文档的范围，你可以很容易地用谷歌搜索这种区别。</p><h3 id="我为什么读这个规范"><a href="#我为什么读这个规范" class="headerlink" title="我为什么读这个规范"></a>我为什么读这个规范</h3><p>ECMAScript 规范是所有 JavaScript 实现行为的权威来源，无论是在浏览器中，还是在服务器 Node.js，还是在 IoT 设备上。</p><p>JavaScript 引擎的所有开发人员都依赖于规范来确保其闪亮的新功能按预期工作，就像其他 JavaScript 引擎一样。</p><p>假设有一天在工作中发现了以下奇特的代码：</p><pre><code class="javascript">&gt; Array.prototype.push(42)1&gt; Array.prototype[ 42 ]&gt; Array.isArray(Array.prototype)true&gt; Set.prototype.add(42)TypeError: Method Set.prototype.add called on incompatible receiver #&lt;Set&gt;    at Set.add (&lt;anonymous&gt;)&gt; Set.prototypeSet {}</code></pre><p>为什么 Array 的原型上的 push 方法是可以直接调用的。而 Set 不行？</p><blockquote><p>不幸的是，Google 总是在你最需要的时候失败，一直有用的 Stack Overflow 也是如此。</p></blockquote><p>读规范可以解决。</p><p>或者，您可能想知道臭名昭着的松散相等运算符 <code>==</code> 实际上是如何运作的。勤奋的你在 MDN 上查找它，却发现它的解释段落给你带来的伤害比帮助更大。</p><p>另一方面，我不建议刚接触 JavaScript 的开发人员阅读 ECMAScript 规范。如果你是 JavaScript 的新手，那么就试试 Web 吧！</p><p>当你经历过足够多的 JavaScript 问题，不必担心 JavaScript 时，请考虑返回到本文档。</p><h3 id="哪些属于-or-不属于-ECMAScript-规范"><a href="#哪些属于-or-不属于-ECMAScript-规范" class="headerlink" title="哪些属于 or 不属于 ECMAScript 规范"></a>哪些属于 or 不属于 ECMAScript 规范</h3><table><thead><tr><th>描述</th><th>分类</th></tr></thead><tbody><tr><td>句法元素的语法（即，有效的 for 循环应该是什么样）</td><td>属于规范✔</td></tr><tr><td>句法元素的语义（例如，<code>typeof null</code> 应该返回什么，<code>{ a:b }</code> 应该返回什么</td><td>属于规范✔</td></tr><tr><td>Object, Array, Function, Number, Math, RegExp, Proxy, Map, Promise, ArrayBuffer, Uint8Array, <code>globalThis</code>, …</td><td>属于规范✔</td></tr><tr><td><code>import a from &#39;a&#39;;</code></td><td>规范指定了此类声明的语法以及它们的含义，<br > 但没有指定具体如何加载模块。</td></tr><tr><td>console, setTimeout(), setInterval(), clearTimeout(), clearInterval()</td><td>这些方法在浏览器端和 Node 里都可用，但是属于非标准。<br > 对于 Node，他们属于 Node 规范。对于浏览器，console 被 CONSOLE 标准规范，其余被 HTML 标准规范。</td></tr><tr><td>Buffer, process, global*</td><td>属于 Node 规范。</td></tr><tr><td>module, exports, require(), __dirname, __filename</td><td>这些是 Node.js 模块范围的 “全局变量”，由其文档记录</td></tr><tr><td>window, alert(), confirm(), DOM (document, HTMLElement, addEventListener(), Worker, …)</td><td>只在浏览器存在</td></tr></tbody></table><h3 id="ECMAScript-规范在哪"><a href="#ECMAScript-规范在哪" class="headerlink" title="ECMAScript 规范在哪"></a>ECMAScript 规范在哪</h3><p>[ECMA-262](<a href="https://tc39.es/ecma262/" target="_blank" rel="noopener">https://tc39.es/ecma262/</a>)</p><h3 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h3><p>ECMA 包含巨量信息。尽管作者尽力分隔成单独的部分，但是仍然是巨量。</p><p>个人把规范分为五部分：</p><ul><li>约定和基础知识（什么是 Number？“throw a TypeError exception”是什么意思？）</li><li>语法（如何编写 for-in 循环？）</li><li>语言的静态语义（变量名称是如何在 var 语句中确定的？）</li><li>语言的运行时语义（for-in 循环是如何执行的？）</li><li>API（<code>String.prototype.substring()</code> 做了什么？）</li></ul><p>然而 ECMA 规范没有安装上面的划分。</p><p>第 1 部分在 <a href="https://tc39.es/ecma262/#sec-notational-conventions" target="_blank" rel="noopener">CH5 Notational Convention</a> 到<a href="https://tc39.es/ecma262/#sec-ordinary-and-exotic-objects-behaviours" target="_blank" rel="noopener">CH9 Ordinary and Exotic Objects Behaviours</a></p><p>第 2,3,4 部分以交错的形式在<a href="https://tc39.es/ecma262/#sec-ecmascript-language-source-code" target="_blank" rel="noopener">CH10 ECMAScript Language: Source Code</a> 到 <a href="https://tc39.es/ecma262/#sec-ecmascript-language-scripts-and-modules" target="_blank" rel="noopener">CH15  ECMAScript Language: Scripts and Modules</a></p><p>我想指出的是，绝对没有人从上到下阅读规范。</p><p>相反，只查看与您尝试查找的内容相对应的部分，并且在该部分中仅查看您需要的内容。尝试确定您的具体问题与五大部分中的哪一个相关; 如果你在确定它是哪一个时遇到困难，问问自己一个问题：”这个（无论你试图确认什么）在什么时候被评估？” 这可能会有所帮助。别担心，通过练习，导航规范只会变得更容易。</p><h2 id="运行时语义"><a href="#运行时语义" class="headerlink" title="运行时语义"></a>运行时语义</h2><p>下部分。。。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 转载记录 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>深入理解 ES6-ch4 扩展对象的功能性</title>
       <link href="2022/03/31/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6-ch4%E6%89%A9%E5%B1%95%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%8A%9F%E8%83%BD%E6%80%A7/"/>
       <url>2022/03/31/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6-ch4%E6%89%A9%E5%B1%95%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%8A%9F%E8%83%BD%E6%80%A7/</url>
