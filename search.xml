@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>动手给键盘加灯</title>
+      <link href="2022/04/04/%E5%8A%A8%E6%89%8B%E7%BB%99%E9%94%AE%E7%9B%98%E5%8A%A0%E7%81%AF/"/>
+      <url>2022/04/04/%E5%8A%A8%E6%89%8B%E7%BB%99%E9%94%AE%E7%9B%98%E5%8A%A0%E7%81%AF/</url>
+      
+        <content type="html"><![CDATA[<h2 id="所需材料："><a href="#所需材料：" class="headerlink" title="所需材料："></a>所需材料：</h2><ul><li>2x3x4 的脚长 18mm 的方灯珠，淘宝 8 块钱 110 个。</li><li>剪灯珠脚的钳子，五块钱左右。</li><li>键盘 &amp; 透光键帽</li></ul><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>首先需要确定键盘的灯的插孔的正负极，这个键盘上面标了 +-。</p><p><img src="/images/kwiY0ssdRsPsDFGwmZnBWbjHQ8YayDlxeJHR1-YkkVg.jpg" alt=""></p><p>然后，灯珠的长腿是 +</p><p><img src="/images/OyFGgllzYPSGltgmxXGeef9YZuyOdMiZDS8FaQiF3Aw.png" alt=""></p><p>用钳子剪去多余的长度，插入键盘的灯孔里即可。</p><p><img src="/images/2oJVBePrCkB7rH1AsU4AB8-5izNogEPumZzjTj8_iXI.jpg" alt="image"></p><p>需要用手折一下针脚，好让其正好撑住灯孔，避免键盘稍有震动造成接触不良。</p><p>最后，三个小时的成果：</p><p><img src="/images/0HWNfqaNy57eSmwI22YMqYa-A1m31zzXtKYbSi7DVqw.png" alt="image"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软硬兼施 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>如何读 ECMAScript 规范（一）</title>
       <link href="2022/04/01/%E5%A6%82%E4%BD%95%E8%AF%BBECMAScript%E8%A7%84%E8%8C%83%EF%BC%88%E4%B8%80%EF%BC%89/"/>
       <url>2022/04/01/%E5%A6%82%E4%BD%95%E8%AF%BBECMAScript%E8%A7%84%E8%8C%83%EF%BC%88%E4%B8%80%EF%BC%89/</url>
@@ -807,11 +826,11 @@
     
     
     <entry>
-      <title>应用层 - 网络</title>
-      <link href="2021/08/06/ying-yong-ceng-wang-luo/"/>
-      <url>2021/08/06/ying-yong-ceng-wang-luo/</url>
+      <title>应用层</title>
+      <link href="2021/08/06/ying-yong-ceng/"/>
+      <url>2021/08/06/ying-yong-ceng/</url>
       
-        <content type="html"><![CDATA[<p>应用层通过套接字使用传输层的服务。</p><a id="more"></a><blockquote><p>笔记：《计算机网络 - 自顶向下（第七版）》</p></blockquote><h1 id="套接字"><a href="#套接字" class="headerlink" title="套接字"></a>套接字</h1><p>网络中两个应用程序的通信实际上是进程之间的通信。</p><ol><li>进程通过一个称为 ** 套接字 socket** 的软件接口向网络发送报文或者从网络接收报文。</li><li>进程比作房子，套接字就是房门。一个进程与另一进程通信，把报文推出门，通过有运输功能的设施把报文传送到目的进程的门口，然后目的主机的进程通过进程的门（套接字）处理报文。</li></ol><p>套接字就是应用程序（进程）和运输层协议之间的接口。</p><blockquote><p>应用程序开发者可以控制套接字在应用层端的一切，但是开发者对该套接字的运输端几乎没有控制权。</p></blockquote><h1 id="安全套接字层"><a href="#安全套接字层" class="headerlink" title="安全套接字层"></a>安全套接字层</h1><p>SSL，不是与 TCP 和 UDP 同一层次的第三种运输协议，只是对 TCP 的加强，强化是在应用层上实现的。<br>例如，一个应用程序要使用 SSL 服务时，需要在应用程序的客户端 &amp; 服务器端同时使用 SSL 代码。<br>SSL 有专门的套接字：</p><ol><li>发送报文的进程首先向 SSL 套接字传递明文数据</li><li>然后 SSL 代码加密数据，并将加密后的数据传递给 *<em>TCP 套接字 *</em>，发送到因特网</li><li>经过因特网后到达目的主机接收进程使用的 *<em>TCP 套接字 *</em></li><li>该套接字再将加密数据传递给 SSL 解密</li><li>最后，SSL 将解密后的数据通过 SSL 套接字传递给接收进程</li></ol><h1 id="HTTP-Web-应用层协议"><a href="#HTTP-Web-应用层协议" class="headerlink" title="HTTP-Web 应用层协议"></a>HTTP-Web 应用层协议</h1><p>HTTP 客户端首先发起一个与服务器的 TCP 连接。<br>一旦连接建立，此客户端（浏览器）和服务器进程就可以通过各自的套接字访问 TCP。<br>如第一节套接字所述</p><ol><li>客户端向自己的套接字接口发送 HTTP 请求报文，接收 HTTP 响应报文。</li><li>一旦向套接字发送了请求报文，该报文就完全脱离了客户端（浏览器）的控制，套接字将报文交由 TCP 控制。TCP 的可靠数据传输服务保证了这个请求报文可以完整地到达服务器。</li><li>服务器端也是如此</li></ol><h2 id="是否复用-TCP-连接：持续与非持续连接"><a href="#是否复用-TCP-连接：持续与非持续连接" class="headerlink" title="是否复用 TCP 连接：持续与非持续连接"></a>是否复用 TCP 连接：持续与非持续连接</h2><p>客户端和服务器端可能需要长时间通信，通信的请求需要一个一个的发送，应用程序的开发者需要决定在这个客户端与服务器的通信中：</p><ul><li>非持续连接：每个请求与响应使用单独的 TCP</li><li>持续连接：或者全部请求响应经过相同的 TCP</li></ul><p>非持续连接：<br>例如，一个包含 3 个图片的 HTML 网页文档。</p><ol><li>服务器是一直开着的，客户端要首先和服务器简历 TCP 连接</li><li>接着，客户端发送请求获得网页</li><li>HTTP 服务器进程收到请求，封装网页发送给 TCP 套接字</li><li>发送完成后，HTTP 服务器进程会通知 TCP 断开此 TCP 连接（其实直到 TCP 确认客户端已经完整收到响应报文，它才会真正断开连接）。</li><li>客户端收到包含网页的报文后，与服务器的 TCP 连接就被关闭</li><li>之后的 3 张图片的请求需要重复 3 次这个过程。</li></ol><blockquote><p>一句话，每个 TCP 连接只传输一个请求报文和一个响应报文。</p></blockquote><p>非持续连接缺点是：</p><ol><li>Web 服务器负担大。由于 TCP 连接太多，而每个 TCP 连接都需要缓冲区和变量进行维护连接，所以给 Web 服务器很大压力。</li><li>不必要的时延。因为建立 TCP 连接时，总需要一个 RTT 来创建 TCP，其后的一个 RTT 才是请求和接收 Web 数据。</li></ol><p>持续连接：服务器在发送响应后，不会马上断开 TCP 连接，在后续同一客户端发送请求时，继续通过这个 TCP 连接进行传输。一般经过一定的时间未使用后，HTTP 才会关闭 TCP 连接。</p><h3 id="往返时间：RTT"><a href="#往返时间：RTT" class="headerlink" title="往返时间：RTT"></a>往返时间：RTT</h3><p>代表一个短分组从客户端到服务器端然后再返回客户端的时间。<br>一般三次握手的前两次所耗费的时间可以视为一个 <code>RTT</code>。<br>客户端通常结合第三次握手，向该 TCP 连接发送一个 HTML 请求报文。一旦此请求报文到达服务器，服务器就在这个建立好的 TCP 连接上发送 HTML 文件。第三次握手和 HTML 响应报文到达客户端的事件就是另一个 <code>RTT</code>。</p><p><img src="/images/post-images/1628217107434.png" alt="">、</p><h2 id="HTTP2"><a href="#HTTP2" class="headerlink" title="HTTP2"></a>HTTP2</h2><p><a href="https://www.imyangyong.com/blog/2019/05/javascript/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%B5%81/" target="_blank" rel="noopener">二进制流</a><br>二进制的优势：</p><ol><li>文本数据，与字符流无差别。而对于数字，二进制更节省空间。</li><li>图片和视频在存储时，是二进制的，使用时，转换为二进制流也更快捷。</li></ol><p>HTTP2 相比之前的 1.X 版本，优点：</p><ol><li>完全的二进制格式的数据传输，而 1.X 默认为文本格式。一般来说，相同的内容量，二进制流比文本流使用更少的字节既可以实现传输。</li><li>版本 2 使用 <strong>TCP 多路复用 ** 来降低网络请求连接建立和关闭的开销，多个请求可以通过一个 TCP 连接 ** 并行完成 *<em>。多路复用是传输层完成的，而 1.X 的 keep-alive 是在应用层的连接复用，而且是 *</em> 串行的 **，就是说，一个文件通过这个 TCP 连接传输完成后，下个文件才能开始复用这个连接。</strong>TCP 多路复用 ** 可以让不同文件的传输帧在一个 TCP 连接中一起同时进行流式传输。</li><li>版本 2 支持传输流的优先级和流量控制机制。例如，服务器可以直接设置，HTML 和 CSS 优先级高，而 JS 脚本优先级低，这样 JS 就可以不用写在 HTML 底部了。</li><li>支持服务器推送。服务器主动把资源推送给客户端。</li></ol>]]></content>
+        <content type="html"><![CDATA[<p>应用层通过套接字使用传输层的服务。</p><a id="more"></a><h1 id="套接字"><a href="#套接字" class="headerlink" title="套接字"></a>套接字</h1><p>网络中两个应用程序的通信实际上是进程之间的通信。</p><ol><li>进程通过一个称为 ** 套接字 socket** 的软件接口向网络发送报文或者从网络接收报文。</li><li>进程比作房子，套接字就是房门。一个进程与另一进程通信，把报文推出门，通过有运输功能的设施把报文传送到目的进程的门口，然后目的主机的进程通过进程的门（套接字）处理报文。</li></ol><p>套接字就是应用程序（进程）和运输层协议之间的接口。</p><blockquote><p>应用程序开发者可以控制套接字在应用层端的一切，但是开发者对该套接字的运输端几乎没有控制权。</p></blockquote><h1 id="安全套接字层"><a href="#安全套接字层" class="headerlink" title="安全套接字层"></a>安全套接字层</h1><p>SSL，不是与 TCP 和 UDP 同一层次的第三种运输协议，只是对 TCP 的加强，强化是在应用层上实现的。<br>例如，一个应用程序要使用 SSL 服务时，需要在应用程序的客户端 &amp; 服务器端同时使用 SSL 代码。<br>SSL 有专门的套接字：</p><ol><li>发送报文的进程首先向 SSL 套接字传递明文数据</li><li>然后 SSL 代码加密数据，并将加密后的数据传递给 *<em>TCP 套接字 *</em>，发送到因特网</li><li>经过因特网后到达目的主机接收进程使用的 *<em>TCP 套接字 *</em></li><li>该套接字再将加密数据传递给 SSL 解密</li><li>最后，SSL 将解密后的数据通过 SSL 套接字传递给接收进程</li></ol>]]></content>
       
       
       <categories>
@@ -832,11 +851,11 @@
     
     
     <entry>
-      <title>应用层</title>
-      <link href="2021/08/06/ying-yong-ceng/"/>
-      <url>2021/08/06/ying-yong-ceng/</url>
+      <title>应用层 - 网络</title>
+      <link href="2021/08/06/ying-yong-ceng-wang-luo/"/>
+      <url>2021/08/06/ying-yong-ceng-wang-luo/</url>
       
-        <content type="html"><![CDATA[<p>应用层通过套接字使用传输层的服务。</p><a id="more"></a><h1 id="套接字"><a href="#套接字" class="headerlink" title="套接字"></a>套接字</h1><p>网络中两个应用程序的通信实际上是进程之间的通信。</p><ol><li>进程通过一个称为 ** 套接字 socket** 的软件接口向网络发送报文或者从网络接收报文。</li><li>进程比作房子，套接字就是房门。一个进程与另一进程通信，把报文推出门，通过有运输功能的设施把报文传送到目的进程的门口，然后目的主机的进程通过进程的门（套接字）处理报文。</li></ol><p>套接字就是应用程序（进程）和运输层协议之间的接口。</p><blockquote><p>应用程序开发者可以控制套接字在应用层端的一切，但是开发者对该套接字的运输端几乎没有控制权。</p></blockquote><h1 id="安全套接字层"><a href="#安全套接字层" class="headerlink" title="安全套接字层"></a>安全套接字层</h1><p>SSL，不是与 TCP 和 UDP 同一层次的第三种运输协议，只是对 TCP 的加强，强化是在应用层上实现的。<br>例如，一个应用程序要使用 SSL 服务时，需要在应用程序的客户端 &amp; 服务器端同时使用 SSL 代码。<br>SSL 有专门的套接字：</p><ol><li>发送报文的进程首先向 SSL 套接字传递明文数据</li><li>然后 SSL 代码加密数据，并将加密后的数据传递给 *<em>TCP 套接字 *</em>，发送到因特网</li><li>经过因特网后到达目的主机接收进程使用的 *<em>TCP 套接字 *</em></li><li>该套接字再将加密数据传递给 SSL 解密</li><li>最后，SSL 将解密后的数据通过 SSL 套接字传递给接收进程</li></ol>]]></content>
+        <content type="html"><![CDATA[<p>应用层通过套接字使用传输层的服务。</p><a id="more"></a><blockquote><p>笔记：《计算机网络 - 自顶向下（第七版）》</p></blockquote><h1 id="套接字"><a href="#套接字" class="headerlink" title="套接字"></a>套接字</h1><p>网络中两个应用程序的通信实际上是进程之间的通信。</p><ol><li>进程通过一个称为 ** 套接字 socket** 的软件接口向网络发送报文或者从网络接收报文。</li><li>进程比作房子，套接字就是房门。一个进程与另一进程通信，把报文推出门，通过有运输功能的设施把报文传送到目的进程的门口，然后目的主机的进程通过进程的门（套接字）处理报文。</li></ol><p>套接字就是应用程序（进程）和运输层协议之间的接口。</p><blockquote><p>应用程序开发者可以控制套接字在应用层端的一切，但是开发者对该套接字的运输端几乎没有控制权。</p></blockquote><h1 id="安全套接字层"><a href="#安全套接字层" class="headerlink" title="安全套接字层"></a>安全套接字层</h1><p>SSL，不是与 TCP 和 UDP 同一层次的第三种运输协议，只是对 TCP 的加强，强化是在应用层上实现的。<br>例如，一个应用程序要使用 SSL 服务时，需要在应用程序的客户端 &amp; 服务器端同时使用 SSL 代码。<br>SSL 有专门的套接字：</p><ol><li>发送报文的进程首先向 SSL 套接字传递明文数据</li><li>然后 SSL 代码加密数据，并将加密后的数据传递给 *<em>TCP 套接字 *</em>，发送到因特网</li><li>经过因特网后到达目的主机接收进程使用的 *<em>TCP 套接字 *</em></li><li>该套接字再将加密数据传递给 SSL 解密</li><li>最后，SSL 将解密后的数据通过 SSL 套接字传递给接收进程</li></ol><h1 id="HTTP-Web-应用层协议"><a href="#HTTP-Web-应用层协议" class="headerlink" title="HTTP-Web 应用层协议"></a>HTTP-Web 应用层协议</h1><p>HTTP 客户端首先发起一个与服务器的 TCP 连接。<br>一旦连接建立，此客户端（浏览器）和服务器进程就可以通过各自的套接字访问 TCP。<br>如第一节套接字所述</p><ol><li>客户端向自己的套接字接口发送 HTTP 请求报文，接收 HTTP 响应报文。</li><li>一旦向套接字发送了请求报文，该报文就完全脱离了客户端（浏览器）的控制，套接字将报文交由 TCP 控制。TCP 的可靠数据传输服务保证了这个请求报文可以完整地到达服务器。</li><li>服务器端也是如此</li></ol><h2 id="是否复用-TCP-连接：持续与非持续连接"><a href="#是否复用-TCP-连接：持续与非持续连接" class="headerlink" title="是否复用 TCP 连接：持续与非持续连接"></a>是否复用 TCP 连接：持续与非持续连接</h2><p>客户端和服务器端可能需要长时间通信，通信的请求需要一个一个的发送，应用程序的开发者需要决定在这个客户端与服务器的通信中：</p><ul><li>非持续连接：每个请求与响应使用单独的 TCP</li><li>持续连接：或者全部请求响应经过相同的 TCP</li></ul><p>非持续连接：<br>例如，一个包含 3 个图片的 HTML 网页文档。</p><ol><li>服务器是一直开着的，客户端要首先和服务器简历 TCP 连接</li><li>接着，客户端发送请求获得网页</li><li>HTTP 服务器进程收到请求，封装网页发送给 TCP 套接字</li><li>发送完成后，HTTP 服务器进程会通知 TCP 断开此 TCP 连接（其实直到 TCP 确认客户端已经完整收到响应报文，它才会真正断开连接）。</li><li>客户端收到包含网页的报文后，与服务器的 TCP 连接就被关闭</li><li>之后的 3 张图片的请求需要重复 3 次这个过程。</li></ol><blockquote><p>一句话，每个 TCP 连接只传输一个请求报文和一个响应报文。</p></blockquote><p>非持续连接缺点是：</p><ol><li>Web 服务器负担大。由于 TCP 连接太多，而每个 TCP 连接都需要缓冲区和变量进行维护连接，所以给 Web 服务器很大压力。</li><li>不必要的时延。因为建立 TCP 连接时，总需要一个 RTT 来创建 TCP，其后的一个 RTT 才是请求和接收 Web 数据。</li></ol><p>持续连接：服务器在发送响应后，不会马上断开 TCP 连接，在后续同一客户端发送请求时，继续通过这个 TCP 连接进行传输。一般经过一定的时间未使用后，HTTP 才会关闭 TCP 连接。</p><h3 id="往返时间：RTT"><a href="#往返时间：RTT" class="headerlink" title="往返时间：RTT"></a>往返时间：RTT</h3><p>代表一个短分组从客户端到服务器端然后再返回客户端的时间。<br>一般三次握手的前两次所耗费的时间可以视为一个 <code>RTT</code>。<br>客户端通常结合第三次握手，向该 TCP 连接发送一个 HTML 请求报文。一旦此请求报文到达服务器，服务器就在这个建立好的 TCP 连接上发送 HTML 文件。第三次握手和 HTML 响应报文到达客户端的事件就是另一个 <code>RTT</code>。</p><p><img src="/images/post-images/1628217107434.png" alt="">、</p><h2 id="HTTP2"><a href="#HTTP2" class="headerlink" title="HTTP2"></a>HTTP2</h2><p><a href="https://www.imyangyong.com/blog/2019/05/javascript/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%B5%81/" target="_blank" rel="noopener">二进制流</a><br>二进制的优势：</p><ol><li>文本数据，与字符流无差别。而对于数字，二进制更节省空间。</li><li>图片和视频在存储时，是二进制的，使用时，转换为二进制流也更快捷。</li></ol><p>HTTP2 相比之前的 1.X 版本，优点：</p><ol><li>完全的二进制格式的数据传输，而 1.X 默认为文本格式。一般来说，相同的内容量，二进制流比文本流使用更少的字节既可以实现传输。</li><li>版本 2 使用 <strong>TCP 多路复用 ** 来降低网络请求连接建立和关闭的开销，多个请求可以通过一个 TCP 连接 ** 并行完成 *<em>。多路复用是传输层完成的，而 1.X 的 keep-alive 是在应用层的连接复用，而且是 *</em> 串行的 **，就是说，一个文件通过这个 TCP 连接传输完成后，下个文件才能开始复用这个连接。</strong>TCP 多路复用 ** 可以让不同文件的传输帧在一个 TCP 连接中一起同时进行流式传输。</li><li>版本 2 支持传输流的优先级和流量控制机制。例如，服务器可以直接设置，HTML 和 CSS 优先级高，而 JS 脚本优先级低，这样 JS 就可以不用写在 HTML 底部了。</li><li>支持服务器推送。服务器主动把资源推送给客户端。</li></ol>]]></content>
       
       
       <categories>

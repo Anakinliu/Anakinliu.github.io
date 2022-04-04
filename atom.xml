@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kouder.cn/"/>
-  <updated>2022-04-01T11:04:07.362Z</updated>
+  <updated>2022-04-04T01:17:53.684Z</updated>
   <id>https://kouder.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>动手给键盘加灯</title>
+    <link href="https://kouder.cn/2022/04/04/%E5%8A%A8%E6%89%8B%E7%BB%99%E9%94%AE%E7%9B%98%E5%8A%A0%E7%81%AF/"/>
+    <id>https://kouder.cn/2022/04/04/%E5%8A%A8%E6%89%8B%E7%BB%99%E9%94%AE%E7%9B%98%E5%8A%A0%E7%81%AF/</id>
+    <published>2022-04-04T01:14:48.000Z</published>
+    <updated>2022-04-04T01:17:53.684Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="所需材料："><a href="#所需材料：" class="headerlink" title="所需材料："></a>所需材料：</h2><ul><li>2x3x4 的脚长 18mm 的方灯珠，淘宝 8 块钱 110 个。</li><li>剪灯珠脚的钳子，五块钱左右。</li><li>键盘 &amp; 透光键帽</li></ul><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>首先需要确定键盘的灯的插孔的正负极，这个键盘上面标了 +-。</p><p><img src="/images/kwiY0ssdRsPsDFGwmZnBWbjHQ8YayDlxeJHR1-YkkVg.jpg" alt=""></p><p>然后，灯珠的长腿是 +</p><p><img src="/images/OyFGgllzYPSGltgmxXGeef9YZuyOdMiZDS8FaQiF3Aw.png" alt=""></p><p>用钳子剪去多余的长度，插入键盘的灯孔里即可。</p><p><img src="/images/2oJVBePrCkB7rH1AsU4AB8-5izNogEPumZzjTj8_iXI.jpg" alt="image"></p><p>需要用手折一下针脚，好让其正好撑住灯孔，避免键盘稍有震动造成接触不良。</p><p>最后，三个小时的成果：</p><p><img src="/images/0HWNfqaNy57eSmwI22YMqYa-A1m31zzXtKYbSi7DVqw.png" alt="image"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;所需材料：&quot;&gt;&lt;a href=&quot;#所需材料：&quot; class=&quot;headerlink&quot; title=&quot;所需材料：&quot;&gt;&lt;/a&gt;所需材料：&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;2x3x4 的脚长 18mm 的方灯珠，淘宝 8 块钱 110 个。&lt;/li&gt;
+&lt;li&gt;剪灯珠脚的钳子，
+      
+    
+    </summary>
+    
+    
+      <category term="软硬兼施" scheme="https://kouder.cn/categories/%E8%BD%AF%E7%A1%AC%E5%85%BC%E6%96%BD/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>如何读 ECMAScript 规范（一）</title>
@@ -453,29 +479,6 @@
     
     
       <category term="读书笔记" scheme="https://kouder.cn/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="JavaScript" scheme="https://kouder.cn/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>实现 Promise - 翻译</title>
-    <link href="https://kouder.cn/2021/08/13/shi-xian-promise-fan-yi/"/>
-    <id>https://kouder.cn/2021/08/13/shi-xian-promise-fan-yi/</id>
-    <published>2021-08-13T07:27:06.000Z</published>
-    <updated>2022-04-01T02:55:28.255Z</updated>
-    
-    <content type="html"><![CDATA[<p>更好地理解 Promise</p><a id="more"></a><p><a href="https://www.promisejs.org/implementing/" target="_blank" rel="noopener">英文原文链接</a></p><h1 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h1><p>由于 promise 只是一个状态机，我们应该首先引入我们后面需要的状态信息。</p><pre><code class="javascript">var PENDING = 0;var FULFILLED = 1;var REJECTED = 2;function Promise() {  // 状态可以是 PENDING, FULFILLED or REJECTED  let state = PENDING;  // 在状态变为 FULFILLED or REJECTED 后，存储 value 或者 error   let value = null;  // 通过调用 .then 或者 .done，存储成功或失败的 handlers   var handlers = [];}</code></pre><h1 id="状态转变"><a href="#状态转变" class="headerlink" title="状态转变"></a>状态转变</h1><pre><code class="javascript">var PENDING = 0;var FULFILLED = 1;var REJECTED = 2;function Promise() {  // 状态可以是 PENDING, FULFILLED or REJECTED  let state = PENDING;  // 在状态变为 FULFILLED or REJECTED 后，存储 value 或者 error   let value = null;  // 通过调用 .then 或者 .done，存储成功或失败的 handlers   var handlers = [];  function fulfill(result) {    state = FULFILLED;    value = result;  }  function reject(error) {    state = REJECTED;    value = error;  }}</code></pre><p>这为我们提供了基本的低级转换，但让我们考虑一个额外的、更高级别的转换，resolve</p><pre><code class="javascript">var PENDING = 0;var FULFILLED = 1;var REJECTED = 2;function Promise() {  // store state which can be PENDING, FULFILLED or REJECTED  var state = PENDING;  // store value once FULFILLED or REJECTED  var value = null;  // store sucess &amp; failure handlers  var handlers = [];  function fulfill(result) {    state = FULFILLED;    value = result;  }  function reject(error) {    state = REJECTED;    value = error;  }  function resolve(result) {    try {      let then = getThen(result);      if (then) {        doResolve(then.bind(result), resolve, reject)        return      }      // then 是 null 时调用 fulfill，即 result 是纯值时调用      fulfill(result);    } catch (e) {      reject(e);    }  }}</code></pre><p>注意，resolve 函数接收一个 promise 对象或者其他非 promise 对象。接收 promise 对象时，会等待此对象完成状态转换。<br>一个 promise 是不能通过另一个 promise 完成状态转换到 fulfilled，此时我们将暴露的是这个 resolve 函数，而不是内部的 fulfill 函数，我们使用了辅助方法：</p><ul><li>getThen 方法<pre><code class="javascript">/*** 检查 value 是否是 Promise ，如果是, 返回 value.then.** @param Promise 或其他任何值* @return 函数或者 null*/function getThen(value) {var t = typeof value;if (value &amp;&amp; (t === &#39;object&#39; || t === &#39;function&#39;)) {  var then = value.then;  if (typeof then === &#39;function&#39;) {    return then;  }}return null;}</code></pre></li><li>doResolve 方法<pre><code class="javascript">/*** 接收一个潜在的错误行为的 resolver 函数，并确保 onFulfilled 和 onRejected 只会被调用一次** 此方法没有异步安全性** @param {Function} fn ： 一个 resolver 函数，可能不可信的* @param {Function} 函数 onFulfilled* @param {Function} 函数 onRejected*/function doResolve(fn, onFulfilled, onRejected) {var done = false;try {  fn(function (value) {    if (done) return    done = true    onFulfilled(value)  }, function (reason) {    if (done) return    done = true    onRejected(reason)  })  // fn 函数执行结束} catch (ex) {  if (done) return  done = true  onRejected(ex)}}</code></pre><h1 id="搭建-Promise"><a href="#搭建-Promise" class="headerlink" title="搭建 Promise"></a>搭建 Promise</h1></li></ul><pre><code class="javascript">var PENDING = 0;var FULFILLED = 1;var REJECTED = 2;function Promise(fn) {  // store state which can be PENDING, FULFILLED or REJECTED  var state = PENDING;  // store value once FULFILLED or REJECTED  var value = null;  // store sucess &amp; failure handlers  var handlers = [];  function fulfill(result) {    state = FULFILLED;    value = result;  }  function reject(error) {    state = REJECTED;    value = error;  }  function resolve(result) {    try {      var then = getThen(result);      if (then) {        doResolve(then.bind(result), resolve, reject)        return      }      fulfill(result);    } catch (e) {      reject(e);    }  }  doResolve(fn, resolve, reject);}</code></pre><p>我们多次使用 <code>doResolve</code>，因为我们有多个不可信任的 resolver。<code>fn</code> 被允许多次调用 <code>resolve</code> 和 <code>reject</code>，即使抛出了异常。我们有责任确保承诺只变为 resolved 或 rejected 一次，然后永远不会再转换到不同的状态。</p><h1 id="观察"><a href="#观察" class="headerlink" title="观察"></a>观察</h1><p>状态机已经完整了，但是我们不能观察或者改变状态机，我们的究极目标是实现 <code>.then</code> 方法，但是这里先实现一个比 <code>.then</code> 简单地 <code>.done</code> 方法。<br>此 <code>.done(onFulfilled, onRejected)</code> 方法：</p><ol><li>只会被 <code>onFulfilled</code> 或者 <code>onRejected</code> 调用</li><li>只会被调用一次</li><li>直到下一个滴答声（即在 <code>.done</code> 方法返回之后）才会被调用</li><li>无论 rpomsie 在我们调用 <code>.done</code> 之前还是之后 resolved 了，<code>.done</code> 都会被调用</li></ol><pre><code class="javascript">var PENDING = 0;var FULFILLED = 1;var REJECTED = 2;function Promise(fn) {  // store state which can be PENDING, FULFILLED or REJECTED  var state = PENDING;  // store value once FULFILLED or REJECTED  var value = null;  // store sucess &amp; failure handlers  var handlers = [];  function fulfill(result) {    state = FULFILLED;    value = result;  }  function reject(error) {    state = REJECTED;    value = error;  }  function resolve(result) {    try {      var then = getThen(result);      if (then) {        doResolve(then.bind(result), resolve, reject)        return      }      fulfill(result);    } catch (e) {      reject(e);    }  }function handle(handler) {    if (state === PENDING) {      handlers.push(handler);    } else {      if (state === FULFILLED &amp;&amp;        typeof handler.onFulfilled === &#39;function&#39;) {        handler.onFulfilled(value);      }      if (state === REJECTED &amp;&amp;        typeof handler.onRejected === &#39;function&#39;) {        handler.onRejected(value);      }    }  }  this.done = function (onFulfilled, onRejected) {    // ensure we are always asynchronous    setTimeout(function () {      handle({        onFulfilled: onFulfilled,        onRejected: onRejected      });    }, 0);  }   doResolve(fn, resolve, reject);}</code></pre><h1 id="实现-then"><a href="#实现-then" class="headerlink" title="实现. then"></a>实现. then</h1><p>then 需要返回一个 Promise 对象</p><pre><code class="javascript">this.then = function (onFulfilled, onRejected) {  var self = this;  return new Promise(function (resolve, reject) {    return self.done(function (result) {      if (typeof onFulfilled === &#39;function&#39;) {        try {          return resolve(onFulfilled(result));        } catch (ex) {          return reject(ex);        }      } else {        return resolve(result);      }    }, function (error) {      if (typeof onRejected === &#39;function&#39;) {        try {          return resolve(onRejected(error));        } catch (ex) {          return reject(ex);        }      } else {        return reject(error);      }    });  });}</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;更好地理解 Promise&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="日常编程" scheme="https://kouder.cn/categories/%E6%97%A5%E5%B8%B8%E7%BC%96%E7%A8%8B/"/>
     
     
       <category term="JavaScript" scheme="https://kouder.cn/tags/JavaScript/"/>
