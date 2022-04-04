@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kouder.cn/"/>
-  <updated>2022-04-04T01:17:53.684Z</updated>
+  <updated>2022-04-04T09:24:24.503Z</updated>
   <id>https://kouder.cn/</id>
   
   <author>
@@ -17,13 +17,40 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>如何读 ECMAScript 规范（二）</title>
+    <link href="https://kouder.cn/2022/04/04/%E5%A6%82%E4%BD%95%E8%AF%BBECMAScript%E8%A7%84%E8%8C%83%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>https://kouder.cn/2022/04/04/%E5%A6%82%E4%BD%95%E8%AF%BBECMAScript%E8%A7%84%E8%8C%83%EF%BC%88%E4%BA%8C%EF%BC%89/</id>
+    <published>2022-04-04T09:23:47.000Z</published>
+    <updated>2022-04-04T09:24:24.503Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>本文翻译自：</p><p><a href="https://timothygu.me/es-howto/" target="_blank" rel="noopener">https://timothygu.me/es-howto/</a></p><h2 id="运行时语义"><a href="#运行时语义" class="headerlink" title="运行时语义"></a>运行时语义</h2><p>语言和 api 的运行时语义是规范中最重要的部分，通常是人们最关心的问题。</p><p>总的来说，在规范中阅读这些章节是非常简单的。然而，该规范使用了大量的速记，这些速记刚刚开始 (至少对我来说) 是相当讨厌的。我将尝试解释其中的一些约定，然后将它们应用到一个通常的工作流程中，以弄清楚几件事情是如何工作的。</p><h3 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h3><p>ECMAScript 中的大多数运行时语义是由一系列算法步骤指定的，与伪代码没有什么不同，但形式精确得多。</p><p><img src="/images/WZwocpQ6T6KKkv5QjHIq_dHiST4igA9mdTQc5sMtasM.png" alt="image"></p><h3 id="抽象的操作"><a href="#抽象的操作" class="headerlink" title="抽象的操作"></a>抽象的操作</h3><p>您有时会在规范中看到调用类似函数的内容。</p><p>Boolean()函数：</p><p><img src="/images/mDVctygjTBWTqcJHD9AcpaD-WzfbHMdzei9ZCxLLBrU.png" alt="image"></p><p>“<a href="https://tc39.es/ecma262/#sec-toboolean" target="_blank" rel="noopener">ToBoolean</a>”函数被称为抽象的操作。抽象的原因是它实际上并没有作为 JavaScript 代码的函数公开。它只是一个规范作者发明的符号。</p><p><a href="https://tc39.es/ecma262/#sec-algorithm-conventions-abstract-operations" target="_blank" rel="noopener">抽象操作</a></p><h3 id="什么是-This"><a href="#什么是-This" class="headerlink" title="什么是 [[This]]"></a>什么是 [[This]]</h3><p>有时，您可能会看到 [[符号 ]]被使用，例如 “Let proto be obj.[[Prototype]]“。</p><p>从技术上讲，这种表示法可以表示几种不同的东西，这取决于它出现的上下文。要理解这种表示法指的是一些无法通过 JavaScript 代码观察到的内部属性。</p><p>确切地说，它可能意味着三种不同的东西，我将用规范中的示例来说明。但是，现在请随意跳过它们。</p><h4 id="记录-amp-字段"><a href="#记录-amp-字段" class="headerlink" title="记录 &amp; 字段"></a>记录 &amp; 字段</h4><p>ECMAScript 规范使用术语 <strong>Record</strong> 来指代具有一组固定键的键值映射 – 有点像类 C 语言中的 ** 结构体 **。</p><p>记录（Record）的每个键值对（key-value）称为一个 ** 字段 **（field）。由于记录只能出现在规范中，而不能出现在实际的 JavaScript 代码中，因此使用 <code>[[Notation]]</code> 来引用记录 (Record) 的字段(field)。</p><blockquote><p>值得注意的是，属性描述符还建模为具有 field: [[Value]]、[[Wwriteable]]、[[Get]]、[[Set]]、[[Enumerable]]和 [[Configurable]]的 Record。IsDataDescriptor 抽象操作广泛使用以下表示法：</p></blockquote><blockquote><p>当使用属性描述符 Desc 调用抽象操作 IsDataDescriptor 时，将执行以下步骤：</p></blockquote><blockquote><ol><li>如果 Desc 是 undefined，返回 false</li><li>如果 <code>Desc.[[Value]]</code> 和 <code>Desc.[[Writeable]]</code> 缺失，返回 false</li><li>返回 true</li></ol></blockquote><h4 id="JavaScript-对象的内部插槽"><a href="#JavaScript-对象的内部插槽" class="headerlink" title="JavaScript 对象的内部插槽"></a>JavaScript 对象的内部插槽</h4><p>JavaScript 对象可能具有所谓的内部插槽，规范使用这些插槽来保存其中的数据。</p><p>与记录字段一样，这些内部插槽也无法使用 JavaScript 进行观察，但其中一些可以通过特定于实现的工具（如 Google Chrome 的 DevTools）公开。因此，使用 <code>[[记号]]</code> 来描述内部插槽也是有意义的。</p><p>内部插槽的细节将在 § 2.5 JavaScript Objects 中介绍。现在，不要太担心它们的用途，但请注意以下示例。</p><blockquote><p>大多数 JavaScript 对象有一个内部插槽 [[Prototype]]，引用了它们所继承的对象。这个内部插槽的值通常是 <code>Object.getProrotypeOf()</code> 方法的返回值。在 OrdinaryGetPrototypeOf 抽象操作中，访问此内部插槽的值：</p></blockquote><blockquote><p>当使用对象 O 调用抽象操作 OrdinaryGetPrototypeOf 时，将执行以下步骤：</p></blockquote><blockquote><ol><li>返回 <code>O.[[Prototype]]</code></li></ol></blockquote><blockquote><p>注： “对象” 和 “记录” 字段的内部槽在外观上是相同的，但可以通过查看记号（点运算符之前的部分）来消除歧义，无论是对象还是记录。可以在上下文中看出。</p></blockquote><h4 id="JavaScript-对象的内部方法"><a href="#JavaScript-对象的内部方法" class="headerlink" title="JavaScript 对象的内部方法"></a>JavaScript 对象的内部方法</h4><p>JavaScript 对象也可能具有所谓的内部方法。与内部插槽一样，这些内部方法无法通过 JavaScript 直接观察到。</p><p>因此，使用 <code>[[记号]]</code> 来描述内部方法也是有意义的。</p><p>内部方法的细节将在 § 2.5 JavaScript Objects 中介绍。现在，不要太担心它们的用途，但请注意以下示例。</p><blockquote><p>所有的 JavaScript 函数都有一个内部方法 [[Call]]，它运行函数。<a href="https://tc39.es/ecma262/#sec-call" target="_blank" rel="noopener">Call 抽象操作</a></p></blockquote><h3 id="完成记录；-和！"><a href="#完成记录；-和！" class="headerlink" title="完成记录；? 和！"></a>完成记录；? 和！</h3><p>ECMAScript 规范中的每个运行时语义都显式或隐式返回一个报告其结果的完成记录（Completion Records）。此完成记录是具有三个可能字段的记录（Record）：</p><ul><li>一个 <code>[[Type]]</code> (normal, return,throw,break,contintue)</li><li>如果 <code>[[Type]]</code> 是 normal，return 或者 throw，它可以额外有一个 <code>[[Value]]</code> (返回 / 抛出了什么)</li><li>如果 <code>[[Type]]</code> 是 break 或者 continue，则它可以选择携带一个称为 <code>[[Target]]</code> 的标签，脚本执行会因为此运行时语义而中断 / 继续执行该标签。<blockquote><p>注意：<code>[[]]</code> 也用来表示记录 (Records) 的字段(fields)。</p></blockquote></li></ul><p><code>[[Type]]</code> 为 normal 时的完成记录称为 *<em>normal 完成 *</em>。其他 <code>[[Type]]</code> 的完成记录称为 *<em>abrupt 完成 *</em>。</p><p>大多数时候，你只会与 <code>[[Type]]</code> 为 throw 的 <strong>abrupt 完成 ** 打交道。其他三种（return，break，continue）</strong>abrupt 完成 ** 类型仅用于查看如何评估特定语法元素。</p><p>事实上，您将永远不会在内置函数的定义中看到 normal 和任何其他类型，因为中断 / 继续 / 返回不能跨函数边界工作。</p><blockquote><p><a href="https://tc39.es/ecma262/#sec-completion-record-specification-type" target="_blank" rel="noopener">规范连接</a></p></blockquote><p>由于完成记录的定义，JavaScript 中的细微差别，如冒泡错误，直到尝试捕获块在规范中不存在。</p><p>事实上，错误（或更确切地说是 abrupt 完成）是显式处理的。</p><p>在没有任何速记的情况下，对抽象操作的普通调用的规范文本可能返回计算结果或引发错误，如下所示：</p><blockquote><p>调用抽象操作的几个步骤，该操作可能在没有任何速记的情况下抛出：</p></blockquote><blockquote><ol><li>设 resultCompletionRecord 是一个 AbstractOp()。<ol><li>注意，resultCompletionRecord 是一个完成记录</li></ol></li><li>如果 resultCompletionRecord 是一个 abrupt 记录，返回 resultCompletionRecord<ol><li>注意，这里，resultCompletionRecord 如果是 abrupt 完成，直接返回。换句话说，将在 AbstractOp 中引发错误，并中止其余步骤。</li></ol></li><li>设 result 是 <code>resultCompletionRecord.[[Value]]</code> <ol><li>注意，在确保我们获得正常完成之后，我们现在可以解开完成记录的包装，以获得我们需要的计算的实际结果。</li></ol></li><li>result 就是我们需要的结果。</li></ol></blockquote><p>这可能会让你想起 C 中的手动错误处理：</p><pre><code class="javascript">int result = abstractOp();              // Step 1if (result &lt; 0)                         // Step 2  return result;                        // Step 2 (continued)                                        // Step 3 is unneeded// func() succeeded; carrying on...     // Step 4</code></pre><p>但是为了减少这些步骤，ECMAScript 规范的编辑器添加了一些速记（shorthands）。</p><p>自 ES2016 起，相同的规范文本可以改为以以下两种等效方式编写：</p><blockquote><p>调用抽象操作的几个步骤可能抛出 <code>ReturnIfAbrupt</code> </p></blockquote><blockquote><ol><li>设 result 是 AbstractOp()。<ol><li>注意，这里，就像上面的 step1，result 是一个完成记录</li></ol></li><li><a href="https://tc39.es/ecma262/#sec-returnifabrupt" target="_blank" rel="noopener">ReturnIfAbrupt</a>(result)<ol><li>注意，ReturnIfAbrupt 通过转发来处理任何可能的 abrupt 完成，并自动将结果解包到其 <code>[[Value]]</code> 中。</li></ol></li><li>result 就是我们想要的结果。</li></ol></blockquote><p>或者，更简洁地说，用一个特殊的问号（？）表示法：</p><blockquote><p>调用抽象操作的几个步骤可能抛出 <code>问号标记(?)</code> </p></blockquote><blockquote><ol><li>设 result 是？AbstractOp()<ol><li>注意：在此表示法中，我们根本不处理完成记录。这个？速记为我们处理一切，结果可以立即使用。</li></ol></li><li>result 就是我们想要的结果。</li></ol></blockquote><p>有时，如果我们知道对 AbstractOp 的特定调用永远不会返回 abrupt 完成，它可以向读者传达有关规范意图的更多信息。在这些情况下，使用感叹号 （！）</p><blockquote><p>调用抽象操作的几个步骤永远不抛出的 <code>感叹号标记(!)</code> </p></blockquote><blockquote><ol><li>设 result 是! AbstractOp()<ol><li>注意，？可能会带来任何错误，而！断言我们这次调用永远不会得到任何 abrupt 完成，如果我们这样做，那将是规范中的一个错误。就像？的情况，我们完全不处理完成记录。result 在这之后是立即可用的。</li></ol></li><li>result 就是我们想要的结果。</li></ol></blockquote><p>注意，<code>!</code> 看起来像一个有效的 JavaScript 表达式，可能会变得非常混乱：<code>!ToBoolean(value)</code></p><p>在这里，！只是意味着我们确信对 ToBoolean 的调用永远不会返回异常，而不是布尔取反。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;参考&quot;&gt;&lt;a href=&quot;#参考&quot; class=&quot;headerlink&quot; title=&quot;参考&quot;&gt;&lt;/a&gt;参考&lt;/h2&gt;&lt;p&gt;本文翻译自：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://timothygu.me/es-howto/&quot; target=&quot;_blank&quot;
+      
+    
+    </summary>
+    
+    
+      <category term="转载记录" scheme="https://kouder.cn/categories/%E8%BD%AC%E8%BD%BD%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="JavaScript" scheme="https://kouder.cn/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
     <title>动手给键盘加灯</title>
     <link href="https://kouder.cn/2022/04/04/%E5%8A%A8%E6%89%8B%E7%BB%99%E9%94%AE%E7%9B%98%E5%8A%A0%E7%81%AF/"/>
     <id>https://kouder.cn/2022/04/04/%E5%8A%A8%E6%89%8B%E7%BB%99%E9%94%AE%E7%9B%98%E5%8A%A0%E7%81%AF/</id>
     <published>2022-04-04T01:14:48.000Z</published>
-    <updated>2022-04-04T01:17:53.684Z</updated>
+    <updated>2022-04-04T01:18:22.856Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="所需材料："><a href="#所需材料：" class="headerlink" title="所需材料："></a>所需材料：</h2><ul><li>2x3x4 的脚长 18mm 的方灯珠，淘宝 8 块钱 110 个。</li><li>剪灯珠脚的钳子，五块钱左右。</li><li>键盘 &amp; 透光键帽</li></ul><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>首先需要确定键盘的灯的插孔的正负极，这个键盘上面标了 +-。</p><p><img src="/images/kwiY0ssdRsPsDFGwmZnBWbjHQ8YayDlxeJHR1-YkkVg.jpg" alt=""></p><p>然后，灯珠的长腿是 +</p><p><img src="/images/OyFGgllzYPSGltgmxXGeef9YZuyOdMiZDS8FaQiF3Aw.png" alt=""></p><p>用钳子剪去多余的长度，插入键盘的灯孔里即可。</p><p><img src="/images/2oJVBePrCkB7rH1AsU4AB8-5izNogEPumZzjTj8_iXI.jpg" alt="image"></p><p>需要用手折一下针脚，好让其正好撑住灯孔，避免键盘稍有震动造成接触不良。</p><p>最后，三个小时的成果：</p><p><img src="/images/0HWNfqaNy57eSmwI22YMqYa-A1m31zzXtKYbSi7DVqw.png" alt="image"></p>]]></content>
+    <content type="html"><![CDATA[<h2 id="所需材料："><a href="#所需材料：" class="headerlink" title="所需材料："></a>所需材料：</h2><ul><li>2x3x4 的脚长 18mm 的方灯珠，淘宝 8 块钱 110 个。</li><li>剪灯珠脚的钳子，五块钱左右。</li><li>键盘 &amp; 透光键帽</li></ul><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>首先需要确定键盘的灯的插孔的正负极，这个键盘上面标了 +-。</p><p><img src="/images/kwiY0ssdRsPsDFGwmZnBWbjHQ8YayDlxeJHR1-YkkVg.jpg" alt=""></p><p>然后，灯珠的长腿是 +</p><p><img src="/images/OyFGgllzYPSGltgmxXGeef9YZuyOdMiZDS8FaQiF3Aw.png" alt=""></p><p>用钳子剪去多余的长度，插入键盘的灯孔里即可。</p><p><img src="/images/2oJVBePrCkB7rH1AsU4AB8-5izNogEPumZzjTj8_iXI.jpg" alt=""></p><p>需要用手折一下针脚，好让其正好撑住灯孔，避免键盘稍有震动造成接触不良。</p><p>最后，三个小时的成果：</p><p><img src="/images/0HWNfqaNy57eSmwI22YMqYa-A1m31zzXtKYbSi7DVqw.png" alt=""></p>]]></content>
     
     <summary type="html">
     
@@ -451,29 +478,6 @@
     <summary type="html">
     
       &lt;p&gt;原生原型&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="读书笔记" scheme="https://kouder.cn/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="JavaScript" scheme="https://kouder.cn/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>async 与 await - 你不知道的 JS</title>
-    <link href="https://kouder.cn/2021/08/13/async-yu-await-ni-bu-zhi-dao-de-js/"/>
-    <id>https://kouder.cn/2021/08/13/async-yu-await-ni-bu-zhi-dao-de-js/</id>
-    <published>2021-08-13T10:14:41.000Z</published>
-    <updated>2022-04-01T02:52:20.646Z</updated>
-    
-    <content type="html"><![CDATA[<p>Async/await 是以更舒适的方式使用 promise 的一种特殊语法，同时它也非常易于理解和使用。</p><a id="more"></a><h2 id="asyuc-的函数"><a href="#asyuc-的函数" class="headerlink" title="asyuc 的函数"></a>asyuc 的函数</h2><p>async 关键字，要放在函数前面：</p><pre><code class="javascript">async function f1() {    return 1;    // return Promise.resolve(1);}async function f2() {    return}async function f3() {    return new Promise((resolve, rekected) =&gt; {        resolve(&quot;OK&quot;);    });}console.log(f1()); // Promise { 1 }console.log(f2());// undefinedconsole.log(f3());  //Promise { &lt;pending&gt; }</code></pre><p>“async” 这个单词表达了一个简单的事情：函数总是返回一个 promise。<br>显式返回的非 promise 值将自动被包装在一个 resolved 的 promise 中。</p><h2 id="await"><a href="#await" class="headerlink" title="await"></a>await</h2><p>关键字 <code>await</code> 让 JavaScript 引擎等待直到 <code>promise</code> 完成（settle）并返回结果。</p><blockquote><p>在非 <code>async</code> 函数中使用 <code>await</code> 的话，就会报语法错误</p></blockquote><pre><code class="javascript">// async 函数内let value = await a promise;</code></pre><p>下面的代码执行到 <code>let result = await promise</code>，等待 promise 执行完 resolve 后，才会继续向下执行 alert。</p><pre><code class="javascript">async function f() {    let promise = new Promise((resolve, reject) =&gt; {    setTimeout(() =&gt; resolve(&quot;done!&quot;), 1000)    });    let result = await promise; // 等待，直到 promise resolve (*)    alert(result); // &quot;done!&quot;}f();</code></pre><blockquote><p>暂停 async 函数执行时，JavaScript 引擎会转去吃力其他脚本代码任务。</p></blockquote><p>相比多个 then 的链式调用，使用 await 的写法看上去更优雅。<br>使用 await 可以做到 Python 里 sleep 函数那种效果，阻塞代码执行一定时间</p><pre><code class="javascript">(async (time) =&gt; {    console.log(1);    await new Promise((resolve, reject) =&gt; {        setTimeout(resolve, time);    })    console.log(2);  //3s 后打印 2})(3000);</code></pre><p>包裹匿名函数，是因为 await 不能直接用在顶层代码中。</p><h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p>如果一个 <code>promise</code> 正常 <code>resolve</code>， <code>await promise</code> 返回的就是其结果。但是如果 promise 被 <code>reject</code>，它将 <code>throw</code> 这个 <code>error</code>，就像在这一行有一个 <code>throw</code> 语句那样。</p><pre><code class="javascript">async function f() {    await Promise.reject(new Error(&quot;Whoops!&quot;));}</code></pre><p>等同于：</p><pre><code class="javascript">async function f() {    throw new Error(&quot;Whoops!&quot;);}</code></pre><p>这个 Error 可以使用 <code>try...catch</code> 进行捕获，就像捕获常规的 throw 抛出的错误。<br>可以用 try 包装多行 <code>await</code> 代码，一旦有任一 <code>error</code>，执行控制权马上移交 <code>catch</code> 块:<br>如果我们没有 <code>try..catch</code> 块，那么由异步函数 <code>f()</code> 的调用生成的 <code>promise</code> 将变为 <code>rejected</code>。<br>我们可以在函数调用后面添加 <code>.catch</code> 来处理这个 error</p><pre><code class="javascript">async function f() {    let response = await fetch(&#39;http://no-such-url&#39;);}// f() 变成了一个 rejected 的 promisef().catch(alert); // TypeError: failed to fetch // (*)</code></pre><p>如果我们忘了在这添加 .catch ，那么我们就会得到一个未处理的 promise error（可以在控制台中查看）。我们可以使用在 使用 promise 进行错误处理 一章中所讲的全局事件处理程序 unhandledrejection 来捕获这类 error</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Async/await 是以更舒适的方式使用 promise 的一种特殊语法，同时它也非常易于理解和使用。&lt;/p&gt;
     
     </summary>
     
