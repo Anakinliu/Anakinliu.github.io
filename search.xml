@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>我的域名怎么解析成了 IPv6？</title>
+      <link href="2022/05/09/%E6%88%91%E7%9A%84%E5%9F%9F%E5%90%8D%E6%80%8E%E4%B9%88%E8%A7%A3%E6%9E%90%E6%88%90%E4%BA%86IPv6%EF%BC%9F/"/>
+      <url>2022/05/09/%E6%88%91%E7%9A%84%E5%9F%9F%E5%90%8D%E6%80%8E%E4%B9%88%E8%A7%A3%E6%9E%90%E6%88%90%E4%BA%86IPv6%EF%BC%9F/</url>
+      
+        <content type="html"><![CDATA[<p>今天魔法突然不能用了，魔法的输出突然多了很多 IPv6 地址。<br>去终端 ping 一下域名，结果是 IPv6 地址。。。<br>猜测是 Cloudflare 的问题，搜了一下，果然有人写过这个问题。</p><p><a href="https://www.vvso.cn/xlbk/2079.html" target="_blank" rel="noopener">https://www.vvso.cn/xlbk/2079.html</a></p><p>按照文章做了，结果终端提示</p><blockquote><p>curl: (35) schannel: next InitializeSecurityContext failed: Unknown error (0x80092012) - 吊销功能无法检查证书是否吊销。</p></blockquote><p>没办法，用 Python 试一下吧。</p><pre><code class="python">import requestsr = requests.patch(&#39;改成你的&#39;, headers={&#39;X-Auth-Email&#39;: &#39;改成你的&#39;, &#39;X-Auth-Key&#39;:&#39;改成你的&#39;,&#39;Content-Type&#39;:&#39;application/json&#39;},json={&quot;value&quot;:&quot;off&quot;})print(r.content)</code></pre><p>成功了，过了几分钟变成 IPv4 地址了😁</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 备忘录 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>如何读 ECMAScript 规范（二）</title>
       <link href="2022/04/04/%E5%A6%82%E4%BD%95%E8%AF%BBECMAScript%E8%A7%84%E8%8C%83%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
       <url>2022/04/04/%E5%A6%82%E4%BD%95%E8%AF%BBECMAScript%E8%A7%84%E8%8C%83%EF%BC%88%E4%BA%8C%EF%BC%89/</url>

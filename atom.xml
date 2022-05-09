@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kouder.cn/"/>
-  <updated>2022-04-04T09:24:24.503Z</updated>
+  <updated>2022-05-09T04:04:58.408Z</updated>
   <id>https://kouder.cn/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我的域名怎么解析成了 IPv6？</title>
+    <link href="https://kouder.cn/2022/05/09/%E6%88%91%E7%9A%84%E5%9F%9F%E5%90%8D%E6%80%8E%E4%B9%88%E8%A7%A3%E6%9E%90%E6%88%90%E4%BA%86IPv6%EF%BC%9F/"/>
+    <id>https://kouder.cn/2022/05/09/%E6%88%91%E7%9A%84%E5%9F%9F%E5%90%8D%E6%80%8E%E4%B9%88%E8%A7%A3%E6%9E%90%E6%88%90%E4%BA%86IPv6%EF%BC%9F/</id>
+    <published>2022-05-09T03:52:08.000Z</published>
+    <updated>2022-05-09T04:04:58.408Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天魔法突然不能用了，魔法的输出突然多了很多 IPv6 地址。<br>去终端 ping 一下域名，结果是 IPv6 地址。。。<br>猜测是 Cloudflare 的问题，搜了一下，果然有人写过这个问题。</p><p><a href="https://www.vvso.cn/xlbk/2079.html" target="_blank" rel="noopener">https://www.vvso.cn/xlbk/2079.html</a></p><p>按照文章做了，结果终端提示</p><blockquote><p>curl: (35) schannel: next InitializeSecurityContext failed: Unknown error (0x80092012) - 吊销功能无法检查证书是否吊销。</p></blockquote><p>没办法，用 Python 试一下吧。</p><pre><code class="python">import requestsr = requests.patch(&#39;改成你的&#39;, headers={&#39;X-Auth-Email&#39;: &#39;改成你的&#39;, &#39;X-Auth-Key&#39;:&#39;改成你的&#39;,&#39;Content-Type&#39;:&#39;application/json&#39;},json={&quot;value&quot;:&quot;off&quot;})print(r.content)</code></pre><p>成功了，过了几分钟变成 IPv4 地址了😁</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;今天魔法突然不能用了，魔法的输出突然多了很多 IPv6 地址。&lt;br&gt;去终端 ping 一下域名，结果是 IPv6 地址。。。&lt;br&gt;猜测是 Cloudflare 的问题，搜了一下，果然有人写过这个问题。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.vvso.c
+      
+    
+    </summary>
+    
+    
+      <category term="备忘录" scheme="https://kouder.cn/categories/%E5%A4%87%E5%BF%98%E5%BD%95/"/>
+    
+    
+      <category term="网络" scheme="https://kouder.cn/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>如何读 ECMAScript 规范（二）</title>
@@ -455,29 +482,6 @@
     <summary type="html">
     
       &lt;p&gt;未完待续&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="读书笔记" scheme="https://kouder.cn/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="JavaScript" scheme="https://kouder.cn/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>原型 &amp; 继承三 - 你不知道的 JS</title>
-    <link href="https://kouder.cn/2021/08/13/yuan-xing-andji-cheng-san/"/>
-    <id>https://kouder.cn/2021/08/13/yuan-xing-andji-cheng-san/</id>
-    <published>2021-08-13T12:25:39.000Z</published>
-    <updated>2022-04-01T02:56:53.380Z</updated>
-    
-    <content type="html"><![CDATA[<p>原生原型</p><a id="more"></a><h2 id="Object-prototype"><a href="#Object-prototype" class="headerlink" title="Object.prototype"></a>Object.prototype</h2><pre><code>let obj = {};obj.toString(); // &quot;[object Object]&quot; ?</code></pre><p><code>toString</code> 方法是内建的 ，但是它到底在哪里呢？ obj 是空的！</p><ol><li>表达式 <code>obj = {}</code> 和 <code>obj = new Object()</code> 是一个意思</li><li>Object 是内建的对象构造函数，其 prototype 指向一个巨大对象，这个巨大对象包含 toString 和其他很多方法</li></ol><p><img src="/images/post-images/1628857974976.png" alt=""></p><p>当 <code>new Object</code> 调用执行（或者创建字面量对象），这个被创建的对象的 <code>[[Prototype]]</code> 属性就被设置为 <code>Object.prototype</code></p><p><img src="/images/post-images/1628858082348.png" alt=""></p><p>所以，一开始的代码的 <code>obj.toString();</code> 就是从 <code>Object.prototype</code> 中获取的。</p><pre><code>let obj = {};alert(obj.__proto__ === Object.prototype); // truealert(obj.toString === obj.__proto__.toString); //truealert(obj.toString === Object.prototype.toString); //true</code></pre><blockquote><p>Object.prototype 上方的链中没有更多的 <code>[[Prototype]]</code>，所以 <code>Object.prototype.__proto__</code> 指向 <code>null</code></p></blockquote><h2 id="其他的内建的原型"><a href="#其他的内建的原型" class="headerlink" title="其他的内建的原型"></a>其他的内建的原型</h2><p>Date，Array，Function，String，Number 等，都在各自的 <code>prototy[e</code> 表示的巨大对象上挂载了大量方法。</p><p>例如，当我们创建一个数组 <code>[1, 2, 3]</code>，在内部会默认使用 <code>new Array()</code> 构造器。因此 <code>Array.prototype</code> 变成了这个数组的 <code>prototype</code>，并为这个数组提供数组的操作方法。这样内存的存储效率是很高的。</p><p>按照规范，所有的内建原型顶端都是 <code>Object.prototype</code> 。这就是为什么有人说 “一切都从对象<br>继承而来”。</p><p>完整的示意图</p><p><img src="/images/post-images/1628858379792.png" alt=""></p><p>代码验证：</p><pre><code>let arr = [1, 2, 3];// 它继承自 Array.prototypealert( arr.__proto__ === Array.prototype ); // true// 接下来继承自 Object.prototypealert( arr.__proto__.__proto__ === Object.prototype ); // true// 原型链的顶端为 null。alert( arr.__proto__.__proto__.__proto__ ); // null</code></pre><p>很多方法在原型上可能会发生重叠，例如， Array.prototype 有自己的 toString 方法来列举出来数组的所有元素并用逗号分隔每一个元素。Object.prototype 也有 toString 方法，但是 Array.prototype 在原型链上更近（最先被找到），所以数组对象原型上的方法会被使用。</p><p>函数都是内建构造器 Function 的对象，并且它们的方法（call，apply 等）都取自 <code>Function.prototype</code></p><h2 id="更改原生原型"><a href="#更改原生原型" class="headerlink" title="更改原生原型"></a>更改原生原型</h2><p>原型是全局的，所以很容易造成冲突。<br>通常来说，修改原生原型被认为是一个很不好的想法。</p><p>只有一种情况下允许修改原生原型。那就是 <strong>polyfilling</strong></p><p>Polyfilling 是一个术语，表示某个方法在 *<em>JavaScript 规范中已存在，但是特定的 JavaScript 引擎尚不支持该方法 *</em>，那么我们可以通过手动实现它，并用以填充内建原型</p><pre><code>if (!String.prototype.repeat) { // 如果这儿没有这个方法// 那就在 prototype 中添加它String.prototype.repeat = function(n) {// 重复传入的字符串 n 次// 实际上，实现代码比这个要复杂一些（完整的方法可以在规范中找到）// 但即使是不够完美的 polyfill 也常常被认为是足够好的return new Array(n + 1).join(this);};}alert( &quot;La&quot;.repeat(3) ); // LaLaLa</code></pre><h2 id="从原型中借用"><a href="#从原型中借用" class="headerlink" title="从原型中借用"></a>从原型中借用</h2><p>一些原生原型的方法通常会被借用。<br>例如，如果我们要创建类数组对象，则可能需要向其中复制一些 Array 方法。</p><pre><code>let obj = {    0: &quot;Hello&quot;,    1: &quot;world!&quot;,    length: 2,};obj.join = Array.prototype.join;alert( obj.join(&#39;,&#39;) ); // Hello,world!</code></pre><p>上面这段代码有效，是因为内建的方法 join 的内部算法只关心正确的索引和 length 属性。它<br>不会检查这个对象是否是真正的数组。许多内建方法就是这样。</p><p>另一种方式是通过继承，就是将 <code>obj.__proto__</code> 设置为 <code>Array.prototype</code> ，这样 Array 中的所有方法都自动地可以在 obj 中使用了。</p><blockquote><p>方法借用很灵活，它允许在需要时混合来自不同对象的方法。</p></blockquote><h2 id="不要使用-proto"><a href="#不要使用-proto" class="headerlink" title="不要使用 __proto__"></a>不要使用 <code>__proto__</code></h2><p>现代的方法有:</p><ol><li><code>Object.create()</code> 方法创建一个新对象，使用现有的对象作为新创建的对象的 <code>__proto__</code></li><li><code>Object.getPrototypeOf(obj)</code> 返回对象 obj 的 <code>[[Prototype]]</code>。</li><li><code>Object.setPrototypeOf(obj, proto)</code> 将参数 obj 的 <code>[[Prototype]]</code> 设置为参数 <code>proto</code>。</li></ol><blockquote><p>如果速度很重要，就请不要修改已存在的对象的 <code>[[Prototype]]</code></p></blockquote><h1 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h1><h2 id="proto不是-prototype-本身"><a href="#proto不是-prototype-本身" class="headerlink" title="proto不是 [[prototype]] 本身"></a><strong>proto</strong>不是 <code>[[prototype]]</code> 本身</h2><p><code>__proto__</code> 不是一个对象的属性，只是 <code>Object.prototype</code> 的访问器属性</p><p><img src="/images/post-images/1628859778698.png" alt=""></p><p><img src="/images/post-images/1628859790434.png" alt=""></p><p>因此，如果 <code>obj.__proto__</code> 被读取或者赋值，那么对应的 getter/setter 会被从它的原型中调<br>用，它会 set/get [[Prototype]] 。<br>就像在本部分教程的开头所说的那样： <code>__proto__</code> 是一种访问 <code>[[Prototype]]</code> 的方式，而<br>不是 <code>[[prototype]]</code> 本身!!!</p><h2 id="纯对象，纯字典"><a href="#纯对象，纯字典" class="headerlink" title="纯对象，纯字典"></a>纯对象，纯字典</h2><p><code>Object.create(null)</code> 创建了一个空对象，这个对象没有原型，因为 <code>[[Prototype]]</code> 是 <code>null</code>.<br><img src="/images/post-images/1628859943894.png" alt=""></p><p>因此，它没有继承 <code>__proto__</code> 的 <code>getter/setter</code> 方法。<br>一般的对象的 <code>__proto__</code> 是不能被设置为对象的键。但是纯对象可以使用这个键。</p><pre><code>&gt; let j1 = {}undefined&gt; j1[&quot;__proto__&quot;] = 66&gt; j1[&quot;__proto__&quot;]{}&gt; let j2 = Object.create(null);undefined&gt; j2[&quot;__proto__&quot;] = 9;9&gt; j2[&quot;__proto__&quot;]9</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;原生原型&lt;/p&gt;
     
     </summary>
     
