@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://kouder.cn/"/>
-  <updated>2022-05-09T04:04:58.408Z</updated>
+  <updated>2022-07-10T10:35:21.273Z</updated>
   <id>https://kouder.cn/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Win10 资源管理器的 webdav 配置</title>
+    <link href="https://kouder.cn/2022/07/10/Win10%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8%E7%9A%84webdav%E9%85%8D%E7%BD%AE/"/>
+    <id>https://kouder.cn/2022/07/10/Win10%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8%E7%9A%84webdav%E9%85%8D%E7%BD%AE/</id>
+    <published>2022-07-10T09:41:49.000Z</published>
+    <updated>2022-07-10T10:35:21.273Z</updated>
+    
+    <content type="html"><![CDATA[<p>昨天在闲鱼买的极路由 4 增强版，想用来做个下载器，挂载个硬盘。</p><p>用恩山大佬魔改的的 padavan4.4 <a href="https://www.right.com.cn/forum/thread-8154809-1-1.html" target="_blank" rel="noopener">固件</a>，固件里面的 ftp 和 smb 在 Win10 上不好用。</p><p>这个 ftp 进去后没法修改文件，smb 就压根连不上。</p><p>后来又在恩山搜到了 <a href="https://www.right.com.cn/forum/thread-7993472-1-1.html" target="_blank" rel="noopener">一个基于 webdav 协议的软件</a></p><p>下载运行了以后，发现 windows 的资源管理器连接不上。而且打点的视频文件直接打不开。</p><p>搜了一下，发现需要修改注册表，将 webclient 的参数改了就 OK 了。参考了一个 <a href="https://github.com/messense/aliyundrive-webdav/issues/117" target="_blank" rel="noopener">Github issue</a></p><p><img src="/images/B2iT9ER7pdDZ9dxvAkISppqRJZMFN56nrrN9Q-TJR6w.png" alt="image"></p><p>用着还行吧，凑合用不折腾了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;昨天在闲鱼买的极路由 4 增强版，想用来做个下载器，挂载个硬盘。&lt;/p&gt;
+&lt;p&gt;用恩山大佬魔改的的 padavan4.4 &lt;a href=&quot;https://www.right.com.cn/forum/thread-8154809-1-1.html&quot; target=&quot;_bl
+      
+    
+    </summary>
+    
+    
+      <category term="备忘录" scheme="https://kouder.cn/categories/%E5%A4%87%E5%BF%98%E5%BD%95/"/>
+    
+    
+      <category term="Windows" scheme="https://kouder.cn/tags/Windows/"/>
+    
+      <category term="网络" scheme="https://kouder.cn/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>我的域名怎么解析成了 IPv6？</title>
@@ -464,29 +493,6 @@
     
     
       <category term="日常编程" scheme="https://kouder.cn/categories/%E6%97%A5%E5%B8%B8%E7%BC%96%E7%A8%8B/"/>
-    
-    
-      <category term="JavaScript" scheme="https://kouder.cn/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>类 - 你不知道的 JS</title>
-    <link href="https://kouder.cn/2021/08/14/lei-ni-bu-zhi-dao-de-js/"/>
-    <id>https://kouder.cn/2021/08/14/lei-ni-bu-zhi-dao-de-js/</id>
-    <published>2021-08-14T07:28:04.000Z</published>
-    <updated>2022-04-01T02:54:30.630Z</updated>
-    
-    <content type="html"><![CDATA[<p>未完待续</p><a id="more"></a><h1 id="class-语法"><a href="#class-语法" class="headerlink" title="class 语法"></a>class 语法</h1><pre><code>class MyClass {    // class 方法    constructor() { ... }    method1() { ... }    method2() { ... }    method3() { ... }    ...}</code></pre><p>然后使用 <code>new MyClass()</code> 来创建具有上述列出的所有方法的新对象。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;未完待续&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="读书笔记" scheme="https://kouder.cn/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
     
       <category term="JavaScript" scheme="https://kouder.cn/tags/JavaScript/"/>

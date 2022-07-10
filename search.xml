@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Win10 资源管理器的 webdav 配置</title>
+      <link href="2022/07/10/Win10%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8%E7%9A%84webdav%E9%85%8D%E7%BD%AE/"/>
+      <url>2022/07/10/Win10%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%99%A8%E7%9A%84webdav%E9%85%8D%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<p>昨天在闲鱼买的极路由 4 增强版，想用来做个下载器，挂载个硬盘。</p><p>用恩山大佬魔改的的 padavan4.4 <a href="https://www.right.com.cn/forum/thread-8154809-1-1.html" target="_blank" rel="noopener">固件</a>，固件里面的 ftp 和 smb 在 Win10 上不好用。</p><p>这个 ftp 进去后没法修改文件，smb 就压根连不上。</p><p>后来又在恩山搜到了 <a href="https://www.right.com.cn/forum/thread-7993472-1-1.html" target="_blank" rel="noopener">一个基于 webdav 协议的软件</a></p><p>下载运行了以后，发现 windows 的资源管理器连接不上。而且打点的视频文件直接打不开。</p><p>搜了一下，发现需要修改注册表，将 webclient 的参数改了就 OK 了。参考了一个 <a href="https://github.com/messense/aliyundrive-webdav/issues/117" target="_blank" rel="noopener">Github issue</a></p><p><img src="/images/B2iT9ER7pdDZ9dxvAkISppqRJZMFN56nrrN9Q-TJR6w.png" alt="image"></p><p>用着还行吧，凑合用不折腾了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 备忘录 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Windows </tag>
+            
+            <tag> 网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>我的域名怎么解析成了 IPv6？</title>
       <link href="2022/05/09/%E6%88%91%E7%9A%84%E5%9F%9F%E5%90%8D%E6%80%8E%E4%B9%88%E8%A7%A3%E6%9E%90%E6%88%90%E4%BA%86IPv6%EF%BC%9F/"/>
       <url>2022/05/09/%E6%88%91%E7%9A%84%E5%9F%9F%E5%90%8D%E6%80%8E%E4%B9%88%E8%A7%A3%E6%9E%90%E6%88%90%E4%BA%86IPv6%EF%BC%9F/</url>
