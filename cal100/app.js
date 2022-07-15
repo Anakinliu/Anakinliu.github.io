@@ -3,7 +3,7 @@ const app = Vue.createApp({
         return {
             problems: [],
             answers: [],
-            numOfP: 20,
+            numOfP: 6,
             minNum: 10,
             maxNum: 99,
         }
