@@ -1,18 +1,23 @@
+
 const app = Vue.createApp({
     data() {
         return {
             problems: [],
             answers: [],
-            numOfP: 6,
+            numOfP: 10,
             minNum: 10,
             maxNum: 99,
+            seed: 2022,
+            isSingleColumn: true
         }
     },
     methods: {
         generateProblems() {
+            const myRandom = new Math.seedrandom(this.seed);
+
             function getRandomInt(max) {
                 // 到不了100，[0,99]
-                return Math.floor(Math.random() * max);
+                return Math.floor(myRandom() * max);
             }
             const tp = [];
             const ta = [];
@@ -52,6 +57,9 @@ const app = Vue.createApp({
             }
             this.problems = tp;
             this.answers = ta;
+        },
+        changeColumn() {
+            this.isSingleColumn = !this.isSingleColumn;
         },
         showAnswers() {
             this.problems = this.answers;
