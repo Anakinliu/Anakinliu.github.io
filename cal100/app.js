@@ -45,7 +45,7 @@ const app = Vue.createApp({
                         resStr = resStr + ' - ' + c;
                     }
                     if (res2 <= 100 && res2 >= 0) {
-                        tp.push(resStr + ' = ___');
+                        tp.push(resStr + ' = ???');
                         ta.push(resStr + ' = ' + res2);
                     }
                 }

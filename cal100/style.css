@@ -4,38 +4,43 @@
 }
 
 html {
-    background-color: #f5f5d5;
+    background-color: gray;
+}
+
+input, label {
+    font-size: 2em;
 }
 
 #assignment {
-    width: 60em;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 5em auto;
-    background-color: white;
-    border: 3px solid #1976d2;
+    color: white;
+    background-color: black;
+    border: 3px solid #f5f5d5;
 }
 
 button {
     padding: 0.6em 2em;
     border-radius: 8px;
-    color: #fff;
-    background-color: #1976d2;
-    font-size: 1.1em;
+    color: black;
+    background-color: #f5f5d5;
+    font-size: 2em;
     border: 0;
     cursor: pointer;
     margin: 1em;
 }
 
 #problems {
-    font-size: 1.5em;
-    width: 40em;
+    font-size: 3em;
+    width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: .2em;
-    border: 3px solid #1976d2;
+    border: 3px solid #f5f5d5;
 }
 .problem-content {
     padding: 0 1em;
