@@ -7,7 +7,7 @@ const app = Vue.createApp({
             numOfP: 10,
             minNum: 10,
             maxNum: 99,
-            seed: 2022,
+            seed: 1,
             isSingleColumn: true
         }
     },

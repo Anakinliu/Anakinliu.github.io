@@ -14,7 +14,7 @@
         <h2>100以内三运算数加减混合</h2>
         <p>
             <label for="seed">改变此数以生成<span class="highlight-span">新</span>题目：</label> <input v-model="seed"
-                type="number" id="seed">
+                type="number" id="seed" min="1" max="99999999">
         </p>
         <p>
             <label for="num-p">题目个数：</label> <input min="1" max="50" v-model="numOfP" type="number"
