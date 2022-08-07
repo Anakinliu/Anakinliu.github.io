@@ -1,13 +1,26 @@
 const audioClick = new Audio('./audio/click.wav');
-const audioExp = new Audio('./audio/explosion.wav');
+// const audioClick = Array(5).fill(new Audio('./audio/click.wav'));
 const audioFlag = new Audio('./audio/flag.wav');
+// const audioFlag = Array(5).fill(new Audio('./audio/flag.wav'));
+const audioExp = new Audio('./audio/explosion.wav');
 const audioWin = new Audio('./audio/win.wav');
+audioClick.preload = "auto";
+audioFlag.preload = "auto";
+audioExp.preload = "auto";
+audioWin.preload = "auto";
+// const seed = 813;
+// console.log('seed: ', seed);
+
 function play(audio) {
     // TODO 解决：多次连点声音只播放一下
-    setTimeout(() => {
-        audio.play();
-    }, 66)
+    if (audio.ended === false) {
+        // console.log('ended false!!!');
+        audio = new Audio(audio.src);
+        audio.preload = 'auto';
+    }
+    audio.play();
 }
+
 function bfs(arr1, arr2, r, c, rLim, cLim) {// 0区域向外扩展，直到遇到标号区域
     // arr1: 标号数组， arr2：可见性数组
     if (0 < arr1[r][c]) {
@@ -39,20 +52,18 @@ const app = Vue.createApp({
             row: 9,
             col: 12,
             boardArr: [],
-            mineCount: 2,
+            mineCount: 10,
             flagCount: 0,
             firstStep: true,
             isGameOver: false,
             visibleArr: [],
             flagArr: [],
-            isSuccess: false
+            isSuccess: false,
+            seed: 0,
         }
     },
     mounted() {
-        this.boardArr = Array(this.row).fill(0).map(e => Array(this.col).fill(0));
-        this.visibleArr = Array(this.row).fill(false).map(e => Array(this.col).fill(false));
-        this.flagArr = Array(this.row).fill(false).map(e => Array(this.col).fill(false));
-        this.flagCount = this.mineCount;
+        this.restartGame();
         console.log('created...');
     },
     computed: {
@@ -66,7 +77,7 @@ const app = Vue.createApp({
             this.checkSuccess();
         },
         visibleArr: {  // 监听较复杂数据结构比较特殊
-            handler(v, oldV) {  
+            handler(v, oldV) {
                 // 因为最后一步可能不是插旗，所以需要监听这个数组
                 // console.log('watch visible Arr');
                 this.checkSuccess();
@@ -84,7 +95,8 @@ const app = Vue.createApp({
             this.firstStep = true;
             this.isSuccess = false;
             this.isGameOver = false;
-            console.log('restart DONE');
+            this.seed = parseInt(Math.random() * 10000);
+            console.log('restart DONE seed: ', this.seed);
         },
         checkSuccess() {
             if (this.flagCount === 0) {
@@ -114,7 +126,7 @@ const app = Vue.createApp({
             if (true === this.visibleArr[rIdx][cIdx] || (this.flagCount <= 0 && false === this.flagArr[rIdx][cIdx])) {
                 return
             }
-            audioFlag.play();
+            play(audioFlag);  //PLAY
             this.flagArr[rIdx][cIdx] = !this.flagArr[rIdx][cIdx];
             if (true === this.flagArr[rIdx][cIdx]) {
                 this.flagCount -= 1;
@@ -130,9 +142,9 @@ const app = Vue.createApp({
                 this.generateMine(rIdx, cIdx);
                 this.generateAnswer();
                 this.firstStep = false;
-                console.log('first click is done');
+                // console.log('first click is done');
                 bfs(this.boardArr, this.visibleArr, rIdx, cIdx, this.row, this.col);
-                audioClick.play();
+                play(audioClick);  // PLAY
             } else {
                 if (true === this.isGameOver) {
                     // alert('刷新重开！')
@@ -140,7 +152,7 @@ const app = Vue.createApp({
                 } else {
                     // 正常游戏流程的点击
                     if (false === isNaN(this.boardArr[rIdx][cIdx])) {// 非 雷 cell
-                        audioClick.play();
+                        play(audioClick);
                         bfs(this.boardArr, this.visibleArr, rIdx, cIdx, this.row, this.col);
                     } else { // 点中雷   
                         this.visibleArr[rIdx][cIdx] = true;
@@ -155,8 +167,9 @@ const app = Vue.createApp({
         generateMine(r, c) {
             const mineSet = new Set();
             const cellCount = this.row * this.col;
+            const myRandom = new Math.seedrandom(this.seed);
             while (mineSet.size < this.mineCount) {
-                let n = parseInt(Math.random() * cellCount);
+                let n = parseInt(myRandom() * cellCount);
                 if (n !== r * this.col + c) {
                     mineSet.add(n);
                 }
