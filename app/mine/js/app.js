@@ -1,13 +1,8 @@
-function play(audioFile) {
-    const audio = new Audio(audioFile);
-    audio.play();
-}
-(function () { // 预加载音频
-    const audio1 = new Audio('./audio/click.wav');
-    const audio2 = new Audio('./audio/explosion.wav');
-    const audio3 = new Audio('./audio/flag.wav');
-    const audio4 = new Audio('./audio/win.wav');
-})();
+const audioClick = new Audio('./audio/click.wav');
+const audioExp = new Audio('./audio/explosion.wav');
+const audioFlag = new Audio('./audio/flag.wav');
+const audioWin = new Audio('./audio/win.wav');
+
 function bfs(arr1, arr2, r, c, rLim, cLim) {// 0区域向外扩展，直到遇到标号区域
     // arr1: 标号数组， arr2：可见性数组
     if (0 < arr1[r][c]) {
@@ -69,7 +64,7 @@ const app = Vue.createApp({
                         }
                     }
                 }
-                play('./audio/win.wav');
+                audioWin.play();
                 // alert('success');
                 this.isGameOver = true;
                 this.isSuccess = true;
@@ -91,7 +86,7 @@ const app = Vue.createApp({
             if (true === this.visibleArr[rIdx][cIdx] || (this.flagCount <= 0 && false === this.flagArr[rIdx][cIdx])) {
                 return
             }
-            play('./audio/flag.wav')//播放声音
+            audioFlag.play();
             this.flagArr[rIdx][cIdx] = !this.flagArr[rIdx][cIdx];
             if (true === this.flagArr[rIdx][cIdx]) {
                 this.flagCount -= 1;
@@ -109,7 +104,7 @@ const app = Vue.createApp({
                 this.firstStep = false;
                 console.log('first click is done');
                 bfs(this.boardArr, this.visibleArr, rIdx, cIdx, this.row, this.col);
-                play('./audio/click.wav')//播放声音
+                audioClick.play();
             } else {
                 if (true === this.isGameOver) {
                     // alert('刷新重开！')
@@ -117,12 +112,12 @@ const app = Vue.createApp({
                 } else {
                     // 正常游戏流程的点击
                     if (false === isNaN(this.boardArr[rIdx][cIdx])) {// 非 雷 cell
-                        play('./audio/click.wav')//播放声音
+                        audioClick.play();
                         bfs(this.boardArr, this.visibleArr, rIdx, cIdx, this.row, this.col);
                     } else { // 点中雷   
                         this.visibleArr[rIdx][cIdx] = true;
                         this.isGameOver = true;
-                        play('./audio/explosion.wav')//播放声音
+                        audioExp.play();
                         // alert('你踩雷了！')
                         return;  // 游戏结束
                     }
