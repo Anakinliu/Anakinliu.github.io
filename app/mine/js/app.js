@@ -10,8 +10,10 @@ audioExp.preload = "auto";
 audioWin.preload = "auto";
 // const seed = 813;
 // console.log('seed: ', seed);
-const localMineCount = localStorage.getItem('userMine') ? localStorage.getItem('userMine') : 10;
-const localSeed = localStorage.getItem('userSeed') ? localStorage.getItem('userSeed') : 10;
+const localMineCount = localStorage.getItem('userMine') ? parseInt(localStorage.getItem('userMine')) : 10;
+const localSeed = localStorage.getItem('userSeed') ? parseInt(localStorage.getItem('userSeed')) : 10;
+// console.log(`加载：localMineCount： ${localMineCount}`);
+console.log(localMineCount >= 432);
 function play(audio) {
     // TODO 解决：多次连点声音只播放一下
     if (audio.ended === false) {
@@ -54,7 +56,8 @@ const app = Vue.createApp({
             row: 18,
             col: 24,
             boardArr: [],
-            mineCount: localMineCount,
+            // mineCount: (localMineCount >= this.row * this.col) ? 10 : localMineCount,
+            mineCount: 0,
             flagCount: 0,
             firstStep: true,
             isGameOver: false,
@@ -68,11 +71,14 @@ const app = Vue.createApp({
         this.restartGame();
         console.log('created...');
     },
-    computed: {
-
+    created() {
+        this.mineCount = (localMineCount >= this.row * this.col) ? 10 : localMineCount;
     },
     watch: {
         mineCount(v, oldV) {
+            if (v >= this.col * this.row) {
+                this.mineCount = oldV;
+            }
             localStorage.setItem('userMine', v);
             this.restartGame();
         },
