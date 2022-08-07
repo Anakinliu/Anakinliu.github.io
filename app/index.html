@@ -11,32 +11,47 @@
             margin: 0;
             padding: 0;
         }
+
         .main {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-size: 4rem;
-            text-align: center;
         }
+
         .line {
+            width: 100vw;
             margin: 1rem;
         }
-        .line p{
+
+        .line p {
             background-color: cadetblue;
             border: 2px gray solid;
+            text-align: center;
+
         }
-        .line a{
+
+        .line a {
+            font-size: 4rem;
+
             color: black;
             text-decoration: none;
+        }
+
+        .line a:hover {
+            color: gold;
         }
     </style>
 </head>
 
 <body>
     <div class="main">
-        <div class="line"> <p><a href="./mine/index.html">扫雷</a></p> </div>
-        <div class="line"> <p><a href="./cal00/index.html">100以内加减法</a></p> </div>
+        <div class="line">
+            <p><a href="./mine/index.html">扫雷</a></p>
+        </div>
+        <div class="line">
+            <p><a href="./cal100/index.html">100以内加减法</a></p>
+        </div>
     </div>
 </body>
 
