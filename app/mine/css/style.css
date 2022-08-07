@@ -16,8 +16,12 @@ body {
     align-items: center;
     justify-content: space-around;
 }
+.info {
+    flex: 1;
+}
 
 .info p{
+    text-align: center;
     font-size: 2em;
 }
 

@@ -20,7 +20,8 @@
                 <button @click="restartGame">再来一把</button>
             </div>
             <div class="info">
-                <p>剩余 🚩：{{ flagCount }}</p>
+                <p>剩余</p>
+                <p>🚩{{ flagCount }}</p>
             </div>
             <div class="board">
                 <div class="cell-row" v-for="(cellRow, rIdx) in boardArr">
