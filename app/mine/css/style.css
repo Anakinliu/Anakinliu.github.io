@@ -1,0 +1,108 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    /* background-color: green; */
+    font-size: 16px;
+}
+
+.game {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info {
+    font-size: 2em;
+    margin: 2em auto;
+}
+
+.board {
+    height: 36em;
+    width: 48em;
+    position: relative;
+    /* top: calc(50% - 18em);
+    margin-left: calc(50% - 24em); */
+    display: flex;
+    flex-wrap: wrap;
+    background-color: black;
+}
+
+.cell-row {
+    display: flex;
+}
+
+/* .cell:nth-child(odd) {
+    background-color: #659800;
+} */
+
+.cell {
+    height: 4em;
+    width: 4em;
+    box-sizing: border-box;
+    border: 1px gray solid;
+    background-clip: border-box;
+
+}
+
+
+.bg-1 {
+    /* background-color: #b8d284; */
+    background-color: #a2d149;
+}
+
+.bg-2 {
+    background-color: #8bd751;
+}
+
+.bg-visible {
+    background-color: #d7b899;
+}
+
+
+.n-1 {
+    color: #1976d2;
+}
+
+.n-2 {
+    color: #388e3c;
+}
+
+.n-3 {
+    color: #d44943;
+}
+
+.n-4 {
+    color: #7b1fa2;
+}
+
+.mess {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+
+}
+
+.mess p {
+    font-size: 4em;
+    text-align: center;
+    color: gold;
+    background-color: #8bd751;
+}
+.mess .fail {
+    color: rgb(166, 34, 34);
+    background-color: gray;
+
+}
+.mess button {
+    font-size: 4em;
+}
