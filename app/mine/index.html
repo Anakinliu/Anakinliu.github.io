@@ -16,10 +16,10 @@
             <div v-if="isGameOver" class="mess">
                 <p v-if="isSuccess">成功</p>
                 <p class="fail" v-else>WASTED</p>
-                <button @click="reloadPage">再来一把</button>
+                <button @click="restartGame">再来一把</button>
             </div>
             <div class="info">
-                <p>剩余 🚩：{{ flagCount }} |  总共 💣：{{ mineCount }}</p>
+                <p>剩余 🚩：{{ flagCount }} |  总共 💣：<input style="font-size: 1em; display:inline-block; width: 3em;" type="number" v-model="mineCount"></p>
             </div>
             <div class="board">
                 <div class="cell-row" v-for="(cellRow, rIdx) in boardArr">

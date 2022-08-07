@@ -2,7 +2,12 @@ const audioClick = new Audio('./audio/click.wav');
 const audioExp = new Audio('./audio/explosion.wav');
 const audioFlag = new Audio('./audio/flag.wav');
 const audioWin = new Audio('./audio/win.wav');
-
+function play(audio) {
+    // TODO 解决：多次连点声音只播放一下
+    setTimeout(() => {
+        audio.play();
+    }, 66)
+}
 function bfs(arr1, arr2, r, c, rLim, cLim) {// 0区域向外扩展，直到遇到标号区域
     // arr1: 标号数组， arr2：可见性数组
     if (0 < arr1[r][c]) {
@@ -34,7 +39,7 @@ const app = Vue.createApp({
             row: 9,
             col: 12,
             boardArr: [],
-            mineCount: 10,
+            mineCount: 2,
             flagCount: 0,
             firstStep: true,
             isGameOver: false,
@@ -43,17 +48,45 @@ const app = Vue.createApp({
             isSuccess: false
         }
     },
-    created() {
+    mounted() {
         this.boardArr = Array(this.row).fill(0).map(e => Array(this.col).fill(0));
         this.visibleArr = Array(this.row).fill(false).map(e => Array(this.col).fill(false));
         this.flagArr = Array(this.row).fill(false).map(e => Array(this.col).fill(false));
         this.flagCount = this.mineCount;
+        console.log('created...');
     },
     computed: {
 
     },
     watch: {
-        flagCount() {
+        mineCount(v, oldV) {
+            this.restartGame();
+        },
+        flagCount(v, oldV) {
+            this.checkSuccess();
+        },
+        visibleArr: {  // 监听较复杂数据结构比较特殊
+            handler(v, oldV) {  
+                // 因为最后一步可能不是插旗，所以需要监听这个数组
+                // console.log('watch visible Arr');
+                this.checkSuccess();
+            },
+            deep: true
+        }
+    },
+    methods: {
+        restartGame() {
+            console.log('restart');
+            this.boardArr = Array(this.row).fill(0).map(e => Array(this.col).fill(0));
+            this.visibleArr = Array(this.row).fill(false).map(e => Array(this.col).fill(false));
+            this.flagArr = Array(this.row).fill(false).map(e => Array(this.col).fill(false));
+            this.flagCount = this.mineCount;
+            this.firstStep = true;
+            this.isSuccess = false;
+            this.isGameOver = false;
+            console.log('restart DONE');
+        },
+        checkSuccess() {
             if (this.flagCount === 0) {
                 console.log('已用完所有FLAG');
                 let i = 0, j = 0;
@@ -69,11 +102,6 @@ const app = Vue.createApp({
                 this.isGameOver = true;
                 this.isSuccess = true;
             }
-        }
-    },
-    methods: {
-        reloadPage() {
-            location.reload();
         },
         initCellClass(rIdx, cIdx) {
             // 初始化棋盘颜色
