@@ -2,6 +2,12 @@ function play(audioFile) {
     const audio = new Audio(audioFile);
     audio.play();
 }
+(function () {
+    const audio1 = new Audio('./audio/click.wav');
+    const audio2 = new Audio('./audio/explosion.wav');
+    const audio3 = new Audio('./audio/flag.wav');
+    const audio4 = new Audio('./audio/win.wav');
+})();
 function bfs(arr1, arr2, r, c, rLim, cLim) {// 0区域向外扩展，直到遇到标号区域
     // arr1: 标号数组， arr2：可见性数组
     if (0 < arr1[r][c]) {
