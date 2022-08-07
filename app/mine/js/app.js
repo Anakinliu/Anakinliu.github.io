@@ -10,7 +10,8 @@ audioExp.preload = "auto";
 audioWin.preload = "auto";
 // const seed = 813;
 // console.log('seed: ', seed);
-
+const localMineCount = localStorage.getItem('userMine') ? localStorage.getItem('userMine') : 10;
+const localSeed = localStorage.getItem('userSeed') ? localStorage.getItem('userSeed') : 10;
 function play(audio) {
     // TODO 解决：多次连点声音只播放一下
     if (audio.ended === false) {
@@ -53,14 +54,14 @@ const app = Vue.createApp({
             row: 18,
             col: 24,
             boardArr: [],
-            mineCount: 10,
+            mineCount: localMineCount,
             flagCount: 0,
             firstStep: true,
             isGameOver: false,
             visibleArr: [],
             flagArr: [],
             isSuccess: false,
-            seed: 0,
+            seed: localSeed,
         }
     },
     mounted() {
@@ -72,9 +73,11 @@ const app = Vue.createApp({
     },
     watch: {
         mineCount(v, oldV) {
+            localStorage.setItem('userMine', v);
             this.restartGame();
         },
-        seed() {
+        seed(v) {
+            localStorage.setItem('userSeed', v);
             this.restartGame();
         },
         flagCount(v, oldV) {
@@ -90,7 +93,18 @@ const app = Vue.createApp({
         }
     },
     methods: {
-        restartGame() {
+        restartGame(v, oldV) {
+            // if (null === localStorage.getItem('userMine')) {
+            //     localStorage.setItem('userMine', this.mineCount);
+            // } else {
+            //     this.mineCount = localStorage.getItem('userMine');
+            // }
+            // if (null === localStorage.getItem('userSeed')) {
+            //     localStorage.setItem('userSeed', this.seed);
+            // } else {
+            //     this.seed = localStorage.getItem('userMine');
+            // }
+
             console.log('restart');
             this.boardArr = Array(this.row).fill(0).map(e => Array(this.col).fill(0));
             this.visibleArr = Array(this.row).fill(false).map(e => Array(this.col).fill(false));
@@ -174,7 +188,7 @@ const app = Vue.createApp({
             const myRandom = new Math.seedrandom(this.seed);
             while (mineSet.size < this.mineCount) {
                 let n = parseInt(myRandom() * cellCount);
-                if (n !== r * this.col + c) {
+                if (n !== r * this.col + c) {// NOTE：生成的雷不能是鼠标第一次点击的位置！即使seed不变
                     mineSet.add(n);
                 }
             }
