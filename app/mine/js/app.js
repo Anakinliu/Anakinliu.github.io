@@ -74,6 +74,9 @@ const app = Vue.createApp({
         mineCount(v, oldV) {
             this.restartGame();
         },
+        seed() {
+            this.restartGame();
+        },
         flagCount(v, oldV) {
             this.checkSuccess();
         },
@@ -96,7 +99,7 @@ const app = Vue.createApp({
             this.firstStep = true;
             this.isSuccess = false;
             this.isGameOver = false;
-            this.seed = parseInt(Math.random() * 10000);
+            // this.seed = parseInt(Math.random() * 10000);
             console.log('restart DONE seed: ', this.seed);
         },
         checkSuccess() {
