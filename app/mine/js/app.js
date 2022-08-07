@@ -2,7 +2,7 @@ function play(audioFile) {
     const audio = new Audio(audioFile);
     audio.play();
 }
-(function () {
+(function () { // 预加载音频
     const audio1 = new Audio('./audio/click.wav');
     const audio2 = new Audio('./audio/explosion.wav');
     const audio3 = new Audio('./audio/flag.wav');
@@ -116,8 +116,8 @@ const app = Vue.createApp({
                     return;
                 } else {
                     // 正常游戏流程的点击
-                    play('./audio/click.wav')//播放声音
                     if (false === isNaN(this.boardArr[rIdx][cIdx])) {// 非 雷 cell
+                        play('./audio/click.wav')//播放声音
                         bfs(this.boardArr, this.visibleArr, rIdx, cIdx, this.row, this.col);
                     } else { // 点中雷   
                         this.visibleArr[rIdx][cIdx] = true;
