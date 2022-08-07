@@ -14,6 +14,7 @@ audioWin.preload = "auto";
 function play(audio) {
     // TODO 解决：多次连点声音只播放一下
     if (audio.ended === false) {
+        audio.pause = true;
         // console.log('ended false!!!');
         audio = new Audio(audio.src);
         audio.preload = 'auto';
@@ -49,8 +50,8 @@ function bfs(arr1, arr2, r, c, rLim, cLim) {// 0区域向外扩展，直到遇�
 const app = Vue.createApp({
     data() {
         return {
-            row: 9,
-            col: 12,
+            row: 18,
+            col: 24,
             boardArr: [],
             mineCount: 10,
             flagCount: 0,
@@ -109,7 +110,7 @@ const app = Vue.createApp({
                         }
                     }
                 }
-                audioWin.play();
+                play(audioWin);
                 // alert('success');
                 this.isGameOver = true;
                 this.isSuccess = true;
@@ -157,7 +158,7 @@ const app = Vue.createApp({
                     } else { // 点中雷   
                         this.visibleArr[rIdx][cIdx] = true;
                         this.isGameOver = true;
-                        audioExp.play();
+                        play(audioExp);
                         // alert('你踩雷了！')
                         return;  // 游戏结束
                     }
