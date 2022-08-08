@@ -66,12 +66,14 @@ body {
     box-sizing: border-box;
     border: 1px gray solid;
     background-clip: border-box;
+    cursor: crosshair;
 }
 
 .cell p {
     font-size: 1.5em;
     line-height: 1.1em;
     text-align: center;
+    cursor: crosshair;
 }
 
 .cell:hover {
