@@ -1,5 +1,7 @@
 const localMineCount = localStorage.getItem('userMine') ? parseInt(localStorage.getItem('userMine')) : 10;
 const localSeed = localStorage.getItem('userSeed') ? parseInt(localStorage.getItem('userSeed')) : 10;
+const localRow = localStorage.getItem('userRow') ? parseInt(localStorage.getItem('userRow')) : 18;
+const localCol = localStorage.getItem('userCol') ? parseInt(localStorage.getItem('userCol')) : 24;
 const sounds = {
     'click': new Howl({
         src: ['./audio/click.wav']
@@ -56,10 +58,10 @@ function bfs(arr1, arr2, arr3, count, r, c, rLim, cLim) {// 0区域向外扩展�
 const app = Vue.createApp({
     data() {
         return {
-            row: 18,
-            col: 24,
+            row: localRow,
+            col: localCol,
             boardArr: [],
-            mineCount: 0,
+            mineCount: localMineCount,
             flagCount: 0,
             firstStep: true,
             isGameOver: false,
@@ -70,28 +72,30 @@ const app = Vue.createApp({
         }
     },
     mounted() {
-        this.mineCount = (localMineCount >= this.row * this.col) ? 10 : localMineCount;
         this.restartGame();
         console.log('created...');
     },
     watch: {
         row(v, oldV) {
-            if (v < 1) {
+            if (v < 1 || v * this.col <= this.mineCount) {
                 this.row = oldV;
                 return;
             }
+            localStorage.setItem('userRow', v);
             this.restartGame();
         },
         col(v, oldV) {
-            if (v < 1) {
+            if (v < 1 || v * this.row <= this.mineCount) {
                 this.col = oldV;
                 return;
             }
+            localStorage.setItem('userCol', v);
             this.restartGame();
         },
         mineCount(v, oldV) {
-            if (v >= this.col * this.row) {
+            if (v >= this.col * this.row || v < 0) {
                 this.mineCount = oldV;
+                return
             }
             localStorage.setItem('userMine', v);
             this.restartGame();
