@@ -1,17 +1,5 @@
-// const audioClick = new Audio('./audio/click.wav');
-// const audioFlag = new Audio('./audio/flag.wav');
-// const audioExp = new Audio('./audio/explosion.wav');
-// const audioWin = new Audio('./audio/win.wav');
-// audioClick.preload = "auto";
-// audioFlag.preload = "auto";
-// audioExp.preload = "auto";
-// audioWin.preload = "auto";
-// const seed = 813;
-// console.log('seed: ', seed);
 const localMineCount = localStorage.getItem('userMine') ? parseInt(localStorage.getItem('userMine')) : 10;
 const localSeed = localStorage.getItem('userSeed') ? parseInt(localStorage.getItem('userSeed')) : 10;
-// console.log(`加载：localMineCount： ${localMineCount}`);
-// console.log(localMineCount >= 432);
 const sounds = {
     'click': new Howl({
         src: ['./audio/click.wav']
@@ -71,7 +59,6 @@ const app = Vue.createApp({
             row: 18,
             col: 24,
             boardArr: [],
-            // mineCount: (localMineCount >= this.row * this.col) ? 10 : localMineCount,
             mineCount: 0,
             flagCount: 0,
             firstStep: true,
@@ -88,6 +75,20 @@ const app = Vue.createApp({
         console.log('created...');
     },
     watch: {
+        row(v, oldV) {
+            if (v < 1) {
+                this.row = oldV;
+                return;
+            }
+            this.restartGame();
+        },
+        col(v, oldV) {
+            if (v < 1) {
+                this.col = oldV;
+                return;
+            }
+            this.restartGame();
+        },
         mineCount(v, oldV) {
             if (v >= this.col * this.row) {
                 this.mineCount = oldV;
@@ -113,17 +114,6 @@ const app = Vue.createApp({
     },
     methods: {
         restartGame() {
-            // if (null === localStorage.getItem('userMine')) {
-            //     localStorage.setItem('userMine', this.mineCount);
-            // } else {
-            //     this.mineCount = localStorage.getItem('userMine');
-            // }
-            // if (null === localStorage.getItem('userSeed')) {
-            //     localStorage.setItem('userSeed', this.seed);
-            // } else {
-            //     this.seed = localStorage.getItem('userMine');
-            // }
-
             console.log('restart');
             this.boardArr = Array(this.row).fill(0).map(e => Array(this.col).fill(0));
             this.visibleArr = Array(this.row).fill(false).map(e => Array(this.col).fill(false));

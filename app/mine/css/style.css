@@ -16,22 +16,30 @@ body {
     align-items: center;
     justify-content: space-around;
 }
+
 .info {
     flex: 1;
 }
 
-.info p{
+.info p {
     text-align: center;
     font-size: 2em;
 }
 
+.info input {
+    font-size: 2rem;
+    display: inline-block;
+    width: 3em;
+}
+
 .board {
-    height: 36em;
-    width: 48em;
+    /* height: 36em;
+    width: 48em; */
     position: relative;
     /* top: calc(50% - 18em);
     margin-left: calc(50% - 24em); */
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     background-color: black;
 }
@@ -109,11 +117,13 @@ body {
     color: gold;
     background-color: #8bd751;
 }
+
 .mess .fail {
     color: rgb(166, 34, 34);
     background-color: gray;
 
 }
+
 .mess button {
     font-size: 4em;
 }
