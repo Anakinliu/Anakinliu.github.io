@@ -1,28 +1,33 @@
-const audioClick = new Audio('./audio/click.wav');
-// const audioClick = Array(5).fill(new Audio('./audio/click.wav'));
-const audioFlag = new Audio('./audio/flag.wav');
-// const audioFlag = Array(5).fill(new Audio('./audio/flag.wav'));
-const audioExp = new Audio('./audio/explosion.wav');
-const audioWin = new Audio('./audio/win.wav');
-audioClick.preload = "auto";
-audioFlag.preload = "auto";
-audioExp.preload = "auto";
-audioWin.preload = "auto";
+// const audioClick = new Audio('./audio/click.wav');
+// const audioFlag = new Audio('./audio/flag.wav');
+// const audioExp = new Audio('./audio/explosion.wav');
+// const audioWin = new Audio('./audio/win.wav');
+// audioClick.preload = "auto";
+// audioFlag.preload = "auto";
+// audioExp.preload = "auto";
+// audioWin.preload = "auto";
 // const seed = 813;
 // console.log('seed: ', seed);
 const localMineCount = localStorage.getItem('userMine') ? parseInt(localStorage.getItem('userMine')) : 10;
 const localSeed = localStorage.getItem('userSeed') ? parseInt(localStorage.getItem('userSeed')) : 10;
 // console.log(`加载：localMineCount： ${localMineCount}`);
 // console.log(localMineCount >= 432);
-function play(audio) {
-    // TODO 解决：多次连点声音只播放一下
-    if (audio.ended === false) {
-        audio.pause = true;
-        // console.log('ended false!!!');
-        audio = new Audio(audio.src);
-        audio.preload = 'auto';
-    }
-    audio.play();
+const sounds = {
+    'click': new Howl({
+        src: ['./audio/click.wav']
+    }),
+    'flag': new Howl({
+        src: ['./audio/flag.wav']
+    }),
+    'exp': new Howl({
+        src: ['./audio/explosion.wav']
+    }),
+    'win': new Howl({
+        src: ['./audio/win.wav']
+    })
+}
+function play(k) {
+    sounds[k].play();
 }
 
 function bfs(arr1, arr2, arr3, count, r, c, rLim, cLim) {// 0区域向外扩展，直到遇到标号区域
@@ -141,7 +146,7 @@ const app = Vue.createApp({
                         }
                     }
                 }
-                play(audioWin);
+                play('win');
                 // alert('success');
                 this.isGameOver = true;
                 this.isSuccess = true;
@@ -158,7 +163,7 @@ const app = Vue.createApp({
             if (true === this.visibleArr[rIdx][cIdx] || (this.flagCount <= 0 && false === this.flagArr[rIdx][cIdx])) {
                 return
             }
-            play(audioFlag);  //PLAY
+            play('flag');  //PLAY
             this.flagArr[rIdx][cIdx] = !this.flagArr[rIdx][cIdx];
             if (true === this.flagArr[rIdx][cIdx]) {
                 this.flagCount -= 1;
@@ -176,7 +181,7 @@ const app = Vue.createApp({
                 this.firstStep = false;
                 // console.log('first click is done');
                 this.flagCount += bfs(this.boardArr, this.visibleArr, this.flagArr, 0, rIdx, cIdx, this.row, this.col);
-                play(audioClick);  // PLAY
+                play('click');  // PLAY
             } else {
                 if (true === this.isGameOver) {
                     // alert('刷新重开！')
@@ -184,12 +189,12 @@ const app = Vue.createApp({
                 } else {
                     // 正常游戏流程的点击
                     if (false === isNaN(this.boardArr[rIdx][cIdx])) {// 非 雷 cell
-                        play(audioClick);
+                        play('click');
                         this.flagCount += bfs(this.boardArr, this.visibleArr, this.flagArr, 0, rIdx, cIdx, this.row, this.col);
                     } else { // 点中雷   
                         this.visibleArr[rIdx][cIdx] = true;
                         this.isGameOver = true;
-                        play(audioExp);
+                        play('exp');
                         // alert('你踩雷了！')
                         return;  // 游戏结束
                     }
