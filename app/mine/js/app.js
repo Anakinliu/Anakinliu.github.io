@@ -139,7 +139,7 @@ const app = Vue.createApp({
                 if (isNaN(arr1[row][col]) && false === arr2[row][col]) {//是雷区但是没插旗
                     return false;
                 }
-                
+
                 return true;  // 
             }
 
@@ -169,7 +169,7 @@ const app = Vue.createApp({
                 if (c - 1 >= 0 && r - 1 >= 0) {
                     allCellStat.push(fillNearByObj(this.boardArr, this.flagArr, this.visibleArr, this.nearbyObj, r - 1, c - 1))
                 }
-                console.log('see: ', allCellStat, this.nearbyObj);
+                // console.log('see: ', allCellStat, this.nearbyObj);
                 if (0 === Object.keys(this.nearbyObj).length) {
                     // 周围全部揭开
                     play('denied');
@@ -178,11 +178,11 @@ const app = Vue.createApp({
                     // play('denied');
                     for (let nearRow in this.nearbyObj) {
                         for (let nearCol of this.nearbyObj[nearRow]) {
-                            console.log(nearRow, nearCol);
+                            // console.log(nearRow, nearCol);
                             this.checkCell(nearRow, nearCol);
                         }
                     }
-                    
+
                 } else {
                     play('denied');
                 }
