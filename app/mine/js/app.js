@@ -14,7 +14,10 @@ const sounds = {
     }),
     'win': new Howl({
         src: ['./audio/win.wav']
-    })
+    }),
+    'denied': new Howl({
+        src: ['./audio/denied.wav']
+    }),
 }
 function play(k) {
     sounds[k].play();
@@ -22,11 +25,11 @@ function play(k) {
 
 function bfs(arr1, arr2, arr3, count, r, c, rLim, cLim) {// 0区域向外扩展，直到遇到标号区域
     // arr1: 标号数组， arr2：可见性数组,arr3: flag数组
-    // 返回揭开的cell中被插上flag的个数
+    // 返回:揭开的cell中被插上flag的个数
     if (true === arr2[r][c]) {  // 递归结束条件：访问过的正好用到arr2标记，避免无限循环调用访问造成栈溢出
         return count;
     }
-    if (0 < arr1[r][c]) {  // 标号 cell
+    if (0 < arr1[r][c]) {  // 标号 大于0 cell
         arr2[r][c] = true;
         if (true === arr3[r][c]) {
             arr3[r][c] = false;
@@ -34,7 +37,7 @@ function bfs(arr1, arr2, arr3, count, r, c, rLim, cLim) {// 0区域向外扩展�
         }
         return count;
     }
-    if (arr1[r][c] === 0) {
+    if (arr1[r][c] === 0) {  // 标号 0 cell
         if (true === arr3[r][c]) {
             arr3[r][c] = false;
             count += 1;
@@ -60,15 +63,16 @@ const app = Vue.createApp({
         return {
             row: localRow,
             col: localCol,
-            boardArr: [],
+            boardArr: [], // ele: 0-8标号表示周围8个区域雷数;NaN代表雷
             mineCount: localMineCount,
             flagCount: 0,
-            firstStep: true,
+            isFirstStep: true,  // 是否第一次揭开
             isGameOver: false,
-            visibleArr: [],
-            flagArr: [],
+            visibleArr: [],  // ele: true 揭开 ； false 没揭开
+            flagArr: [],  // ele:  true 已插旗；false 没插旗
             isSuccess: false,
             seed: localSeed,
+            nearbyObj: {}, // 双击以解开的数字cell时，此obj存放周围没有揭开的cell
         }
     },
     mounted() {
@@ -117,13 +121,81 @@ const app = Vue.createApp({
         }
     },
     methods: {
+        dblCheck(r, c) {
+            this.nearbyObj = {}; // 清空obj
+
+            function fillNearByObj(arr1, arr2, arr3, obj1, row, col) {
+                // arr1:boardArr ; arr2:flagArr ;arr3: visibleArr; obj1: nearByObj
+                if (false === arr3[row][col] && false === arr2[row][col]) {  // 存放周围的没有揭开的 并且 没插旗 的cell的坐标，key是row，value是数组，存放col
+                    if (undefined === obj1[row]) {
+                        obj1[row] = [col];
+                    } else {
+                        obj1[row].push(col);
+                    }
+                }
+                if (0 <= arr1[row][col] && true === arr2[row][col]) {// 不是雷区但是已插旗
+                    return false;  // 
+                }
+                if (isNaN(arr1[row][col]) && false === arr2[row][col]) {//是雷区但是没插旗
+                    return false;
+                }
+                
+                return true;  // 
+            }
+
+            if (true === this.visibleArr[r][c] && 0 < this.boardArr[r][c]) {// 双击已经揭开的数字cell才有响应
+                const allCellStat = [];  // 数组内全是true时，代表周围的cell全部符合条件，可以揭开
+                if (c + 1 < this.col) {
+                    allCellStat.push(fillNearByObj(this.boardArr, this.flagArr, this.visibleArr, this.nearbyObj, r, c + 1))
+                }
+                if (c - 1 >= 0) {
+                    allCellStat.push(fillNearByObj(this.boardArr, this.flagArr, this.visibleArr, this.nearbyObj, r, c - 1))
+                }
+                if (r + 1 < this.row) {
+                    allCellStat.push(fillNearByObj(this.boardArr, this.flagArr, this.visibleArr, this.nearbyObj, r + 1, c))
+                }
+                if (r - 1 >= 0) {
+                    allCellStat.push(fillNearByObj(this.boardArr, this.flagArr, this.visibleArr, this.nearbyObj, r - 1, c))
+                }
+                if (c + 1 < this.col && r + 1 < this.row) {
+                    allCellStat.push(fillNearByObj(this.boardArr, this.flagArr, this.visibleArr, this.nearbyObj, r + 1, c + 1))
+                }
+                if (c + 1 < this.col && r - 1 >= 0) {
+                    allCellStat.push(fillNearByObj(this.boardArr, this.flagArr, this.visibleArr, this.nearbyObj, r - 1, c + 1))
+                }
+                if (c - 1 >= 0 && r + 1 < this.row) {
+                    allCellStat.push(fillNearByObj(this.boardArr, this.flagArr, this.visibleArr, this.nearbyObj, r + 1, c - 1))
+                }
+                if (c - 1 >= 0 && r - 1 >= 0) {
+                    allCellStat.push(fillNearByObj(this.boardArr, this.flagArr, this.visibleArr, this.nearbyObj, r - 1, c - 1))
+                }
+                console.log('see: ', allCellStat, this.nearbyObj);
+                if (0 === Object.keys(this.nearbyObj).length) {
+                    // 周围全部揭开
+                    play('denied');
+                } else if (allCellStat.every(e => e === true)) {
+                    play('click');
+                    // play('denied');
+                    for (let nearRow in this.nearbyObj) {
+                        for (let nearCol of this.nearbyObj[nearRow]) {
+                            console.log(nearRow, nearCol);
+                            this.checkCell(nearRow, nearCol);
+                        }
+                    }
+                    
+                } else {
+                    play('denied');
+                }
+
+            }
+        },
         restartGame() {
             console.log('restart');
             this.boardArr = Array(this.row).fill(0).map(e => Array(this.col).fill(0));
             this.visibleArr = Array(this.row).fill(false).map(e => Array(this.col).fill(false));
             this.flagArr = Array(this.row).fill(false).map(e => Array(this.col).fill(false));
             this.flagCount = this.mineCount;
-            this.firstStep = true;
+            this.isFirstStep = true;
             this.isSuccess = false;
             this.isGameOver = false;
             // this.seed = parseInt(Math.random() * 10000);
@@ -169,10 +241,10 @@ const app = Vue.createApp({
             if (true === this.flagArr[rIdx][cIdx] || true === this.visibleArr[rIdx][cIdx]) {
                 return;
             }
-            if (this.firstStep) { // 第一次点击时不能直接踩雷
+            if (this.isFirstStep) { // 第一次点击时不能直接踩雷
                 this.generateMine(rIdx, cIdx);
                 this.generateAnswer();
-                this.firstStep = false;
+                this.isFirstStep = false;
                 // console.log('first click is done');
                 this.flagCount += bfs(this.boardArr, this.visibleArr, this.flagArr, 0, rIdx, cIdx, this.row, this.col);
                 play('click');  // PLAY
