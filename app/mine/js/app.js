@@ -4,19 +4,24 @@ const localRow = localStorage.getItem('userRow') ? parseInt(localStorage.getItem
 const localCol = localStorage.getItem('userCol') ? parseInt(localStorage.getItem('userCol')) : 24;
 const sounds = {
     'click': new Howl({
-        src: ['./audio/click.wav']
+        src: ['./audio/click.wav'],
+        html5: true
     }),
     'flag': new Howl({
-        src: ['./audio/flag.wav']
+        src: ['./audio/flag.wav'],
+        html5: true
     }),
     'exp': new Howl({
-        src: ['./audio/explosion.wav']
+        src: ['./audio/explosion.wav'],
+        html5: true
     }),
     'win': new Howl({
-        src: ['./audio/win.wav']
+        src: ['./audio/win.wav'],
+        html5: true
     }),
     'denied': new Howl({
-        src: ['./audio/denied.wav']
+        src: ['./audio/denied.wav'],
+        html5: true
     }),
 }
 function play(k) {
