@@ -1,3 +1,13 @@
+// function ready() {
+//     alert('DOM is ready');
+// }
+
+// document.addEventListener("DOMContentLoaded", ready);
+
+window.addEventListener('load', (event) => {
+    document.querySelector('#waiting').style.display = 'none';
+});
+
 const localMineCount = localStorage.getItem('userMine') ? parseInt(localStorage.getItem('userMine')) : 10;
 const localSeed = localStorage.getItem('userSeed') ? parseInt(localStorage.getItem('userSeed')) : 10;
 const localRow = localStorage.getItem('userRow') ? parseInt(localStorage.getItem('userRow')) : 18;
