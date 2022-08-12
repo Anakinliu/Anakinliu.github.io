@@ -1,9 +1,3 @@
-// function ready() {
-//     alert('DOM is ready');
-// }
-
-// document.addEventListener("DOMContentLoaded", ready);
-
 window.addEventListener('load', (event) => {
     document.querySelector('#waiting').style.display = 'none';
 });
@@ -41,6 +35,13 @@ function play(k) {
 function bfs(arr1, arr2, arr3, count, r, c, rLim, cLim) {// 0区域向外扩展，直到遇到标号区域
     // arr1: 标号数组， arr2：可见性数组,arr3: flag数组
     // 返回:揭开的cell中被插上flag的个数
+    // console.log(`bfs: , ${arr2}, =${r}=, =${c}=`);
+    // if (r >= rLim || r < 0) {
+    //     return;
+    // }
+    // if (c >= cLim || c < 0) {
+    //     return;
+    // }
     if (true === arr2[r][c]) {  // 递归结束条件：访问过的正好用到arr2标记，避免无限循环调用访问造成栈溢出
         return count;
     }
@@ -184,17 +185,18 @@ const app = Vue.createApp({
                 if (c - 1 >= 0 && r - 1 >= 0) {
                     allCellStat.push(fillNearByObj(this.boardArr, this.flagArr, this.visibleArr, this.nearbyObj, r - 1, c - 1))
                 }
-                // console.log('see: ', allCellStat, this.nearbyObj);
+                console.log('see: ', allCellStat, this.nearbyObj);
                 if (0 === Object.keys(this.nearbyObj).length) {
                     // 周围全部揭开
                     play('denied');
                 } else if (allCellStat.every(e => e === true)) {
                     play('click');
+                    console.log('可以揭开周围的： ', this.nearbyObj);
                     // play('denied');
                     for (let nearRow in this.nearbyObj) {
                         for (let nearCol of this.nearbyObj[nearRow]) {
                             // console.log(nearRow, nearCol);
-                            this.checkCell(nearRow, nearCol);
+                            this.checkCell(parseInt(nearRow), nearCol);  // 注意这里的row是string类型，放到bfs里会造成递归时数组索引报错
                         }
                     }
 
