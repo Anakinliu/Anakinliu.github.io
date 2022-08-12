@@ -185,13 +185,13 @@ const app = Vue.createApp({
                 if (c - 1 >= 0 && r - 1 >= 0) {
                     allCellStat.push(fillNearByObj(this.boardArr, this.flagArr, this.visibleArr, this.nearbyObj, r - 1, c - 1))
                 }
-                console.log('see: ', allCellStat, this.nearbyObj);
+                // console.log('see: ', allCellStat, this.nearbyObj);
                 if (0 === Object.keys(this.nearbyObj).length) {
                     // 周围全部揭开
                     play('denied');
                 } else if (allCellStat.every(e => e === true)) {
                     play('click');
-                    console.log('可以揭开周围的： ', this.nearbyObj);
+                    // console.log('可以揭开周围的： ', this.nearbyObj);
                     // play('denied');
                     for (let nearRow in this.nearbyObj) {
                         for (let nearCol of this.nearbyObj[nearRow]) {
