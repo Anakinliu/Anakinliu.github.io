@@ -10,6 +10,7 @@
     <script src="./js/seedrandom.min.js"></script>
     <script src="./js/howler.min.js"></script>
     <link rel="stylesheet" href="./css/style.css">
+    
 </head>
 
 <body>
@@ -35,15 +36,15 @@
             </div>
             <div class="board">
                 <div class="cell-row" v-for="(cellRow, rIdx) in boardArr">
-                    <div class="cell" @dblclick="dblCheck(rIdx, cIdx)" @click.right.prevent="placeFlag(rIdx, cIdx)" @click="checkCell(rIdx, cIdx)"
+                    <div class="cell" @dblclick="dblCheck(rIdx, cIdx)" @click.right.prevent="placeFlag(rIdx, cIdx)"
+                        @click="checkCell(rIdx, cIdx)"
                         :class="[initCellClass(rIdx, cIdx),{'bg-visible': visibleArr[rIdx][cIdx]}]"
                         v-for="(cell, cIdx) in cellRow">
                         <p v-if="!isGameOver"><span
                                 v-if="flagArr[rIdx][cIdx] && false === visibleArr[rIdx][cIdx]">🚩</span></p>
                         <p v-if="isNaN(boardArr[rIdx][cIdx]) && isGameOver && false === visibleArr[rIdx][cIdx]">
                             💣</p>
-                        <p v-if="isNaN(boardArr[rIdx][cIdx]) && visibleArr[rIdx][cIdx]"
-                            >💣</p>
+                        <p v-if="isNaN(boardArr[rIdx][cIdx]) && visibleArr[rIdx][cIdx]">💣</p>
                         <p :class="'n-'+boardArr[rIdx][cIdx]" v-if="visibleArr[rIdx][cIdx]">
                             <span v-if="boardArr[rIdx][cIdx] > 0">{{ boardArr[rIdx][cIdx] }}</span>
                         </p>
