@@ -8,12 +8,17 @@ body {
     font-size: 16px;
 }
 
+.main {
+    overflow: auto;
+    height: 100vh;
+    width: 100vw;
+}
+
 .game {
     height: 100vh;
     width: 100vw;
     /* margin: 2em; */
     display: flex;
-    position: relative;
     align-items: center;
     justify-content: space-around;
 }
@@ -41,19 +46,28 @@ body {
 }
 
 .board {
-    /* height: 36em;
-    width: 48em; */
-    position: relative;
-    /* top: calc(50% - 18em);
-    margin-left: calc(50% - 24em); */
+    /* margin: 5em auto; */
+    /* max-height: 90vh; */
+    max-width: 70vw;
+    max-height: 95vh;
+    
+    border: 3px solid red;
+    /* overflow-wrap: break-word; */
+    overflow: scroll;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex-wrap: nowrap;  
+    /* flex-wrap: wrap;   */
+    /* flex-wrap: wrap; 设置这个的话，只有横向滚动条，没有纵向滚动条！！！*/
+
     background-color: black;
 }
 
 .cell-row {
     display: flex;
+    margin-left:auto;
+    flex-shrink: 1;
 }
 
 /* .cell:nth-child(odd) {
