@@ -94,6 +94,16 @@ body {
     border: 2px white solid;
 }
 
+.blink {
+    animation: blinker .5s linear;
+    /* animation-duration: 1s; */
+}
+
+@keyframes blinker {
+    from { opacity: 1.0; }
+    50% { opacity: 0.5; }
+    to { opacity: 1.0; }
+}
 
 .bg-1 {
     /* background-color: #b8d284; */

@@ -38,7 +38,7 @@
                 <div class="cell-row" v-for="(cellRow, rIdx) in boardArr">
                     <div class="cell" @dblclick="dblCheck(rIdx, cIdx)" @click.right.prevent="placeFlag(rIdx, cIdx)"
                         @click="checkCell(rIdx, cIdx)"
-                        :class="[initCellClass(rIdx, cIdx),{'bg-visible': visibleArr[rIdx][cIdx]}]"
+                        :class="[initCellClass(rIdx, cIdx),{'bg-visible': visibleArr[rIdx][cIdx], 'blink': isBlink(rIdx, cIdx)}]"
                         v-for="(cell, cIdx) in cellRow">
                         <p v-if="!isGameOver"><span
                                 v-if="flagArr[rIdx][cIdx] && false === visibleArr[rIdx][cIdx]">🚩</span></p>

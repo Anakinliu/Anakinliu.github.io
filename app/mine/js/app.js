@@ -137,9 +137,11 @@ const app = Vue.createApp({
         }
     },
     methods: {
+        isBlink(rIdx, cIdx) {
+            return (rIdx in this.nearbyObj) && (this.nearbyObj[rIdx].includes(cIdx))
+        },
         dblCheck(r, c) {
             this.nearbyObj = {}; // 清空obj
-
             function fillNearByObj(arr1, arr2, arr3, obj1, row, col) {
                 // arr1:boardArr ; arr2:flagArr ;arr3: visibleArr; obj1: nearByObj
                 if (false === arr3[row][col] && false === arr2[row][col]) {  // 存放周围的没有揭开的 并且 没插旗 的cell的坐标，key是row，value是数组，存放col
@@ -185,12 +187,12 @@ const app = Vue.createApp({
                 if (c - 1 >= 0 && r - 1 >= 0) {
                     allCellStat.push(fillNearByObj(this.boardArr, this.flagArr, this.visibleArr, this.nearbyObj, r - 1, c - 1))
                 }
-                // console.log('see: ', allCellStat, this.nearbyObj);
+                console.log('see: ', allCellStat, this.nearbyObj);
                 if (0 === Object.keys(this.nearbyObj).length) {
-                    // 周围全部揭开
+                    // 周围已经被全部揭开
                     play('denied');
                 } else if (allCellStat.every(e => e === true)) {
-                    play('click');
+                    // play('click');
                     // console.log('可以揭开周围的： ', this.nearbyObj);
                     // play('denied');
                     for (let nearRow in this.nearbyObj) {
@@ -199,12 +201,12 @@ const app = Vue.createApp({
                             this.checkCell(parseInt(nearRow), nearCol);  // 注意这里的row是string类型，放到bfs里会造成递归时数组索引报错
                         }
                     }
-
                 } else {
                     play('denied');
                 }
-
             }
+            // 清空nearbyObj以删除blink class
+            setTimeout(() => { this.nearbyObj = {} }, 600)
         },
         restartGame() {
             console.log('restart');
@@ -333,6 +335,9 @@ const app = Vue.createApp({
                 }
             }
         }
+    },
+    computed: {
+        
     }
 })
 
