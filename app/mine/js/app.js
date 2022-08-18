@@ -2,6 +2,9 @@ window.addEventListener('load', (event) => {
     document.querySelector('#waiting').style.display = 'none';
 });
 
+const rMax = 100;
+const cMax = 100;
+
 const localMineCount = localStorage.getItem('userMine') ? parseInt(localStorage.getItem('userMine')) : 10;
 const localSeed = localStorage.getItem('userSeed') ? parseInt(localStorage.getItem('userSeed')) : 10;
 const localRow = localStorage.getItem('userRow') ? parseInt(localStorage.getItem('userRow')) : 18;
@@ -97,7 +100,7 @@ const app = Vue.createApp({
     },
     watch: {
         row(v, oldV) {
-            if (v < 1 || v * this.col <= this.mineCount) {
+            if (v > rMax || v < 1 || v * this.col <= this.mineCount) {
                 this.row = oldV;
                 return;
             }
@@ -105,7 +108,7 @@ const app = Vue.createApp({
             this.restartGame();
         },
         col(v, oldV) {
-            if (v < 1 || v * this.row <= this.mineCount) {
+            if (v > cMax || v < 1 || v * this.row <= this.mineCount) {
                 this.col = oldV;
                 return;
             }

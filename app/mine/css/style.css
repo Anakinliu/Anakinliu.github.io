@@ -42,7 +42,7 @@ body {
 .info input {
     font-size: 2rem;
     display: inline-block;
-    width: 3em;
+    max-width: 3em;
 }
 
 .board {
