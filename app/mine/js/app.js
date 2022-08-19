@@ -2,8 +2,8 @@ window.addEventListener('load', (event) => {
     document.querySelector('#waiting').style.display = 'none';
 });
 
-const rMax = 100;
-const cMax = 100;
+const rMax = 90;
+const cMax = 90;
 
 const localMineCount = localStorage.getItem('userMine') ? parseInt(localStorage.getItem('userMine')) : 10;
 const localSeed = localStorage.getItem('userSeed') ? parseInt(localStorage.getItem('userSeed')) : 10;
@@ -63,17 +63,21 @@ function bfs(arr1, arr2, arr3, count, r, c, rLim, cLim) {// 0区域向外扩展�
         }
         arr2[r][c] = true;
     }
-    if (c + 1 < cLim) {  // 右
-        count = bfs(arr1, arr2, arr3, count, r, c + 1, rLim, cLim);
-    }
-    if (c - 1 >= 0) {  // 左
-        count = bfs(arr1, arr2, arr3, count, r, c - 1, rLim, cLim);
-    }
-    if (r + 1 < rLim) {  // 下
-        count = bfs(arr1, arr2, arr3, count, r + 1, c, rLim, cLim);
-    }
-    if (r - 1 >= 0) {  // 上
-        count = bfs(arr1, arr2, arr3, count, r - 1, c, rLim, cLim);
+    try {
+        if (c + 1 < cLim) {  // 右
+            count = bfs(arr1, arr2, arr3, count, r, c + 1, rLim, cLim);
+        }
+        if (c - 1 >= 0) {  // 左
+            count = bfs(arr1, arr2, arr3, count, r, c - 1, rLim, cLim);
+        }
+        if (r + 1 < rLim) {  // 下
+            count = bfs(arr1, arr2, arr3, count, r + 1, c, rLim, cLim);
+        }
+        if (r - 1 >= 0) {  // 上
+            count = bfs(arr1, arr2, arr3, count, r - 1, c, rLim, cLim);
+        }
+    } catch {
+        console.log('超过最大栈深度！');
     }
     return count;
 }
@@ -340,7 +344,7 @@ const app = Vue.createApp({
         }
     },
     computed: {
-        
+
     }
 })
 
