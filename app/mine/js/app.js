@@ -2,8 +2,8 @@ window.addEventListener('load', (event) => {
     document.querySelector('#waiting').style.display = 'none';
 });
 
-const rMax = 90;
-const cMax = 90;
+const rMax = 60;
+const cMax = 60;
 
 const localMineCount = localStorage.getItem('userMine') ? parseInt(localStorage.getItem('userMine')) : 10;
 const localSeed = localStorage.getItem('userSeed') ? parseInt(localStorage.getItem('userSeed')) : 10;
@@ -64,16 +64,16 @@ function bfs(arr1, arr2, arr3, count, r, c, rLim, cLim) {// 0区域向外扩展�
         arr2[r][c] = true;
     }
     try {
-        if (c + 1 < cLim) {  // 右
+        if (c + 1 < cLim && false === arr2[r][c + 1]) {  // 右
             count = bfs(arr1, arr2, arr3, count, r, c + 1, rLim, cLim);
         }
-        if (c - 1 >= 0) {  // 左
+        if (c - 1 >= 0 && false === arr2[r][c - 1]) {  // 左
             count = bfs(arr1, arr2, arr3, count, r, c - 1, rLim, cLim);
         }
-        if (r + 1 < rLim) {  // 下
+        if (r + 1 < rLim && false === arr2[r + 1][c]) {  // 下
             count = bfs(arr1, arr2, arr3, count, r + 1, c, rLim, cLim);
         }
-        if (r - 1 >= 0) {  // 上
+        if (r - 1 >= 0 && false === arr2[r - 1][c]) {  // 上
             count = bfs(arr1, arr2, arr3, count, r - 1, c, rLim, cLim);
         }
     } catch {
