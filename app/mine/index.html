@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>扫雷</title>
+    <script src="./js/vue.global.js"></script>
+    <script src="./js/seedrandom.min.js"></script>
+    <script src="./js/howler.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    
+</head>
+
+<body>
+    <div class="main">
+        <div class="game" id="game">
+            <div v-if="isGameOver" class="mess">
+                <p v-if="isSuccess">成功</p>
+                <p class="fail" v-else>WASTED</p>
+                <button @click="restartGame">再来一把</button>
+            </div>
+            <div id="waiting" class="mess">
+                <p id="circle">加载音频资源。。。</p>
+            </div>
+            <div class="info">
+                <p>剩余</p>
+                <p>🚩{{ flagCount }}</p>
+                <ul class="rule">
+                    <li>左键揭开，右键插旗。</li>
+                    <li>首次点击绝不会是雷！</li>
+                    <li>无数字标记方块会成片揭开！</li>
+                    <li>数字周围标旗与周围雷全部匹配时，双击数字揭开其周围安全区域！</li>
+                </ul>
+            </div>
+            <div class="board">
+                <div class="cell-row" v-for="(cellRow, rIdx) in boardArr">
+                    <div class="cell" @dblclick="dblCheck(rIdx, cIdx)" @click.right.prevent="placeFlag(rIdx, cIdx)"
+                        @click="checkCell(rIdx, cIdx)"
+                        :class="[initCellClass(rIdx, cIdx),{'bg-visible': visibleArr[rIdx][cIdx], 'blink': isBlink(rIdx, cIdx)}]"
+                        v-for="(cell, cIdx) in cellRow">
+                        <p v-if="!isGameOver"><span
+                                v-if="flagArr[rIdx][cIdx] && false === visibleArr[rIdx][cIdx]">🚩</span></p>
+                        <p v-if="isNaN(boardArr[rIdx][cIdx]) && isGameOver && false === visibleArr[rIdx][cIdx]">
+                            💣</p>
+                        <p v-if="isNaN(boardArr[rIdx][cIdx]) && visibleArr[rIdx][cIdx]">💣</p>
+                        <p :class="'n-'+boardArr[rIdx][cIdx]" v-if="visibleArr[rIdx][cIdx]">
+                            <span v-if="boardArr[rIdx][cIdx] > 0">{{ boardArr[rIdx][cIdx] }}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="info">
+                <p>0 <= 行数 <= 60：<input contenteditable="true" type="number" v-model="row"></p>
+                <p>0 <= 列数 <= 60：<input contenteditable="true" type="number" v-model="col"></p>
+                <p>自定义 0<= 💣< 行*列）：<input contenteditable="true" type="number" v-model="mineCount"></p>
+                <p>自定义随机种子：<input contenteditable="true" type="number" v-model="seed"></p>
+            </div>
+        </div>
+    </div>
+    <script src="./js/app.js"></script>
+</body>
+
+</html>

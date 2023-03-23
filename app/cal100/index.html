@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100以内三运算数加减混合</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="assignment">
+        <h2>100以内三运算数加减混合</h2>
+        <p>
+            <label for="seed">改变此数以生成<span class="highlight-span">新</span>题目：</label> <input v-model="seed"
+                type="number" id="seed" min="1" max="99999999">
+        </p>
+        <p>
+            <label for="num-p">题目个数：</label> <input min="1" max="50" v-model="numOfP" type="number"
+                id="num-p" step="5">
+        </p>
+        <p class="useless">
+            <label for="min-num">运算数最小值：</label> <input max="99" min="10" v-model="minNum" type="number" name="min-num"
+                id="min-num">
+            <label for="max-num">，最大值：</label> <input max="99" min="10" v-model="maxNum" type="number" name="max-num"
+                id="max-num">
+        </p>
+        <p>
+            <button @click="generateProblems">生成题目</button>
+        </p>
+        <p>
+            <button @click="changeColumn">切换单/双列</button>
+        </p>
+        <div :class="{'two-column': !isSingleColumn, 'single-column': isSingleColumn}" v-if="problems.length > 0" id="problems">
+            <div v-for="(problem, index) in problems">
+                <p class="problem-content">第{{ index + 1 }}题：{{ problem }}</p>
+            </div>
+        </div>
+        <p><button @click="showAnswers">看答案</button></p>
+    </div>
+    <script src="vue.global.js"></script>
+    <script src="seedrandom.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

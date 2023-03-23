@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>iPersistence</title>
+    <style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            font-family: Helvetica Neue, Helvetica, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+            background-image: url('https://raw.githubusercontent.com/we11cheng/we11cheng.github.io/master/bg.jpg');
+            font-size: 85%;
+            margin: 0;
+            text-shadow: #FC0 1px 0 10px;
+        }
+
+        h2 {
+            font-size: 220%;
+            font-weight: 400;
+        }
+
+        .to {
+            color: rgb(253, 99, 125);
+        }
+
+        .content {
+            position: absolute;
+            width: 100%;
+            top: 40%;
+            transform: translate(0, -50%);
+            text-align: center;
+        }
+
+        .timer {
+            font-size: 180%;
+            line-height: 1.5;
+            margin: 1em 0;
+        }
+
+        .timer p {
+            font-size: 2rem;
+            color: rgb(253, 99, 125);
+            line-height: 1;
+            margin: .2em 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <h2 class="to">Zhao Xinxin</h2>
+        <h2>We have met for</h2>
+        <div class="timer">
+            <p id="d"></p> Days
+            <p id="h"></p> Hours
+            <p id="m"></p> Minutes
+            <p id="s"></p> Seconds
+        </div>
+    </div>
+    <script language="javascript">
+        function timer() {
+            console.log(123);
+            var start = new Date("2023-03-18 14:40:00");
+            var t = new Date().getTime() - start;
+            var h = ~~(t / 1000 / 60 / 60 % 24);
+            if (h < 10) {
+                h = "0" + h;
+            }
+            var m = ~~(t / 1000 / 60 % 60);
+            if (m < 10) {
+                m = "0" + m;
+            }
+            var s = ~~(t / 1000 % 60);
+            if (s < 10) {
+                s = "0" + s;
+            }
+            document.getElementById('d').innerHTML = ~~(t / 1000 / 60 / 60 / 24);
+            document.getElementById('h').innerHTML = h;
+            document.getElementById('m').innerHTML = m;
+            document.getElementById('s').innerHTML = s;
+        }
+        setInterval(timer, 1000);
+    </script>
+    <!-- <script language="javascript">
+        function show_date_time() {
+            window.setTimeout("show_date_time()", 1000);
+            BirthDay = new Date("6/7/2018 00:00:00");//这个日期是可以修改的
+            today = new Date();
+            timeold = (today.getTime() - BirthDay.getTime());
+            sectimeold = timeold / 1000
+            secondsold = Math.floor(sectimeold);
+            msPerDay = 24 * 60 * 60 * 1000
+            e_daysold = timeold / msPerDay
+            daysold = Math.floor(e_daysold);
+            e_hrsold = (e_daysold - daysold) * 24;
+            hrsold = Math.floor(e_hrsold);
+            e_minsold = (e_hrsold - hrsold) * 60;
+            minsold = Math.floor((e_hrsold - hrsold) * 60);
+            seconds = Math.floor((e_minsold - minsold) * 60);
+            document.getElementById('d').innerHTML = daysold;
+            document.getElementById('h').innerHTML = hrsold;
+            document.getElementById('m').innerHTML = minsold;
+            document.getElementById('s').innerHTML = seconds;
+        }
+        show_date_time();
+    </script> -->
+</body>
+
+</html>
