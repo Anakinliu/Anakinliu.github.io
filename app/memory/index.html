@@ -58,9 +58,9 @@
         .typing {
             margin: 0 auto;
             color: rgb(253, 99, 125);
-            font-size: 2em;
-            width: 17em;
-            height: 1.5em;
+            font-size: 4vw;
+            width: 68vw;
+            height: 5vw;
             border-right: 1px solid transparent;
             animation: typing 2s steps(16, end), blink-caret .75s step-end infinite;
             font-family: Consolas, Monaco;
@@ -74,7 +74,7 @@
             }
 
             to {
-                width: 17em;
+                width: 17rem;
             }
         }
 
@@ -105,7 +105,7 @@
             </div>
         </div>
         <div class="bottom">
-            <p class="typing" id="left">踌躇即失之东隅。但不能收之桑榆者。</p>
+            <p class="typing">踌躇即失之东隅。但不能收之桑榆者。</p>
         </div>
     </div>
 
@@ -134,31 +134,8 @@
         }
         setInterval(timer, 1000);
 
-        document.querySelector("#right").style.animationPlayState = "paused";
     </script>
-    <!-- <script language="javascript">
-        function show_date_time() {
-            window.setTimeout("show_date_time()", 1000);
-            BirthDay = new Date("6/7/2018 00:00:00");//这个日期是可以修改的
-            today = new Date();
-            timeold = (today.getTime() - BirthDay.getTime());
-            sectimeold = timeold / 1000
-            secondsold = Math.floor(sectimeold);
-            msPerDay = 24 * 60 * 60 * 1000
-            e_daysold = timeold / msPerDay
-            daysold = Math.floor(e_daysold);
-            e_hrsold = (e_daysold - daysold) * 24;
-            hrsold = Math.floor(e_hrsold);
-            e_minsold = (e_hrsold - hrsold) * 60;
-            minsold = Math.floor((e_hrsold - hrsold) * 60);
-            seconds = Math.floor((e_minsold - minsold) * 60);
-            document.getElementById('d').innerHTML = daysold;
-            document.getElementById('h').innerHTML = hrsold;
-            document.getElementById('m').innerHTML = minsold;
-            document.getElementById('s').innerHTML = seconds;
-        }
-        show_date_time();
-    </script> -->
+
 </body>
 
 </html>
